@@ -1,0 +1,15 @@
+#container-main{
+  height: 100vh;
+}
+
+#container-center{
+  height: 100vh;
+}
+
+#row-map{
+  height: 70vh;
+}
+
+#row-time{
+  height: 30vh;
+}
