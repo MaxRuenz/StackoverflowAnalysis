@@ -13,3 +13,24 @@
 #row-time{
   height: 30vh;
 }
+
+#row-tag{
+  height: 30vh;
+}
+
+#row-time-slider{
+  height: 30vh;
+}
+
+#row-vote-slider{
+  height: 30vh;
+}
+
+#slider-div-vote{
+  width: 80%;
+}
+
+#slider-div-time{
+    width: 60%;
+    margin-left: 10px
+}

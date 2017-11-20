@@ -2,14 +2,15 @@
 <html lang="en">
 
 <head>
-  <title>Hello, world!</title>
+  <title>StackOverflow Network Analysis</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" />
 
   <link rel="stylesheet" href="main.css">
 </head>
@@ -18,14 +19,52 @@
 
   <div class="container-fluid" id="container-main">
     <div class="row">
-      <div class="col col-lg-2 bg-info" id="col-left">
+      <div class="col col-lg-2 bg-info center-block" id="col-left" >
 
-        <select class="custom-select">
-          <option selected>All Tags</option>
-          <option value="1">JavaScript</option>
-          <option value="2">Python</option>
-          <option value="3">Java</option>
-        </select>
+
+        <div class="container" id="container-left">
+          <div class="row align-items-start" id="row-tag">
+            <div class="col">
+              <h4>Tags</h4>
+              <select class="custom-select">
+                <option selected>All Tags</option>
+                <option value="1">JavaScript</option>
+                <option value="2">Python</option>
+                <option value="3">Java</option>
+              </select>
+            </div>
+            <table class="table" id="table-overview">
+              <tbody>
+                <tr>
+                  <th scope="row">Users</th>
+                  <td>74002</td>
+                </tr>
+                <tr>
+                  <th scope="row">Answers</th>
+                  <td>348345</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row align-items-start bg-info" id="row-time-slider">
+            <div class="col">
+              <h4>Time</h4>
+              <button type="button" class="btn btn-dark">Play</button>
+              <input id="slider-time" data-slider-id='slider-div-time' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="0" />
+              <span id="time-current-label">Current Time: <span id="time-current">0</span></span>
+            </div>
+          </div>
+          <div class="row align-items-start bg-info" id="row-vote-slider">
+            <div class="col">
+              <h4>Votes</h4>
+              <input id="slider-vote" data-slider-id='slider-div-vote' type="text" data-slider-min="0" data-slider-max="1000" data-slider-step="1" data-slider-value="[0,1000]" class="span2"/>
+              <span id="vote-current-label">Current Votes: <span id="vote-current">0</span></span>
+            </div>
+          </div>
+        </div>
+
+
+
 
       </div>
       <div class="col col-lg-8" id="col-middle">
@@ -92,6 +131,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
 
   <script src="main.js"></script>
 
