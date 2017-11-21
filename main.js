@@ -301,7 +301,7 @@ $(function() {
       return 'Current value: ' + value;
     }
   });
-  $("#slider-vote").on("slide", function(slideEvt) {
+  $("#slider-votes").on("slide", function(slideEvt) {
     $("#vote-current").text(slideEvt.value);
   });
 
