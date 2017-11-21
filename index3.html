@@ -13,9 +13,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" />
 
   <link rel="stylesheet" href="main.css">
-
-  <!-- D3 Script -->
-  <script  type="text/JavaScript" src="d3.min.js"></script>
 </head>
 
 <body>
@@ -76,100 +73,6 @@
           <div class="row align-items-start" id="row-map">
             <div class="col">
               Map
-              <svg width="960" height="600" id='svg'></svg>
-              <script>
-
-              var svg = d3.select("#svg"),
-                  width = +svg.attr("width"),
-                  height = +svg.attr("height");
-
-              var color = d3.scaleOrdinal(d3.schemeCategory20);
-
-              var simulation = d3.forceSimulation()
-                  .force("link", d3.forceLink().id(function(d) { return d.id; }))
-                  .force("charge", d3.forceManyBody())
-                  .force("center", d3.forceCenter(width / 2, height / 2));
-
-              d3.json("cmd.json", function(error, json) {
-
-                graph = {"nodes":[], "links":[]};
-                nodes = [];
-                for (var i =0; i< json.edges.length; i++){
-                  graph.links.push({source:json.edges[i].q_id, target:json.edges[i].a_id});
-                  if (nodes.indexOf(json.edges[i].q_id) == -1) {
-                    nodes.push(json.edges[i].q_id)
-                    graph.nodes.push({id:json.edges[i].q_id});
-                  }
-                  if (nodes.indexOf(json.edges[i].a_id) == -1){
-                    nodes.push(json.edges[i].a_id)
-                    graph.nodes.push({id:json.edges[i].a_id});
-                  }
-                }
-                console.log(graph)
-                if (error) throw error;
-
-                var link = svg.append("g")
-                    .attr("class", "links")
-                  .selectAll("line")
-                  .data(graph.links)
-                  .enter().append("line")
-                    .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
-
-                var node = svg.append("g")
-                    .attr("class", "nodes")
-                  .selectAll("circle")
-                  .data(graph.nodes)
-                  .enter().append("circle")
-                    .attr("r", 5)
-                    .attr("fill", function(d) { return color(d.group); })
-                    .call(d3.drag()
-                        .on("start", dragstarted)
-                        .on("drag", dragged)
-                        .on("end", dragended));
-
-                node.append("title")
-                    .text(function(d) { return d.id; });
-
-                simulation
-                    .nodes(graph.nodes)
-                    .on("tick", ticked);
-
-                simulation.force("link")
-                    .links(graph.links);
-
-                function ticked() {
-                  link
-                      .attr("x1", function(d) { return d.source.x; })
-                      .attr("y1", function(d) { return d.source.y; })
-                      .attr("x2", function(d) { return d.target.x; })
-                      .attr("y2", function(d) { return d.target.y; });
-
-                  node
-                      .attr("cx", function(d) { return d.x; })
-                      .attr("cy", function(d) { return d.y; });
-                }
-              });
-
-              function dragstarted(d) {
-                if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-                d.fx = d.x;
-                d.fy = d.y;
-              }
-
-              function dragged(d) {
-                d.fx = d3.event.x;
-                d.fy = d3.event.y;
-              }
-
-              function dragended(d) {
-                if (!d3.event.active) simulation.alphaTarget(0);
-                d.fx = null;
-                d.fy = null;
-              }
-
-              </script>
-
-
             </div>
           </div>
           <div class="row align-items-start bg-light" id="row-time">
@@ -226,6 +129,8 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
 
   <script src="main.js"></script>
