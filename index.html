@@ -15,14 +15,14 @@
   <link rel="stylesheet" href="main.css">
 
   <!-- D3 Script -->
-  <script  type="text/JavaScript" src="d3.min.js"></script>
+  <script type="text/JavaScript" src="d3.min.js"></script>
 </head>
 
 <body>
 
   <div class="container-fluid" id="container-main">
     <div class="row">
-      <div class="col col-lg-2 bg-info center-block" id="col-left" >
+      <div class="col col-lg-2 bg-info center-block" id="col-left">
 
 
         <div class="container" id="container-left">
@@ -60,7 +60,7 @@
           <div class="row align-items-start bg-info" id="row-vote-slider">
             <div class="col">
               <h4>Votes</h4>
-              <input id="slider-vote" data-slider-id='slider-div-vote' type="text" data-slider-min="0" data-slider-max="1000" data-slider-step="1" data-slider-value="[0,1000]" class="span2"/>
+              <input id="slider-vote" data-slider-id='slider-div-vote' type="text" data-slider-min="0" data-slider-max="1000" data-slider-step="1" data-slider-value="[0,1000]" class="span2" />
               <span id="vote-current-label">Current Votes: <span id="vote-current">0</span></span>
             </div>
           </div>
@@ -78,95 +78,136 @@
               Map
               <svg width="960" height="600" id='svg'></svg>
               <script>
-
-              var svg = d3.select("#svg"),
+                var svg = d3.select("#svg"),
+                  g = svg.append("g"),
                   width = +svg.attr("width"),
                   height = +svg.attr("height");
 
-              var color = d3.scaleOrdinal(d3.schemeCategory20);
+                var color = d3.scaleOrdinal(d3.schemeCategory20);
 
-              var simulation = d3.forceSimulation()
-                  .force("link", d3.forceLink().id(function(d) { return d.id; }))
+                var simulation = d3.forceSimulation()
+                  .force("link", d3.forceLink().id(function(d) {
+                    return d.id;
+                  }))
                   .force("charge", d3.forceManyBody())
                   .force("center", d3.forceCenter(width / 2, height / 2));
 
-              d3.json("cmd.json", function(error, json) {
-
-                graph = {"nodes":[], "links":[]};
-                nodes = [];
-                for (var i =0; i< json.edges.length; i++){
-                  graph.links.push({source:json.edges[i].q_id, target:json.edges[i].a_id});
-                  if (nodes.indexOf(json.edges[i].q_id) == -1) {
-                    nodes.push(json.edges[i].q_id)
-                    graph.nodes.push({id:json.edges[i].q_id});
+                d3.json("cmd.json", function(error, json) {
+                  console.log(json);
+                  graph = {
+                    "nodes": [],
+                    "links": []
+                  };
+                  nodes = [];
+                  for (var i = 0; i < json.edges.length; i++) {
+                    graph.links.push({
+                      source: json.edges[i].q_id,
+                      target: json.edges[i].a_id,
+                      value: 1
+                    });
+                    if (nodes.indexOf(json.edges[i].q_id) == -1) {
+                      nodes.push(json.edges[i].q_id)
+                      graph.nodes.push({
+                        id: json.edges[i].q_id,
+                        group: 1
+                      });
+                    }
+                    if (nodes.indexOf(json.edges[i].a_id) == -1) {
+                      nodes.push(json.edges[i].a_id)
+                      graph.nodes.push({
+                        id: json.edges[i].a_id,
+                        group: 1
+                      });
+                    }
                   }
-                  if (nodes.indexOf(json.edges[i].a_id) == -1){
-                    nodes.push(json.edges[i].a_id)
-                    graph.nodes.push({id:json.edges[i].a_id});
-                  }
-                }
-                console.log(graph)
-                if (error) throw error;
+                  console.log(graph)
+                  if (error) throw error;
 
-                var link = svg.append("g")
+                  var link = g.append("g")
                     .attr("class", "links")
-                  .selectAll("line")
-                  .data(graph.links)
-                  .enter().append("line")
-                    .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
+                    .selectAll("line")
+                    .data(graph.links)
+                    .enter().append("line")
+                    .attr("stroke-width", function(d) {
+                      return d.value;
+                    });
 
-                var node = svg.append("g")
+                  var node = g.append("g")
                     .attr("class", "nodes")
-                  .selectAll("circle")
-                  .data(graph.nodes)
-                  .enter().append("circle")
+                    .selectAll("circle")
+                    .data(graph.nodes)
+                    .enter().append("circle")
                     .attr("r", 5)
-                    .attr("fill", function(d) { return color(d.group); })
+                    .attr("fill", function(d) {
+                      return color(d.group);
+                    })
                     .call(d3.drag()
-                        .on("start", dragstarted)
-                        .on("drag", dragged)
-                        .on("end", dragended));
+                      .on("start", dragstarted)
+                      .on("drag", dragged)
+                      .on("end", dragended));
 
-                node.append("title")
-                    .text(function(d) { return d.id; });
+                  node.append("title")
+                    .text(function(d) {
+                      return d.id;
+                    });
 
-                simulation
+                  simulation
                     .nodes(graph.nodes)
                     .on("tick", ticked);
 
-                simulation.force("link")
+                  simulation.force("link")
                     .links(graph.links);
 
-                function ticked() {
-                  link
-                      .attr("x1", function(d) { return d.source.x; })
-                      .attr("y1", function(d) { return d.source.y; })
-                      .attr("x2", function(d) { return d.target.x; })
-                      .attr("y2", function(d) { return d.target.y; });
+                  function ticked() {
+                    link
+                      .attr("x1", function(d) {
+                        return d.source.x;
+                      })
+                      .attr("y1", function(d) {
+                        return d.source.y;
+                      })
+                      .attr("x2", function(d) {
+                        return d.target.x;
+                      })
+                      .attr("y2", function(d) {
+                        return d.target.y;
+                      });
 
-                  node
-                      .attr("cx", function(d) { return d.x; })
-                      .attr("cy", function(d) { return d.y; });
+                    node
+                      .attr("cx", function(d) {
+                        return d.x;
+                      })
+                      .attr("cy", function(d) {
+                        return d.y;
+                      });
+                  }
+                });
+
+                function dragstarted(d) {
+                  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+                  d.fx = d.x;
+                  d.fy = d.y;
                 }
-              });
 
-              function dragstarted(d) {
-                if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-                d.fx = d.x;
-                d.fy = d.y;
-              }
+                function dragged(d) {
+                  d.fx = d3.event.x;
+                  d.fy = d3.event.y;
+                }
 
-              function dragged(d) {
-                d.fx = d3.event.x;
-                d.fy = d3.event.y;
-              }
+                function dragended(d) {
+                  if (!d3.event.active) simulation.alphaTarget(0);
+                  d.fx = null;
+                  d.fy = null;
+                }
 
-              function dragended(d) {
-                if (!d3.event.active) simulation.alphaTarget(0);
-                d.fx = null;
-                d.fy = null;
-              }
 
+                //Zoom functions
+                function zoom_actions() {
+                  g.attr("transform", d3.event.transform)
+                }
+
+                var zoom_handler = d3.zoom().on("zoom", zoom_actions);
+                zoom_handler(svg);
               </script>
 
 
