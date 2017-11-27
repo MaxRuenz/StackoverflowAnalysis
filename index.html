@@ -103,7 +103,7 @@
                     graph.links.push({
                       source: json.edges[i].q_id,
                       target: json.edges[i].a_id,
-                      value: 1
+                      value: json.edges[i].votes
                     });
                     if (nodes.indexOf(json.edges[i].q_id) == -1) {
                       nodes.push(json.edges[i].q_id)
@@ -123,14 +123,6 @@
                   console.log(graph)
                   if (error) throw error;
 
-                  var link = g.append("g")
-                    .attr("class", "links")
-                    .selectAll("line")
-                    .data(graph.links)
-                    .enter().append("line")
-                    .attr("stroke-width", function(d) {
-                      return d.value;
-                    });
 
                   var node = g.append("g")
                     .attr("class", "nodes")
@@ -159,20 +151,6 @@
                     .links(graph.links);
 
                   function ticked() {
-                    link
-                      .attr("x1", function(d) {
-                        return d.source.x;
-                      })
-                      .attr("y1", function(d) {
-                        return d.source.y;
-                      })
-                      .attr("x2", function(d) {
-                        return d.target.x;
-                      })
-                      .attr("y2", function(d) {
-                        return d.target.y;
-                      });
-
                     node
                       .attr("cx", function(d) {
                         return d.x;
