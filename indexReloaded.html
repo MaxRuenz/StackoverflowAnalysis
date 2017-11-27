@@ -9,6 +9,7 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css" />
   <link rel="stylesheet" href="mainReloaded.css" />
 </head>
 
@@ -39,7 +40,7 @@
             <h1>Descrepancies.</h1>
             <p>Describe findings. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 
-              <select class="custom-select float-right">
+            <select class="custom-select float-right">
                 <option selected>Answers accepted</option>
                 <option value="1">Votes acquired</option>
                 <option value="2">Answers posted</option>
@@ -67,34 +68,46 @@
             <h1>Users per class.</h1>
             <p>Average stats per user group ... Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 
-            <select class="custom-select float-right">
-              <option selected>One time users</option>
-              <option value="1">Occasinal users</option>
-              <option value="2">Common users</option>
-              <option value="3">Frequent users</option>
-              <option value="4">Super users</option>
-            </select>
-
             <table class="table" id="table-overview">
               <tbody>
                 <tr>
                   <th scope="row">Questions</th>
                   <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
                 </tr>
                 <tr>
                   <th scope="row">Answers</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
                   <td>0</td>
                 </tr>
                 <tr>
                   <th scope="row">Accepted Answers</th>
                   <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
                 </tr>
                 <tr>
                   <th scope="row">Comments</th>
                   <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
                 </tr>
                 <tr>
                   <th scope="row">Reputation</th>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
                   <td>100</td>
                 </tr>
               </tbody>
@@ -125,6 +138,14 @@
           <div class="carousel-caption text-left">
             <h1>Evolution of users.</h1>
             <p>How user classes evolved ... Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+
+            <select class="custom-select float-right">
+              <option selected>Answers accepted</option>
+              <option value="1">Votes acquired</option>
+              <option value="2">Answers posted</option>
+              <option value="3">Reputation</option>
+            </select>
+            <canvas id="chart-evol" width="400" height="400"></canvas>
           </div>
         </div>
       </div>
@@ -133,6 +154,64 @@
           <div class="carousel-caption text-left">
             <h1>Your turn.</h1>
             <p>Change parameters of classifiation, see how things change ... Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+
+            <select class="custom-select float-right">
+              <option selected>Answers accepted</option>
+              <option value="1">Votes acquired</option>
+              <option value="2">Answers posted</option>
+              <option value="3">Reputation</option>
+            </select>
+
+            <br/>
+
+            <input id="slider" data-slider-id='slider-div' type="text" data-slider-min="0" data-slider-max="1000" data-slider-step="1" data-slider-value="[0,1000]" class="span2"/>
+            <span id="vote-current-label">Current Votes: <span id="vote-current">0</span></span>
+
+            <table class="table" id="table-overview">
+              <tbody>
+                <tr>
+                  <th scope="row">Questions</th>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th scope="row">Answers</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th scope="row">Accepted Answers</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th scope="row">Comments</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th scope="row">Reputation</th>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                </tr>
+              </tbody>
+            </table>
+
           </div>
         </div>
       </div>
@@ -142,6 +221,41 @@
             <h1>What about you?.</h1>
             <p>Insert evolution of user id ... Change parameters of classifiation, see how things change ... Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies
               vehicula ut id elit.</p>
+
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">StackOverflow User Id</span>
+              <input type="text" class="form-control" placeholder="22656" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+            <table class="table" id="table-overview">
+              <tbody>
+                <tr>
+                  <th scope="row">Class</th>
+                  <td>Super User</td>
+                </tr>
+                <tr>
+                  <th scope="row">Questions</th>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th scope="row">Answers</th>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th scope="row">Accepted Answers</th>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th scope="row">Comments</th>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th scope="row">Reputation</th>
+                  <td>100</td>
+                </tr>
+              </tbody>
+            </table>
+
           </div>
         </div>
       </div>
@@ -162,6 +276,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
   <script src="mainReloaded.js"></script>
 </body>
 

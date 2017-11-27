@@ -141,4 +141,64 @@ $(function() {
     }
   });
 
+  let ctx4 = document.getElementById("chart-evol");
+  let myChart4 = new Chart(ctx4, {
+    type: 'line',
+    data: {
+      labels:[ 1,2,3,4, 5
+      ],
+      datasets: [{
+        label: "common users",
+        fill: false,
+        data: [ 0, 10, 20, 30, 40
+        ],
+        backgroundColor: '#6baed6',
+        borderColor: '#6baed6'
+      },
+      {
+        label: "super users",
+        fill: false,
+        data: [ 0, 20, 40, 80, 160
+        ],
+        bordergroundColor: '#08519c',
+        borderColor: '#08519c'
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            padding: 20,
+            fontColor: '#ffffff'
+          },
+          gridLines: {
+            color: '#d3d3d3'
+          },
+          scaleLabel: {}
+        }],
+        xAxes: [{
+          gridLines: {
+            color: '#ffffff',
+            display: false
+          },
+          ticks: {
+            fontColor: '#ffffff'
+          }
+        }]
+      },
+      legend: {
+        position: 'bottom'
+      }
+    }
+  });
+
+  $('#slider').slider({
+    formatter: function(value) {
+      return 'Current value: ' + value;
+    }
+  });
+  $("#slider").on("slide", function(slideEvt) {
+    $("#vote-current").text(slideEvt.value);
+  });
 });
