@@ -1,0 +1,8 @@
+.fullscreen{
+  height: 100vh;
+}
+
+.carousel-caption{
+  top: 0;
+  bottom: auto
+}
