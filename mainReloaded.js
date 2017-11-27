@@ -193,6 +193,30 @@ $(function() {
     }
   });
 
+  let ctx5 = document.getElementById("chart-cust");
+  let myChart5 = new Chart(ctx5, {
+    type: 'doughnut',
+    data: {
+      labels:[   "One time users",
+        "Occasinal users",
+        "Common users",
+        "Frequent users",
+        "Super users"
+      ],
+      datasets: [{
+        label: "",
+        data: [ 0, 10, 20, 30, 40
+        ],
+        backgroundColor: ['#eff3ff', '#bdd7e7', '#6baed6','#3182bd', '#08519c']
+      }]
+    },
+    options: {
+      legend: {
+        position: 'bottom'
+      }
+    }
+  });
+
   $('#slider').slider({
     formatter: function(value) {
       return 'Current value: ' + value;

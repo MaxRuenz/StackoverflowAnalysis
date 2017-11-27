@@ -23,10 +23,9 @@
       <li data-target="#myCarousel" data-slide-to="4"></li>
       <li data-target="#myCarousel" data-slide-to="5"></li>
       <li data-target="#myCarousel" data-slide-to="6"></li>
-      <li data-target="#myCarousel" data-slide-to="7"></li>
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item">
+      <div class="carousel-item active">
         <div class="container fullscreen">
           <div class="carousel-caption text-left">
             <h1>Intro.</h1>
@@ -34,7 +33,7 @@
           </div>
         </div>
       </div>
-      <div class="carousel-item active">
+      <div class="carousel-item">
         <div class="container fullscreen">
           <div class="carousel-caption text-left">
             <h1>Descrepancies.</h1>
@@ -46,7 +45,7 @@
                 <option value="2">Answers posted</option>
                 <option value="3">Reputation</option>
               </select>
-            <canvas id="chart-descre" width="400" height="400"></canvas>
+            <canvas id="chart-descre" height="150vh"></canvas>
 
           </div>
         </div>
@@ -57,7 +56,7 @@
             <h1>Classify Users.</h1>
             <p>We classified users by ... Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 
-            <canvas id="chart-class" width="400" height="400"></canvas>
+            <canvas id="chart-class"  height="150vh"></canvas>
 
           </div>
         </div>
@@ -68,67 +67,66 @@
             <h1>Users per class.</h1>
             <p>Average stats per user group ... Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 
-            <table class="table" id="table-overview">
-              <tbody>
-                <tr>
-                  <th scope="row">Questions</th>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <th scope="row">Answers</th>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th scope="row">Accepted Answers</th>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th scope="row">Comments</th>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th scope="row">Reputation</th>
-                  <td>100</td>
-                  <td>100</td>
-                  <td>100</td>
-                  <td>100</td>
-                  <td>100</td>
-                </tr>
-              </tbody>
-            </table>
 
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="container fullscreen">
-          <div class="carousel-caption text-left">
-            <h1>Contribuion of Users.</h1>
-            <p>Percentage per user group ... Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <select class="custom-select float-right">
-              <option selected>Answers accepted</option>
-              <option value="1">Votes acquired</option>
-              <option value="2">Answers posted</option>
-              <option value="3">Reputation</option>
-            </select>
-            <canvas id="chart-contrib" width="400" height="400"></canvas>
-
+            <div class="container-fluid" id="container-main">
+              <div class="row align-items-center">
+                <div class="col col-lg-6" >
+                  <table class="table" id="table-overview">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Questions</th>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Answers</th>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Accepted Answers</th>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Comments</th>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Reputation</th>
+                        <td>100</td>
+                        <td>100</td>
+                        <td>100</td>
+                        <td>100</td>
+                        <td>100</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col col-lg-6">
+                  <select class="custom-select float-right">
+                    <option selected>Answers accepted</option>
+                    <option value="1">Votes acquired</option>
+                    <option value="2">Answers posted</option>
+                    <option value="3">Reputation</option>
+                  </select>
+                  <canvas id="chart-contrib" width="400" height="400"></canvas>
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -145,7 +143,7 @@
               <option value="2">Answers posted</option>
               <option value="3">Reputation</option>
             </select>
-            <canvas id="chart-evol" width="400" height="400"></canvas>
+            <canvas id="chart-evol" height="150vh"></canvas>
           </div>
         </div>
       </div>
@@ -167,51 +165,59 @@
             <input id="slider" data-slider-id='slider-div' type="text" data-slider-min="0" data-slider-max="1000" data-slider-step="1" data-slider-value="[0,1000]" class="span2"/>
             <span id="vote-current-label">Current Votes: <span id="vote-current">0</span></span>
 
-            <table class="table" id="table-overview">
-              <tbody>
-                <tr>
-                  <th scope="row">Questions</th>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <th scope="row">Answers</th>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th scope="row">Accepted Answers</th>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th scope="row">Comments</th>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <th scope="row">Reputation</th>
-                  <td>100</td>
-                  <td>100</td>
-                  <td>100</td>
-                  <td>100</td>
-                  <td>100</td>
-                </tr>
-              </tbody>
-            </table>
-
+            <div class="container-fluid" id="container-main">
+              <div class="row align-items-center">
+                <div class="col col-lg-6" >
+                  <table class="table" id="table-overview">
+                    <tbody>
+                      <tr>
+                        <th scope="row">Questions</th>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Answers</th>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Accepted Answers</th>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Comments</th>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Reputation</th>
+                        <td>100</td>
+                        <td>100</td>
+                        <td>100</td>
+                        <td>100</td>
+                        <td>100</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col col-lg-6">
+                  <canvas id="chart-cust" width="400" height="400"></canvas>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
