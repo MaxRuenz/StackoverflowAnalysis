@@ -23,6 +23,8 @@
       <li data-target="#myCarousel" data-slide-to="4"></li>
       <li data-target="#myCarousel" data-slide-to="5"></li>
       <li data-target="#myCarousel" data-slide-to="6"></li>
+      <li data-target="#myCarousel" data-slide-to="7"></li>
+      <li data-target="#myCarousel" data-slide-to="8"></li>
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -40,8 +42,8 @@
             <p>Describe findings. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 
             <select class="custom-select float-right">
-                <option selected>Answers accepted</option>
-                <option value="1">Votes acquired</option>
+                <option selected>Questions asked</option>
+                <option value="1">Votes</option>
                 <option value="2">Answers posted</option>
                 <option value="3">Reputation</option>
               </select>
@@ -76,50 +78,50 @@
                       <tr>
                         <th scope="row">Questions</th>
                         <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
+                        <td>5</td>
+                        <td>25</td>
+                        <td>100</td>
+                        <td>500</td>
                       </tr>
                       <tr>
                         <th scope="row">Answers</th>
                         <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>25</td>
+                        <td>100</td>
                       </tr>
                       <tr>
-                        <th scope="row">Accepted Answers</th>
+                        <th scope="row">Accepted Answer</th>
                         <td>0</td>
                         <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>25</td>
                       </tr>
                       <tr>
                         <th scope="row">Comments</th>
                         <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td>5</td>
+                        <td>25</td>
+                        <td>40</td>
+                        <td>90</td>
                       </tr>
                       <tr>
                         <th scope="row">Reputation</th>
                         <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
+                        <td>200</td>
+                        <td>500</td>
+                        <td>1000</td>
+                        <td>4000</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <div class="col col-lg-6">
                   <select class="custom-select float-right">
-                    <option selected>Answers accepted</option>
-                    <option value="1">Votes acquired</option>
+                    <option selected>Votes</option>
+                    <option value="1">Votes acquire</option>
                     <option value="2">Answers posted</option>
                     <option value="3">Reputation</option>
                   </select>
@@ -134,16 +136,45 @@
       <div class="carousel-item">
         <div class="container fullscreen">
           <div class="carousel-caption text-left">
+            <h1>More details.</h1>
+            <p>More details on dataset ... Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+
+            <div id="div-cordinates">
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="container fullscreen">
+          <div class="carousel-caption text-left">
+            <h1>Distribution details.</h1>
+            <p>Distribution using steam chart ... Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+
+            <div id="div-stream">
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="container fullscreen">
+          <div class="carousel-caption text-left">
             <h1>Evolution of users.</h1>
             <p>How user classes evolved ... Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 
             <select class="custom-select float-right">
-              <option selected>Answers accepted</option>
+              <option selected>Votes</option>
               <option value="1">Votes acquired</option>
               <option value="2">Answers posted</option>
               <option value="3">Reputation</option>
             </select>
             <canvas id="chart-evol" height="150vh"></canvas>
+            <div id="div-slider">
+              <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+            </div>
           </div>
         </div>
       </div>
@@ -154,7 +185,7 @@
             <p>Change parameters of classifiation, see how things change ... Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 
             <select class="custom-select float-right">
-              <option selected>Answers accepted</option>
+              <option selected>Votes</option>
               <option value="1">Votes acquired</option>
               <option value="2">Answers posted</option>
               <option value="3">Reputation</option>
@@ -173,42 +204,42 @@
                       <tr>
                         <th scope="row">Questions</th>
                         <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
+                        <td>5</td>
+                        <td>25</td>
+                        <td>100</td>
+                        <td>500</td>
                       </tr>
                       <tr>
                         <th scope="row">Answers</th>
                         <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>25</td>
+                        <td>100</td>
                       </tr>
                       <tr>
                         <th scope="row">Accepted Answers</th>
                         <td>0</td>
                         <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td>1</td>
+                        <td>5</td>
+                        <td>25</td>
                       </tr>
                       <tr>
                         <th scope="row">Comments</th>
                         <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td>5</td>
+                        <td>25</td>
+                        <td>40</td>
+                        <td>90</td>
                       </tr>
                       <tr>
                         <th scope="row">Reputation</th>
                         <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
-                        <td>100</td>
+                        <td>200</td>
+                        <td>500</td>
+                        <td>1000</td>
+                        <td>4000</td>
                       </tr>
                     </tbody>
                   </table>
@@ -237,7 +268,7 @@
               <tbody>
                 <tr>
                   <th scope="row">Class</th>
-                  <td>Super User</td>
+                  <td>One Time User</td>
                 </tr>
                 <tr>
                   <th scope="row">Questions</th>
@@ -252,7 +283,7 @@
                   <td>0</td>
                 </tr>
                 <tr>
-                  <th scope="row">Comments</th>
+                  <th scope="row">Votes</th>
                   <td>0</td>
                 </tr>
                 <tr>
@@ -283,6 +314,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.0/d3.min.js"></script>
   <script src="mainReloaded.js"></script>
 </body>
 
