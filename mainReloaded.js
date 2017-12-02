@@ -142,8 +142,8 @@ $(function() {
 
   // stream Chart
 
-  var n = 20, // number of layers
-    m = 200, // number of samples per layer
+  var n = 10, // number of layers
+    m = 20, // number of samples per layer
     k = 10; // number of bumps per layer
 
   var stack = d3.stack().keys(d3.range(n)).offset(d3.stackOffsetWiggle),
