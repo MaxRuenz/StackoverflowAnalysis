@@ -142,25 +142,29 @@ $(function() {
 
   // stream Chart
 
-  var n = 10, // number of layers
-    m = 20, // number of samples per layer
-    k = 10; // number of bumps per layer
+  let colorMap = {
+    "Questions One Time User": '#ffffff'
+  };
 
-  var stack = d3.stack().keys(d3.range(n)).offset(d3.stackOffsetWiggle),
-    layers0 = stack(d3.transpose(d3.range(n).map(function() {
-      return bumps(m, k);
-    }))),
-    layers1 = stack(d3.transpose(d3.range(n).map(function() {
-      return bumps(m, k);
-    }))),
-    layers = layers0.concat(layers1);
+  let layers = [
+    {
+      label: "Questions One Time User",
+      data: [
+        [0, 1, 2],
+        [1, 1, 2],
+        [2, 1, 3]
+      ]
+    }
+  ]
+
+  console.log(layers);
 
   var svg = d3.select("#div-stream").append("svg").attr('width', 1200).attr('height', 400),
     width = 1200,
     height = 400;
 
   var x = d3.scaleLinear()
-    .domain([0, m - 1])
+    .domain([d3.min(layers, xMin), d3.max(layers, xMax)])
     .range([0, width]);
 
   var y = d3.scaleLinear()
@@ -170,62 +174,50 @@ $(function() {
   var z = d3.interpolateCool;
 
   var area = d3.area()
-    .x(function(d, i) {
-      return x(i);
+    .x(function(d) {
+      return x(d[0]);
     })
     .y0(function(d) {
-      return y(d[0]);
+      return y(d[1]);
     })
     .y1(function(d) {
-      return y(d[1]);
+      return y(d[2]);
     });
 
   svg.selectAll("path")
-    .data(layers0)
+    .data(layers)
     .enter().append("path")
-    .attr("d", area)
-    .attr("fill", function() {
-      return z(Math.random());
+    .attr("d", function (d) {return area(d.data)})
+    .attr("fill", function(d) {
+      return colorMap[d.label];
     });
 
-  function stackMax(layer) {
-    return d3.max(layer, function(d) {
-      return d[1];
-    });
-  }
-
-  function stackMin(layer) {
-    return d3.min(layer, function(d) {
+  function xMax(layer){
+    let data = layer.data;
+    return d3.max(data, function(d) {
       return d[0];
     });
   }
 
-  function transition() {
-    var t;
-    d3.selectAll("path")
-      .data((t = layers1, layers1 = layers0, layers0 = t))
-      .transition()
-      .duration(2500)
-      .attr("d", area);
+  function xMin(layer){
+    let data = layer.data;
+    return d3.min(data, function(d) {
+      return d[0];
+    });
   }
 
-  // Inspired by Lee Byron’s test data generator.
-  function bumps(n, m) {
-    var a = [],
-      i;
-    for (i = 0; i < n; ++i) a[i] = 0;
-    for (i = 0; i < m; ++i) bump(a, n);
-    return a;
+  function stackMax(layer) {
+    let data = layer.data;
+    return d3.max(data, function(d) {
+      return d[2];
+    });
   }
 
-  function bump(a, n) {
-    var x = 1 / (0.1 + Math.random()),
-      y = 2 * Math.random() - 0.5,
-      z = 10 / (0.1 + Math.random());
-    for (var i = 0; i < n; i++) {
-      var w = (i / n - y) * z;
-      a[i] += x * Math.exp(-w * w);
-    }
+  function stackMin(layer) {
+    let data = layer.data;
+    return d3.min(data, function(d) {
+      return d[1];
+    });
   }
 
   // parallel cordinates
@@ -266,17 +258,16 @@ $(function() {
         .range([height, 0]));
     }));
 
-    console.log(dimensions);
     let valRanges = dimensions.map(function(d) {
       return d3.extent(cars, function(p) {
         return +p[d];
       })
     });
+
     let valRangesObj = {};
     for (let i = 0; i < dimensions.length; i++) {
       valRangesObj[dimensions[i]] = valRanges[i];
     }
-    console.log(valRangesObj);
 
     // Add grey background lines for context.
     background = svg.append("g")
