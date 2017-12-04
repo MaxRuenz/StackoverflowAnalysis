@@ -190,7 +190,24 @@ $(function() {
     .attr("d", function (d) {return area(d.data)})
     .attr("fill", function(d) {
       return colorMap[d.label];
-    });
+    })
+    .on("mouseover", function(d) {
+
+          let rect = document.getElementById('div-stream').getBoundingClientRect();
+					var xPosition = d3.event.pageX - rect.x;
+					var yPosition = d3.event.pageY;
+
+					d3.select("#tooltip")
+						.style("left", xPosition + "px")
+						.style("top", yPosition + "px")
+						.select("#value")
+						.text(d.label);
+
+					d3.select("#tooltip").classed("hidden", false);
+			   })
+	   .on("mouseout", function() {
+			    d3.select("#tooltip").classed("hidden", true);
+	   });
 
   function xMax(layer){
     let data = layer.data;
