@@ -119,7 +119,8 @@ $(function() {
   // stream Chart
 
   let colorMap = {
-    "Questions One Time User": '#ffffff'
+    "Questions": '#ff0000',
+    "Answers": '#0000ff'
   };
 
   d3.json("data/QA_time.json", function(json) {
@@ -194,14 +195,14 @@ $(function() {
     function stackMax(layer) {
       let data = layer.data;
       return d3.max(data, function(d) {
-        return d[2];
+        return Math.max(d[1], d[2]);
       });
     }
 
     function stackMin(layer) {
       let data = layer.data;
       return d3.min(data, function(d) {
-        return d[1];
+        return Math.min(d[1], d[2]);
       });
     }
 
