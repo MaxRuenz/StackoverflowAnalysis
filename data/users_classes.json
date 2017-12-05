@@ -1,0 +1,13 @@
+{"Votes": {
+        "labels": ["One time users",
+          "Occasinal users",
+          "Common users",
+          "Frequent users",
+          "Super users"
+        ],
+        "datasets": [{
+          "label": "Votes",
+          "data": [1, 2, 4, 8, 16]
+          
+        }]
+      }}
