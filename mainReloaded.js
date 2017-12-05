@@ -119,18 +119,18 @@ $(function() {
 
   let ctx3 = document.getElementById("chart-contrib");
   let myChart3 = new Chart(ctx3, {
-    type: 'doughnut',
+    type: 'horizontalBar',
     data: {
       labels: ["One time users",
         "Occasinal users",
         "Common users",
         "Frequent users",
         "Super users"
-      ],
+      ].reverse(),
       datasets: [{
-        label: "",
-        data: [1, 2, 4, 8, 16],
-        backgroundColor: ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c']
+        label: "Votes",
+        data: [1, 2, 4, 8, 16].reverse(),
+        backgroundColor: ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'].reverse()
       }]
     },
     options: {
@@ -239,16 +239,18 @@ $(function() {
 
   // parallel cordinates
 
-  var margin = {
-      top: 30,
-      right: 10,
-      bottom: 10,
-      left: 10
-    },
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    //let widthPC = $("#div-cordinates").width(),
+    //heightPC = $("#div-cordinates").height();
 
-  var x = d3.scalePoint().range([0, width], 1),
+
+    let widthPC = 500 - 50,
+    heightPC = 500 - 50;
+
+
+    console.log(widthPC);
+    console.log(heightPC);
+
+  var x = d3.scalePoint().range([0, widthPC], 1),
     y = {},
     dragging = {};
 
@@ -259,10 +261,9 @@ $(function() {
     dimensions;
 
   var svg = d3.select("#div-cordinates").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("width", widthPC + 'px')
+    .attr("height", heightPC + 'px')
+    .append("g");
 
   d3.csv("cars.csv", function(error, cars) {
 
@@ -272,7 +273,7 @@ $(function() {
         .domain(d3.extent(cars, function(p) {
           return +p[d];
         }))
-        .range([height, 0]));
+        .range([heightPC, 0]));
     }));
 
     let valRanges = dimensions.map(function(d) {
@@ -322,7 +323,7 @@ $(function() {
           background.attr("visibility", "hidden");
         })
         .on("drag", function(d) {
-          dragging[d] = Math.min(width, Math.max(0, d3.event.x));
+          dragging[d] = Math.min(widthPC, Math.max(0, d3.event.x));
           foreground.attr("d", path);
           dimensions.sort(function(a, b) {
             return position(a) - position(b);
@@ -362,7 +363,7 @@ $(function() {
       .attr("class", "brush")
       .each(function(d) {
         d3.select(this).call(y[d].brush = d3.brushY(y[d])
-                          .extent([[-8,0], [8,height]])
+                          .extent([[-8,0], [8,heightPC]])
                           .on("start", brushstart)
                           .on("brush", brush));
       })
@@ -409,7 +410,7 @@ $(function() {
 
       foreground.style("display", function(d) {
         return actives.every(function(p) {
-          let scaled = d3.scaleLinear().domain(valRangesObj[p.dimension]).range([height, 0])(d[p.dimension]);
+          let scaled = d3.scaleLinear().domain(valRangesObj[p.dimension]).range([heightPC, 0])(d[p.dimension]);
           return p.extent[0] <= scaled && scaled <= p.extent[1];
         }) ? null : "none";
       });
@@ -502,18 +503,18 @@ $(function() {
 
   let ctx5 = document.getElementById("chart-cust");
   let myChart5 = new Chart(ctx5, {
-    type: 'doughnut',
+    type: 'horizontalBar',
     data: {
       labels: ["One time users",
         "Occasinal users",
         "Common users",
         "Frequent users",
         "Super users"
-      ],
+      ].reverse(),
       datasets: [{
         label: "",
-        data: [1, 2, 4, 8, 16],
-        backgroundColor: ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c']
+        data: [1, 2, 4, 8, 16].reverse(),
+        backgroundColor: ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'].reverse()
       }]
     },
     options: {
