@@ -8,6 +8,14 @@ $(function() {
     wrap: false
   });
 
+
+  d3.select("#SubmitUserID").on('click', function (){
+    let userID = d3.select('#InputUserID').node().value
+    d3.json('user.json?'+userID, function (){
+      // TODO fill table
+    });
+  });
+
   let optionsHist = {
     scales: {
       yAxes: [{
@@ -39,16 +47,28 @@ $(function() {
 
   let ctx = document.getElementById("chart-descre");
   let myChart;
+  let featureHist = "Reputation";
+  let dataHist;
 
-  d3.json("data/reputation_hist.json", function(json) {
-    let data = json;
-    data.datasets[0].backgroundColor = ["#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6"];
+  d3.json("data/Hists.json", function(json) {
+    dataHist = json;
+
+    createHistogram(dataHist, featureHist);
+    d3.select("#SelectHist").on("change", function (){
+      featureHist = this.value;
+      createHistogram(dataHist, featureHist);
+    })
+
+  });
+
+  function createHistogram(data, feature){
+    data[feature].datasets[0].backgroundColor = ["#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6"];
     myChart = new Chart(ctx, {
       type: 'bar',
-      data: data,
+      data: data[feature],
       options: optionsHist
     });
-  });
+  }
 
   let ctx2 = document.getElementById("chart-class");
   let myChart2
@@ -68,24 +88,32 @@ $(function() {
 
   let ctx3 = document.getElementById("chart-contrib");
   let myChart3;
-  let user_classes_feature = "Votes";
+  let userClassesFeature = "Reputation";
+  let dataUserClassesFeature;
   d3.json("data/users_classes.json", function(json) {
-    let data = json;
-    data[user_classes_feature].datasets[0].backgroundColor = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'];
-
+    dataUserClassesFeature = json;
     // TODO fill table
 
+    createUserClassesStats(dataUserClassesFeature, userClassesFeature);
+    d3.select("#SelectUserClasses").on("change", function (){
+      userClassesFeature = this.value;
+      createUserClassesStats(dataUserClassesFeature, userClassesFeature);
+    });
 
+  });
+
+  function createUserClassesStats(data, feature){
+    data[feature].datasets[0].backgroundColor = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'];
     myChart3 = new Chart(ctx3, {
       type: 'horizontalBar',
-      data: data[user_classes_feature],
+      data: data[feature],
       options: {
         legend: {
           position: 'bottom'
         }
       }
     });
-  });
+  }
 
 
   // stream Chart
@@ -400,14 +428,34 @@ $(function() {
 
   let ctx4 = document.getElementById("chart-evol");
   let myChart4,
-    year = "2008";
+    dataClassEvol,
+    featureClassEvol = "Reputation",
+    yearClassEvol = "2008";
   d3.json("data/users_classes_evol.json", function(json) {
-    let data = json[year]
-    myChart4 = new Chart(ctx4, {
-      type: 'bubble',
-      data: data,
-      options: optionsBubble
+    dataClassEvol = json;
+
+    d3.json("data/users_classes.json", function(json) {
+      dataUserClassesFeature = json;
+      // TODO fill table
+
+      createClassesEvol(dataClassEvol, featureClassEvol);
+      d3.select("#SelectClassesEvol").on("change", function (){
+        featureClassEvol = this.value;
+        createClassesEvol(dataClassEvol, featureClassEvol);
+      });
+
     });
+
+    function createClassesEvol(data, feature){
+      if (myChart4){
+        myChart4.destroy();
+      }
+      myChart4 = new Chart(ctx4, {
+        type: 'bubble',
+        data: data[feature][yearClassEvol],
+        options: optionsBubble
+      });
+    }
 
     $('#ex1').slider({
       formatter: function(value) {

@@ -57,7 +57,8 @@
 
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">StackOverflow User Id</span>
-              <input type="text" class="form-control" placeholder="22656" aria-label="Username" aria-describedby="basic-addon1">
+              <input type="text" class="form-control" placeholder="22656" aria-label="User ID" aria-describedby="basic-addon1" id="InputUserID">
+              <button class="btn btn-primary" type="submit" id="SubmitUserID">Submit</button>
             </div>
 
             <table class="table" id="table-overview">
@@ -100,11 +101,12 @@
             We have extracted the Number of Questions and Answers posted, the Votes and the Reputation of users. One can see that these features are distributed by a power law.
             Create your own opinion using the charts for the different features.</p>
 
-            <select class="custom-select float-right">
-                <option selected>Questions asked</option>
-                <option value="1">Votes</option>
-                <option value="2">Answers posted</option>
-                <option value="3">Reputation</option>
+            <select class="custom-select float-right" id="SelectHist">
+                <option value="Reputation" selected>Reputation</option>
+                <option value="Answers">Answers</option>
+                <option value="Questions">Questions</option>
+                <option value="Answer Votes">Answer Votes</option>
+                <option value="Question Votes">Question Votes</option>
               </select>
             <canvas id="chart-descre" height="150vh"></canvas>
 
@@ -180,12 +182,13 @@
                   </table>
                 </div>
                 <div class="col col-lg-6">
-                  <select class="custom-select float-right">
-                    <option selected>Votes</option>
-                    <option value="1">Votes acquire</option>
-                    <option value="2">Answers posted</option>
-                    <option value="3">Reputation</option>
-                  </select>
+                  <select class="custom-select float-right" id="SelectUserClasses">
+                      <option value="Reputation" selected>Reputation</option>
+                      <option value="Answers">Answers</option>
+                      <option value="Questions">Questions</option>
+                      <option value="Answer Votes">Answer Votes</option>
+                      <option value="Question Votes">Question Votes</option>
+                    </select>
                   <canvas id="chart-contrib" width="400" height="400"></canvas>
                 </div>
               </div>
@@ -245,12 +248,13 @@
               TODO use slider to scroll in time, see users evolve
             </p>
 
-            <select class="custom-select float-right">
-              <option selected>Votes</option>
-              <option value="1">Votes acquired</option>
-              <option value="2">Answers posted</option>
-              <option value="3">Reputation</option>
-            </select>
+            <select class="custom-select float-right" id="SelectClassesEvol">
+                <option value="Reputation" selected>Reputation</option>
+                <option value="Answers">Answers</option>
+                <option value="Questions">Questions</option>
+                <option value="Answer Votes">Answer Votes</option>
+                <option value="Question Votes">Question Votes</option>
+              </select>
             <canvas id="chart-evol" height="150vh"></canvas>
             <div id="div-slider">
               <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
