@@ -1,26 +1,28 @@
-{"Reputation": {
-        "labels": ["One time users",
-          "Occasinal users",
-          "Common users",
-          "Frequent users",
-          "Super users"
-        ],
-        "datasets": [{
-          "label": "Votes",
-          "data": [1, 100, 500, 1200, 10000]
-          
-        }]
-      },
-	  "Answers": {
-        "labels": ["One time users",
-          "Occasinal users",
-          "Common users",
-          "Frequent users",
-          "Super users"
-        ],
-        "datasets": [{
-          "label": "Votes",
-          "data": [1, 2, 4, 8, 16]
-          
-        }]
-      }}
+{
+  "Reputation": {
+    "labels": ["One time users",
+      "Occasinal users",
+      "Common users",
+      "Frequent users",
+      "Super users"
+    ],
+    "datasets": [{
+      "label": "Votes",
+      "data": [1, 100, 500, 1200, 10000]
+
+    }]
+  },
+  "Answers": {
+    "labels": ["One time users",
+      "Occasinal users",
+      "Common users",
+      "Frequent users",
+      "Super users"
+    ],
+    "datasets": [{
+      "label": "Votes",
+      "data": [1, 2, 4, 8, 16]
+
+    }]
+  }
+}
