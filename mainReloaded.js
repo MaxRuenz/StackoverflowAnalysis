@@ -9,9 +9,9 @@ $(function() {
   });
 
 
-  d3.select("#SubmitUserID").on('click', function (){
+  d3.select("#SubmitUserID").on('click', function() {
     let userID = d3.select('#InputUserID').node().value
-    d3.json('user.json?'+userID, function (){
+    d3.json('user.json?' + userID, function() {
       // TODO fill table
     });
   });
@@ -54,14 +54,14 @@ $(function() {
     dataHist = json;
 
     createHistogram(dataHist, featureHist);
-    d3.select("#SelectHist").on("change", function (){
+    d3.select("#SelectHist").on("change", function() {
       featureHist = this.value;
       createHistogram(dataHist, featureHist);
     })
 
   });
 
-  function createHistogram(data, feature){
+  function createHistogram(data, feature) {
     data[feature].datasets[0].backgroundColor = ["#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6"];
     myChart = new Chart(ctx, {
       type: 'bar',
@@ -95,14 +95,14 @@ $(function() {
     // TODO fill table
 
     createUserClassesStats(dataUserClassesFeature, userClassesFeature);
-    d3.select("#SelectUserClasses").on("change", function (){
+    d3.select("#SelectUserClasses").on("change", function() {
       userClassesFeature = this.value;
       createUserClassesStats(dataUserClassesFeature, userClassesFeature);
     });
 
   });
 
-  function createUserClassesStats(data, feature){
+  function createUserClassesStats(data, feature) {
     data[feature].datasets[0].backgroundColor = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'];
     myChart3 = new Chart(ctx3, {
       type: 'horizontalBar',
@@ -438,57 +438,80 @@ $(function() {
       dataUserClassesFeature = json;
       // TODO fill table
 
+      $('#SliderEvol').slider({
+        step: 1,
+        min: parseInt(getMinYear(dataClassEvol[featureClassEvol])),
+        max: parseInt(getMaxYear(dataClassEvol[featureClassEvol])),
+        value: parseInt(getMinYear(dataClassEvol[featureClassEvol]))
+      });
+    });
+
+    $('#SliderEvol').on("change", function(slideEvt) {
+      yearClassEvol = slideEvt.value.newValue;
+      myChart4.data = dataClassEvol[featureClassEvol][yearClassEvol];
+      myChart4.update({
+        duration: 0,
+        easing: 'easeOutBounce'
+      });
+    });
+
+    createClassesEvol(dataClassEvol, featureClassEvol);
+    d3.select("#SelectClassesEvol").on("change", function() {
+      featureClassEvol = this.value;
       createClassesEvol(dataClassEvol, featureClassEvol);
-      d3.select("#SelectClassesEvol").on("change", function (){
-        featureClassEvol = this.value;
-        createClassesEvol(dataClassEvol, featureClassEvol);
-      });
-
     });
 
-    function createClassesEvol(data, feature){
-      if (myChart4){
-        myChart4.destroy();
-      }
-      myChart4 = new Chart(ctx4, {
-        type: 'bubble',
-        data: data[feature][yearClassEvol],
-        options: optionsBubble
-      });
-    }
-
-    $('#ex1').slider({
-      formatter: function(value) {
-        return 'Current value: ' + value;
-      }
-    });
   });
+
+  function getMinYear(dict) {
+    console.log(dict);
+    return Object.keys(dict).reduce(function(a, b) {
+      return a < b ? a : b
+    });
+  }
+
+  function getMaxYear(dict) {
+    return Object.keys(dict).reduce(function(a, b) {
+      return a > b ? a : b
+    });
+  }
+
+  function createClassesEvol(data, feature) {
+    if (myChart4) {
+      myChart4.destroy();
+    }
+    myChart4 = new Chart(ctx4, {
+      type: 'bubble',
+      data: data[feature][yearClassEvol],
+      options: optionsBubble
+    });
+  }
 
 
   let ctx5 = document.getElementById("chart-cust");
-  d3.csv("data/users.csv", function (csv) {
-      // TODO calcuate classes and create table
-      let myChart5 = new Chart(ctx5, {
-        type: 'horizontalBar',
-        data: {
-          labels: ["One time users",
-            "Occasinal users",
-            "Common users",
-            "Frequent users",
-            "Super users"
-          ].reverse(),
-          datasets: [{
-            label: "",
-            data: [1, 2, 4, 8, 16].reverse(),
-            backgroundColor: ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'].reverse()
-          }]
-        },
-        options: {
-          legend: {
-            position: 'bottom'
-          }
+  d3.csv("data/users.csv", function(csv) {
+    // TODO calcuate classes and create table
+    let myChart5 = new Chart(ctx5, {
+      type: 'horizontalBar',
+      data: {
+        labels: ["One time users",
+          "Occasinal users",
+          "Common users",
+          "Frequent users",
+          "Super users"
+        ].reverse(),
+        datasets: [{
+          label: "",
+          data: [1, 2, 4, 8, 16].reverse(),
+          backgroundColor: ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'].reverse()
+        }]
+      },
+      options: {
+        legend: {
+          position: 'bottom'
         }
-      });
+      }
+    });
   });
 
   $('#slider').slider({
