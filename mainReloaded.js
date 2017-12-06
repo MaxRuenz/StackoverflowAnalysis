@@ -11,28 +11,28 @@ $(function() {
   $('#myCarousel').on('slid.bs.carousel', function(event) {
     let page = event.to;
     if (page === 5) {
-      let margin = {
+      const margin = {
         top: 30,
         right: 10,
         bottom: 10,
         left: 50
       };
 
-      let bounds = d3.select('#div-cordinates').node().getBoundingClientRect(),
+      const bounds = d3.select('#div-cordinates').node().getBoundingClientRect(),
         widthPC = bounds.width - margin.left - margin.right,
         heightPC = bounds.height - margin.top - margin.bottom;
 
-      var x = d3.scalePoint().range([0, widthPC], 1),
+      let x = d3.scalePoint().range([0, widthPC], 1),
         y = {},
         dragging = {};
 
-      var line = d3.line(),
+      let line = d3.line(),
         axis = d3.axisLeft(),
         background,
         foreground,
         dimensions;
 
-      var svg = d3.select("#div-cordinates").append("svg")
+      let svg = d3.select("#div-cordinates").append("svg")
         .attr("width", widthPC + margin.left + margin.right + 'px')
         .attr("height", heightPC + margin.top + margin.bottom + 'px')
         .append("g")
@@ -77,7 +77,7 @@ $(function() {
           .attr("d", path);
 
         // Add a group element for each dimension.
-        var g = svg.selectAll(".dimension")
+        let g = svg.selectAll(".dimension")
           .data(dimensions)
           .enter().append("g")
           .attr("class", "dimension")
@@ -150,7 +150,7 @@ $(function() {
 
 
         function position(d) {
-          var v = dragging[d];
+          let v = dragging[d];
           return v == null ? x(d) : v;
         }
 
@@ -172,7 +172,7 @@ $(function() {
         // Handles a brush event, toggling the display of foreground lines.
         function brush() {
 
-          var actives = [];
+          let actives = [];
           svg.selectAll(".brush")
             .filter(function(d) {
               return d3.brushSelection(this);
@@ -194,21 +194,21 @@ $(function() {
       });
     } else if (page === 6) {
 
-      let margin = {
+      const margin = {
         top: 30,
         right: 10,
         bottom: 10,
         left: 50
       };
 
-      let bounds = d3.select('#div-stream').node().getBoundingClientRect(),
+      const bounds = d3.select('#div-stream').node().getBoundingClientRect(),
         widthSC = bounds.width - margin.left - margin.right,
         heightSC = bounds.height - margin.top - margin.bottom;
 
 
       // stream Chart
 
-      let colorMap = {
+      const colorMap = {
         "Questions": '#ff0000',
         "Answers": '#0000ff'
       };
@@ -216,19 +216,19 @@ $(function() {
       d3.json("data/QA_time.json", function(json) {
         let layers = json;
 
-        var svg = d3.select("#div-stream").append("svg").attr('width', widthSC).attr('height', heightSC);
+        let svg = d3.select("#div-stream").append("svg").attr('width', widthSC).attr('height', heightSC);
 
-        var x = d3.scaleLinear()
+        let x = d3.scaleLinear()
           .domain([d3.min(layers, xMin), d3.max(layers, xMax)])
           .range([0, widthSC]);
 
-        var y = d3.scaleLinear()
+        let y = d3.scaleLinear()
           .domain([d3.min(layers, stackMin), d3.max(layers, stackMax)])
           .range([heightSC, 0]);
 
-        var z = d3.interpolateCool;
+        let z = d3.interpolateCool;
 
-        var area = d3.area()
+        let area = d3.area()
           .x(function(d) {
             return x(d[0]);
           })
@@ -251,8 +251,8 @@ $(function() {
           .on("mouseover", function(d) {
 
             let rect = document.getElementById('div-stream').getBoundingClientRect();
-            var xPosition = d3.event.pageX - rect.x;
-            var yPosition = d3.event.pageY;
+            let xPosition = d3.event.pageX - rect.x;
+            let yPosition = d3.event.pageY;
 
             d3.select("#tooltip")
               .style("left", xPosition + "px")
@@ -298,18 +298,18 @@ $(function() {
     }
   });
 
-  let optionsBubble = {
+  const optionsBubble = {
     aspectRatio: 1,
     elements: {
       point: {
         radius: function(context) {
-          var value = context.dataset.data[context.dataIndex];
-          var size = context.chart.width;
-          var base = Math.abs(value.v) / 10;
+          let value = context.dataset.data[context.dataIndex];
+          let size = context.chart.width;
+          let base = Math.abs(value.v) / 10;
           return (size / 24) * base;
         },
         backgroundColor: function(context) {
-          var value = context.dataset.data[context.dataIndex];
+          let value = context.dataset.data[context.dataIndex];
           return ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'][value.y];
         }
       }
@@ -436,7 +436,7 @@ $(function() {
     });
   });
 
-  let optionsHist = {
+  const optionsHist = {
     scales: {
       yAxes: [{
         type: 'logarithmic',
