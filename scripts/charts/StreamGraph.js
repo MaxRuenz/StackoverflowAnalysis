@@ -44,7 +44,6 @@ define(['d3'], function(d3) {
 
     update(data) {
         this.data = data;
-        console.log(this.data);
         this.destroy();
         drawChart.call(this);
     }
