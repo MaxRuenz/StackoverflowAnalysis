@@ -16,14 +16,6 @@ define(['d3'], function(d3) {
         .attr('height', this.height)
         .append("g");
 
-      this.x = d3.scaleLinear()
-        .domain([d3.min(this.data, xMin), d3.max(this.data, xMax)])
-        .range([0, this.width]);
-
-      this.y = d3.scaleLinear()
-        .domain([d3.min(this.data, stackMin), d3.max(this.data, stackMax)])
-        .range([this.height, 0]);
-
       this.z = d3.interpolateCool;
 
       this.area = d3.area()
@@ -53,13 +45,6 @@ define(['d3'], function(d3) {
     update(data) {
         this.data = data;
         console.log(this.data);
-        this.x = d3.scaleLinear()
-          .domain([d3.min(this.data, xMin), d3.max(this.data, xMax)])
-          .range([0, this.width]);
-
-        this.y = d3.scaleLinear()
-          .domain([d3.min(this.data, stackMin), d3.max(this.data, stackMax)])
-          .range([this.height, 0]);
         this.destroy();
         drawChart.call(this);
     }
@@ -67,6 +52,14 @@ define(['d3'], function(d3) {
   }
 
   function drawChart() {
+
+    this.x = d3.scaleLinear()
+      .domain([d3.min(this.data, xMin), d3.max(this.data, xMax)])
+      .range([0, this.width]);
+
+    this.y = d3.scaleLinear()
+      .domain([d3.min(this.data, stackMin), d3.max(this.data, stackMax)])
+      .range([this.height, 0]);
 
     this.svg.selectAll("path")
       .data(this.data)
