@@ -43,6 +43,10 @@ svg {
   width: 90% !important;
 }
 
+#SliderEvol{
+  margin-left: 50px
+}
+
 #tooltip {
   position: absolute;
   width: 200px;

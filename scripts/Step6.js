@@ -21,7 +21,7 @@ define(['d3', 'charts/StreamGraph'], function(d3, StreamGraph) {
       widthSC = bounds.width - margins.left - margins.right,
       heightSC = bounds.height - margins.top - margins.bottom;
 
-    d3.json("data/QA_time.json", function(data) {
+    d3.json("data/aq_time.json", function(data) {
       if (sG) {
         sG.update(data);
       } else {

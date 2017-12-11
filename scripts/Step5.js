@@ -19,10 +19,12 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
       widthPC = bounds.width - margins.left - margins.right,
       heightPC = bounds.height - margins.top - margins.bottom;
 
-    d3.csv('data/users.csv', function(error, data) {
+    d3.csv('data/users_edited_sample.csv', function(error, data) {
+      console.log(error);
       if (pC) {
         pC.update(data);
       } else {
+        console.log(data);
         pC = new ParrallelCordinates({
           element: element,
           height: heightPC,
