@@ -1,9 +1,13 @@
 define(['d3'], function(d3) {
 
   const tableElement = '#table-user-classes'
+  let currentUserInfo;
 
-  function initializePage(currentUserInfo) {
+  function initializePage(userInfo) {
     console.log("Hi");
+
+    currentUserInfo = userInfo;
+
     let ctx3 = document.getElementById("chart-contrib");
     let myChart3;
     let userClassesFeature = "Reputation";
@@ -17,17 +21,47 @@ define(['d3'], function(d3) {
 
       createTable(tableData);
 
-      createUserClassesStats(dataUserClassesFeature, userClassesFeature);
+      let userVal;
+      if (userClassesFeature === "Reputation"){
+        userVal = currentUserInfo["Reputation"]
+      }
+
+      createUserClassesStats(dataUserClassesFeature, userClassesFeature, userVal);
       d3.select("#SelectUserClasses").on("change", function() {
         userClassesFeature = this.value;
-        createUserClassesStats(dataUserClassesFeature, userClassesFeature);
+
+
+
+        createUserClassesStats(dataUserClassesFeature, userClassesFeature, userVal);
       });
 
     });
 
-    function createUserClassesStats(json, feature) {
-      let data = generateDataConfig(json);
+    function createUserClassesStats(json, feature, userValue) {
+      let userIndex;
+      let jsonWithUser = json;
+      if (typeof currentUserInfo !== 'undefined'){
+        for (let i = 0; i < json[feature].length; i++){
+          if (json[feature][i] >= userValue){
+            userIndex = i;
+            break;
+          } else if (i === json[feature].length-1){
+            userIndex = i+1;
+          }
+        }
+        console.log(userIndex);
+        jsonWithUser[feature].splice(userIndex, 0, userValue);
+      }
+
+
+      let data = generateDataConfig(jsonWithUser);
+
+      data[feature]["labels"].splice(userIndex, 0, "You");
+
       data[feature].datasets[0].backgroundColor = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'];
+
+      data[feature].datasets[0].backgroundColor.splice(userIndex, 0, '#00ff00');
+
       myChart3 = new Chart(ctx3, {
         type: 'horizontalBar',
         data: data[feature],
