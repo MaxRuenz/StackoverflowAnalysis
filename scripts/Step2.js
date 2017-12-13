@@ -31,7 +31,7 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
         createHistogram(dataHist, userCat, featureHist);
         d3.select("#SelectHist").on("change", function() {
           featureHist = this.value;
-          createHistogram(dataHist, featureHist);
+          createHistogram(dataHist, userCat, featureHist);
         })
 
       });
