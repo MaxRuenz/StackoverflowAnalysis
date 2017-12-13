@@ -22,6 +22,12 @@ svg {
   stroke: steelblue;
 }
 
+.userground path {
+  fill: none;
+  stroke: #0f0;
+  shape-rendering: crispEdges;
+}
+
 .brush .extent {
   fill-opacity: .3;
   stroke: #fff;

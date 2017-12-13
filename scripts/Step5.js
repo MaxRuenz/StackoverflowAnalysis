@@ -14,6 +14,14 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
   function initializePage(currentUserInfo) {
     console.log("Hi");
 
+    let user = {}
+    user["Reputation"] = currentUserInfo.Reputation;
+    user["qvotes"] = currentUserInfo.data[9]["qvotes"]+"";
+    user["avotes"] = currentUserInfo.data[9]["avotes"]+"";
+    user["votes"] = currentUserInfo.data[9]["votes"]+"";
+    user["count_of_questions"] = currentUserInfo.data[9]["qcnt"]+"";
+    user["count_of_answers"] = currentUserInfo.data[9]["acnt"]+"";
+
     const bounds = d3.select(element).node().getBoundingClientRect(),
 
       widthPC = bounds.width - margins.left - margins.right,
@@ -24,12 +32,14 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
         pC.update(data);
       } else {
         console.log(data);
+        console.log(user);
         pC = new ParrallelCordinates({
           element: element,
           height: heightPC,
           width: widthPC,
           margins: margins,
-          data: data
+          data: data,
+          user: user
         });
       }
     });

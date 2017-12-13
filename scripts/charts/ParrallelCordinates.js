@@ -8,6 +8,11 @@ define(['d3'], function(d3) {
       this.width = config.width;
       this.margins = config.margins;
       this.data = config.data;
+      this.userdata = [config.user];
+      this.userdata["columns"] = this.data["columns"];
+
+      console.log(this.data);
+      console.log(this.userdata);
 
       this.x = d3.scalePoint().range([0, this.width], 1);
       this.y = {};
@@ -17,6 +22,7 @@ define(['d3'], function(d3) {
       this.axis = d3.axisLeft();
       this.background;
       this.foreground;
+      this.userground;
       this.dimensions;
 
       this.svg = d3.select(this.element).append("svg")
@@ -50,14 +56,14 @@ define(['d3'], function(d3) {
     // Extract the list of dimensions and create a scale for each.
     this.x.domain(this.dimensions = d3.keys(this.data[0]).filter(function(d) {
       return (this.y[d] = d3.scaleLinear()
-        .domain(d3.extent(this.data, function(p) {
+        .domain(d3.extent(this.data.concat(this.userdata), function(p) {
           return +p[d];
         }))
         .range([this.height, 0]));
     }.bind(this)));
 
     this.valRanges = this.dimensions.map(function(d) {
-      return d3.extent(this.data, function(p) {
+      return d3.extent(this.data.concat(this.userdata), function(p) {
         return +p[d];
       })
     }.bind(this));
@@ -80,6 +86,13 @@ define(['d3'], function(d3) {
       .attr("class", "foreground")
       .selectAll("path")
       .data(this.data)
+      .enter().append("path")
+      .attr("d", path.bind(this));
+
+    this.userground = this.svg.append("g")
+      .attr("class", "userground")
+      .selectAll("path")
+      .data(this.userdata)
       .enter().append("path")
       .attr("d", path.bind(this));
 
