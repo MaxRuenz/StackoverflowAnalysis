@@ -1,7 +1,7 @@
 define(['d3'], function(d3){
 
     let userInformation;
-    const tableElement = '#table-overview'
+    const tableElement = '#table-user'
 
     function initializePage(){
       console.log("Hi");
