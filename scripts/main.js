@@ -31,8 +31,6 @@ require(['Step0', 'Step1', 'Step2', 'Step3', 'Step4', 'Step5', 'Step6', 'Step7',
         Step6.initializePage();
       } else if (page === 7) {
         Step7.initializePage();
-      } else if (page === 8) {
-        Step8.initializePage();
       }
     });
   });
