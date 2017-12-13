@@ -13,24 +13,21 @@ require(['Step0', 'Step1', 'Step2', 'Step3', 'Step4', 'Step5', 'Step6', 'Step7',
 
     displayArrows();
     Step0.initializePage();
+    Step1.initializePage();
+
+    let currentUserInfo;
 
     $('#myCarousel').on('slid.bs.carousel', function(event) {
       displayArrows();
-      let page = event.to;
-      if (page === 1) {
-        Step1.initializePage();
-      } else if (page === 2) {
-        Step2.initializePage();
-      } else if (page === 3) {
-        Step3.initializePage();
-      } else if (page === 4) {
-        Step4.initializePage();
-      } else if (page === 5) {
-        Step5.initializePage();
-      } else if (page === 6) {
-        Step6.initializePage();
-      } else if (page === 7) {
-        Step7.initializePage();
+      let pageFrom = event.from;
+      if (pageFrom === 1) {
+        currentUserInfo = Step1.getUserInformation();
+        Step2.initializePage(currentUserInfo);
+        Step3.initializePage(currentUserInfo);
+        Step4.initializePage(currentUserInfo);
+        Step5.initializePage(currentUserInfo);
+        Step6.initializePage(currentUserInfo);
+        Step7.initializePage(currentUserInfo);
       }
     });
   });

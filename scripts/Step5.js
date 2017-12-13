@@ -11,7 +11,7 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
   let pC;
 
 
-  function initializePage() {
+  function initializePage(currentUserInfo) {
     console.log("Hi");
 
     const bounds = d3.select(element).node().getBoundingClientRect(),
@@ -20,7 +20,6 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
       heightPC = bounds.height - margins.top - margins.bottom;
 
     d3.csv('data/users_edited_sample.csv', function(error, data) {
-      console.log(error);
       if (pC) {
         pC.update(data);
       } else {

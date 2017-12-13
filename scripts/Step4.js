@@ -1,6 +1,6 @@
 define(['d3'], function(d3){
 
-    function initializePage(){
+    function initializePage(currentUserInfo){
       console.log("Hi");
       let ctx3 = document.getElementById("chart-contrib");
       let myChart3;

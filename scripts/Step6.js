@@ -14,7 +14,7 @@ define(['d3', 'charts/StreamGraph'], function(d3, StreamGraph) {
 
   let sG;
 
-  function initializePage() {
+  function initializePage(currentUserInfo) {
     console.log("Hi");
 
     const bounds = d3.select('#div-stream').node().getBoundingClientRect(),
