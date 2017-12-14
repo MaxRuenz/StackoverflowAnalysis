@@ -7,7 +7,7 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
 
       d3.json("data/classes.json", function(json) {
         let data = json;
-        data.datasets[0].backgroundColor = ['#eff3ff', '#bdd7e7', '#bdd7e7', '#6baed6', '#6baed6', '#3182bd', '#3182bd', '#3182bd', '#3182bd', '#08519c'];
+        data.datasets[0].backgroundColor = ['#e41a1c', '#377eb8', '#377eb8', '#4daf4a', '#4daf4a', '#984ea3', '#984ea3', '#ff7f00', '#ff7f00', '#ff7f00'];
 
         myChart2 = new Chart(ctx2, {
           type: 'bar',

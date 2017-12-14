@@ -28,42 +28,27 @@ import scipy.stats as stat
 # - you place a bounty on a question: − full bounty amount
 # - one of your posts receives 6 spam or offensive flags: −100
 
-
-
-path ='C:/Users/asus/Desktop/epfl courses/Data Visualization/Data'
-os.chdir(path)
-
 #Creating Json File containing all users, their reputation and there users class
 #Classification based on Reputation
 with open('users_edited.json') as json_file:
     data = json.load(json_file)
 
-key_array = []
-
-for key in data:
-    key_array.append(key)
-#key_array = list(map(int, key_array))
-
-user_class = {}
-
-type(int(key_array[1]))
-for key in key_array:
+for key in data.keys():
     if key == -1:
         continue
-    if int(key) <=10:
-        user_class[key] = (data[key]['Reputation'], 'ten')
+    if int(data[key]['Reputation']) <=4:
+        data[key]["Class"] = 0
+    elif int(data[key]['Reputation']) <= 63:
+        data[key]["Class"] = 1
+    elif int(data[key]['Reputation']) <= 985:
+        data[key]["Class"] = 2
+    elif int(data[key]['Reputation']) <= 15508:
+        data[key]["Class"] = 3
+    else:
+        data[key]["Class"] = 4
 
-    if 10 < int(key) <= 100:
-        user_class[key] = (data[key]['Reputation'], 'hun')
 
-    if 100 < int(key) <= 1000:
-        user_class[key] = (data[key]['Reputation'], 'tho')
-
-    if int(key) > 1000:
-        user_class[key] = (data[key]['Reputation'], 'mil')
-
-
-json.dump(user_class, open('user_classes.json', 'w'), indent = 2)
+json.dump(data, open('user_classes.json', 'w'), indent = 2)
 
 # rep_array=[]
 #

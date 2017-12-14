@@ -25,6 +25,9 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
               break;
             }
           }
+          if (typeof userCat === 'undefined'){
+            userCat = dataHist[featureHist]["labels"].length-1;
+          }
           console.log(userCat);
         }
 

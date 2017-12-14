@@ -17,7 +17,12 @@ define(['d3'], function(d3) {
       // fill table
       let tableData = [];
       tableData.push({"Column": "Reputation", "Values": dataUserClassesFeature.Reputation});
+      tableData.push({"Column": "Votes", "Values": dataUserClassesFeature.Votes});
+      tableData.push({"Column": "Questions", "Values": dataUserClassesFeature.Questions});
       tableData.push({"Column": "Answers", "Values": dataUserClassesFeature.Answers});
+      tableData.push({"Column": "Average Answer Votes", "Values": dataUserClassesFeature['Average Answer Votes']});
+      tableData.push({"Column": "Average Question Votes", "Values": dataUserClassesFeature['Average Question Votes']});
+      tableData.push({"Column": "Users", "Values": dataUserClassesFeature.Users});
 
       createTable(tableData);
 
