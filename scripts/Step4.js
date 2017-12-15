@@ -16,6 +16,7 @@ define(['d3'], function(d3) {
       dataUserClassesFeature = json;
       // fill table
       let tableData = [];
+      tableData.push({"Column": "Feature/Class", "Values": ["Inactive","One Time","Active","Frequent","Super"]});
       tableData.push({"Column": "Reputation", "Values": dataUserClassesFeature.Reputation});
       tableData.push({"Column": "Votes", "Values": dataUserClassesFeature.Votes});
       tableData.push({"Column": "Questions", "Values": dataUserClassesFeature.Questions});
