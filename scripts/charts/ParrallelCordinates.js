@@ -96,6 +96,7 @@ define(['d3'], function(d3) {
       .enter().append("path")
       .attr("d", path.bind(this));
 
+    let that = this;
     // Add a group element for each dimension.
     let g = this.svg.selectAll(".dimension")
       .data(this.dimensions)
@@ -110,35 +111,34 @@ define(['d3'], function(d3) {
           return {
             x: this.x(d)
           };
-        })
+        }.bind(this))
         .on("start", function(d) {
-          dragging[d] = this.x(d);
-          background.attr("visibility", "hidden");
-        })
+          this.dragging[d] = this.x(d);
+          this.background.attr("visibility", "hidden");
+        }.bind(this))
         .on("drag", function(d) {
-          dragging[d] = Math.min(this.width, Math.max(0, d3.event.x));
-          foreground.attr("d", path);
-          dimensions.sort(function(a, b) {
-            return position(a) - position(b);
+          this.dragging[d] = Math.min(this.width, Math.max(0, d3.event.x));
+          this.foreground.attr("d", path.bind(this));
+          this.dimensions.sort(function(a, b) {
+            return position.call(that,a) - position.call(that,b);
           });
-          x.domain(this.dimensions);
+          that.x.domain(this.dimensions);
           g.attr("transform", function(d) {
-            return "translate(" + position(d) + ")";
+            return "translate(" + position.call(that, d) + ")";
           })
-        })
+        }.bind(this))
         .on("end", function(d) {
-          delete dragging[d];
-          transition(d3.select(this)).attr("transform", "translate(" + x(d) + ")");
-          transition(this.foreground).attr("d", path);
-          this.background
-            .attr("d", path)
+          delete that.dragging[d];
+          transition(d3.select(this)).attr("transform", "translate(" + that.x(d) + ")");
+          transition(that.foreground).attr("d", path.bind(that));
+          that.background
+            .attr("d", path.bind(that))
             .transition()
             .delay(500)
             .duration(0)
             .attr("visibility", null);
-        }));
+    }));
 
-    let that = this;
     // Add an axis and title.
     g.append("g")
       .attr("class", "axis")
@@ -152,12 +152,11 @@ define(['d3'], function(d3) {
         return d;
       });
 
-    let y = this.y;
     // Add and store a brush for each axis.
     g.append("g")
       .attr("class", "brush")
       .each(function(d) {
-        d3.select(this).call(y[d].brush = d3.brushY(y[d])
+        d3.select(this).call(that.y[d].brush = d3.brushY(that.y[d])
           .extent([
             [-8, 0],
             [8, that.height]
