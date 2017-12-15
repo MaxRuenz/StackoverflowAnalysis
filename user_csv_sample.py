@@ -5,7 +5,7 @@ import numpy as np
 
 threshhold_0 = 1
 threshhold_1 = 1
-threshhold_2 = 1
+threshhold_2 = 0.9999
 threshhold_3 = 0.999
 threshhold_4 = 0.99
 
