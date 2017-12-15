@@ -119,6 +119,7 @@ define(['d3'], function(d3) {
         .on("drag", function(d) {
           this.dragging[d] = Math.min(this.width, Math.max(0, d3.event.x));
           this.foreground.attr("d", path.bind(this));
+          this.userground.attr("d", path.bind(this));
           this.dimensions.sort(function(a, b) {
             return position.call(that,a) - position.call(that,b);
           });
@@ -131,6 +132,7 @@ define(['d3'], function(d3) {
           delete that.dragging[d];
           transition(d3.select(this)).attr("transform", "translate(" + that.x(d) + ")");
           transition(that.foreground).attr("d", path.bind(that));
+          transition(that.userground).attr("d", path.bind(that));
           that.background
             .attr("d", path.bind(that))
             .transition()
