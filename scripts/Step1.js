@@ -15,10 +15,10 @@ define(['d3'], function(d3){
           tableData.push({"Column": "Name", "Value": userInformation.DisplayName});
           tableData.push({"Column": "Reputation", "Value": userInformation.Reputation});
           tableData.push({"Column": "Questions", "Value": userInformation.data[9]["qcnt"]});
-          tableData.push({"Column": "Question Votes", "Value": userInformation.data[9]["qvotes"]});
+          tableData.push({"Column": "Average Question Votes", "Value": userInformation.data[9]["qvotes"]});
           //tableData.push({"Column": "Avg. Question Votes", "Value": userInformation.data[9]["qcnt"]});
           tableData.push({"Column": "Answers", "Value": userInformation.data[9]["acnt"]});
-          tableData.push({"Column": "Answer Votes", "Value": userInformation.data[9]["avotes"]});
+          tableData.push({"Column": "Average Answer Votes", "Value": userInformation.data[9]["avotes"]});
           //tableData.push({"Column": "Avg. Answer Votes", "Value": userInformation.data[9]["qcnt"]});
           tableData.push({"Column": "Votes", "Value": userInformation.data[9]["votes"]});
 
