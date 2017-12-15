@@ -4,7 +4,7 @@ import copy
 user_ids = [22656, 5210584, 699854]
 data_dict = {'votes':0, 'avotes': 0, 'qvotes':0, 'acnt':0, 'qcnt':0}
 
-with open('users_edited_time.json', 'r') as f:
+with open('user_classes_time.json', 'r') as f:
     users = json.load(f)
     
     for user in user_ids:

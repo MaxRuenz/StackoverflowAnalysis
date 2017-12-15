@@ -1,17 +1,26 @@
 import json
 import csv
 
-with open('users_edited.json') as f:
+with open('user_classes_time.json') as f:
     input = list(json.load(f).values())
 
 #%%
 
 for i in range(len(input)):
     input[i].pop('Id', None)
-    if not input[i]['count_of_answers'] == 0:
-        input[i]['avotes'] /= input[i]['count_of_answers']
-    if not input[i]['count_of_questions'] == 0:
-        input[i]['qvotes'] /= input[i]['count_of_questions']     
+    input[i].pop('DisplayName', None)
+    input[i].pop('CreationDate', None)
+    data = input[i].pop('data', None)
+    if data == None:
+        input[i]["qvotes"] = 0
+        input[i]["avotes"] = 0
+        input[i]["qcnt"] = 0
+        input[i]["acnt"] = 0
+        input[i]["votes"] = 0
+    else:
+        for key, value in data[9].items():
+            input[i][key] = value
+        
 
 #%%
 columns = [ x for row in input for x in row.keys() ]

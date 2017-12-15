@@ -48,7 +48,7 @@ for key in data.keys():
         data[key]["Class"] = 4
 
 
-json.dump(data, open('user_classes_time.json', 'w'), indent = 2)
+json.dump(data, open('user_classes_time.json', 'w'))
 
 # rep_array=[]
 #

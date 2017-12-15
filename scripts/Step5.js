@@ -19,8 +19,9 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
     user["qvotes"] = currentUserInfo.data[9]["qvotes"]+"";
     user["avotes"] = currentUserInfo.data[9]["avotes"]+"";
     user["votes"] = currentUserInfo.data[9]["votes"]+"";
-    user["count_of_questions"] = currentUserInfo.data[9]["qcnt"]+"";
-    user["count_of_answers"] = currentUserInfo.data[9]["acnt"]+"";
+    user["qcnt"] = currentUserInfo.data[9]["qcnt"]+"";
+    user["acnt"] = currentUserInfo.data[9]["acnt"]+"";
+    user["Class"] = currentUserInfo.Class+"";
 
     const bounds = d3.select(element).node().getBoundingClientRect(),
 
