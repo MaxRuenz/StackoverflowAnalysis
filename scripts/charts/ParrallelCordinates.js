@@ -208,7 +208,7 @@ define(['d3'], function(d3) {
 
     this.foreground.style("display", function(d) {
       return actives.every(function(p) {
-        let scaled = d3.scaleLinear().domain(this.valRangesObj[p.dimension]).range([this.height, 0])(d[p.dimension]);
+        let scaled = d3.scaleLog().domain(this.valRangesObj[p.dimension]).range([this.height, 0])(d[p.dimension]);
         return p.extent[0] <= scaled && scaled <= p.extent[1];
       }.bind(this)) ? null : "none";
     }.bind(this));
