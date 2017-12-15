@@ -5,9 +5,9 @@ import numpy as np
 
 threshhold_0 = 1
 threshhold_1 = 1
-threshhold_2 = 0.9995
+threshhold_2 = 1
 threshhold_3 = 0.999
-threshhold_4 = 0.995
+threshhold_4 = 0.99
 
 with open( 'data/users_edited.csv', 'r' ) as in_file, open( 'data/users_edited_sample.csv', 'w', newline='' ) as out_file:
     reader = reader = csv.reader(in_file)
@@ -15,12 +15,17 @@ with open( 'data/users_edited.csv', 'r' ) as in_file, open( 'data/users_edited_s
     
     first = True
     for row in reader:
+        # reorder to improve readability of fist plot
+        if len(row) > 0:
+            row[0], row[4]= row[4], row[0]        
+            row[4], row[6]= row[6], row[4]
+        
         if first:
             # dimensions
             writer.writerow(row)
             first = False
         elif len(row) > 0 and float(row[0]) > 0 and float(row[1]) > 0 and float(row[2]) > 0\
-                and float(row[4]) > 0 and float(row[5]) > 0:
+                and float(row[4]) > 0 and float(row[5]) > 0 and float(row[6]) > 0:
             # subsample
             if row[2] == "0":
                 if np.random.random_sample()  > threshhold_0:

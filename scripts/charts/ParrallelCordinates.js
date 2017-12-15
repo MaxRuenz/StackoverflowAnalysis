@@ -55,7 +55,7 @@ define(['d3'], function(d3) {
   function drawChart() {
     // Extract the list of dimensions and create a scale for each.
     this.x.domain(this.dimensions = d3.keys(this.data[0]).filter(function(d) {
-      return (this.y[d] = d3.scaleLinear()
+      return (this.y[d] = d3.scaleLog()
         .domain(d3.extent(this.data.concat(this.userdata), function(p) {
           return +p[d];
         }))
