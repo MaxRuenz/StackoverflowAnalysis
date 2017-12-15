@@ -4,7 +4,7 @@ define([], function() {
       yAxes: [{
         type: 'logarithmic',
         ticks: {
-          beginAtZero: true,
+          min: 1,
           padding: 20,
           fontColor: '#ffffff'
         },
