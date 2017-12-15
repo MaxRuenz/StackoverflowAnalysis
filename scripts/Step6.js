@@ -8,8 +8,16 @@ define(['d3', 'charts/StreamGraph'], function(d3, StreamGraph) {
     },
     element = "#div-stream",
     colorMap = {
-      "Questions": '#ff0000',
-      "Answers": '#0000ff'
+      "Questions Class 4": '#fee5d9',
+      "Questions Class 3": '#fcae91',
+      "Questions Class 2": '#fb6a4a',
+      "Questions Class 1": '#de2d26',
+      "Questions Class 0": '#a50f15',
+      "Answers Class 0": '#08519c',
+      "Answers Class 1": '#3182bd',
+      "Answers Class 2": '#6baed6',
+      "Answers Class 3": '#bdd7e7',
+      "Answers Class 4": '#eff3ff'
     };
 
   let sG;
