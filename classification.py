@@ -30,7 +30,7 @@ import scipy.stats as stat
 
 #Creating Json File containing all users, their reputation and there users class
 #Classification based on Reputation
-with open('users_edited.json') as json_file:
+with open('users_edited_time.json') as json_file:
     data = json.load(json_file)
 
 for key in data.keys():
@@ -48,7 +48,7 @@ for key in data.keys():
         data[key]["Class"] = 4
 
 
-json.dump(data, open('user_classes.json', 'w'), indent = 2)
+json.dump(data, open('user_classes_time.json', 'w'), indent = 2)
 
 # rep_array=[]
 #

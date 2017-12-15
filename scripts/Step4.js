@@ -27,16 +27,41 @@ define(['d3'], function(d3) {
       createTable(tableData);
 
       let userVal;
-      if (userClassesFeature === "Reputation"){
-        userVal = currentUserInfo["Reputation"]
+      if (typeof currentUserInfo !== 'undefined'){
+        if (userClassesFeature === 'Reputation'){
+          userVal = currentUserInfo["Reputation"];
+        } else if (userClassesFeature === 'Votes'){
+          userVal = currentUserInfo.data[9]["votes"];
+        } else if (userClassesFeature === 'Questions'){
+          userVal = currentUserInfo.data[9]["qcnt"];
+        } else if (userClassesFeature === 'Answers'){
+          userVal = currentUserInfo.data[9]["acnt"];
+        } else if (userClassesFeature === 'Average Answer Votes'){
+          userVal = currentUserInfo.data[9]["avotes"];
+        } else if (userClassesFeature === 'Average Question Votes'){
+          userVal = currentUserInfo.data[9]["qvotes"];
+        }
       }
 
       createUserClassesStats(dataUserClassesFeature, userClassesFeature, userVal);
       d3.select("#SelectUserClasses").on("change", function() {
         userClassesFeature = this.value;
-
-
-
+        if (typeof currentUserInfo !== 'undefined'){
+          if (userClassesFeature === 'Reputation'){
+            userVal = currentUserInfo["Reputation"];
+          } else if (userClassesFeature === 'Votes'){
+            userVal = currentUserInfo.data[9]["votes"];
+          } else if (userClassesFeature === 'Questions'){
+            userVal = currentUserInfo.data[9]["qcnt"];
+          } else if (userClassesFeature === 'Answers'){
+            userVal = currentUserInfo.data[9]["acnt"];
+          } else if (userClassesFeature === 'Average Answer Votes'){
+            userVal = currentUserInfo.data[9]["avotes"];
+          } else if (userClassesFeature === 'Average Question Votes'){
+            userVal = currentUserInfo.data[9]["qvotes"];
+          }
+        }
+        console.log(userVal);
         createUserClassesStats(dataUserClassesFeature, userClassesFeature, userVal);
       });
 
@@ -67,6 +92,9 @@ define(['d3'], function(d3) {
 
       data[feature].datasets[0].backgroundColor.splice(userIndex, 0, '#00ff00');
 
+      if (myChart3){
+        myChart3.destroy();
+      }
       myChart3 = new Chart(ctx3, {
         type: 'horizontalBar',
         data: data[feature],

@@ -51,7 +51,7 @@ def xml_tojson_cut(wanted_list, xml_path, new_file):
 
 # Operation
 
-xml_tojson_cut(['Id','Reputation', 'CreationDate'], users_path, 'users_edited_time')
+xml_tojson_cut(['Id','Reputation', 'CreationDate', 'DisplayName'], users_path, 'users_edited_time')
 
 #%%
 #Enrich Users File
@@ -119,6 +119,17 @@ for key, value in data2.items():
             
 data2 = None
 print ("Saved Questions")
+
+#%%
+
+for key, value in use.items():
+    if "data" in value.keys():
+        for i in range(0,10):
+            if not value["data"][i]['qcnt'] == 0:
+                use[key]["data"][i]['qvotes'] /=  value["data"][i]['qcnt']
+            if not value["data"][i]['acnt'] == 0:
+                use[key]["data"][i]['avotes'] /=  value["data"][i]['acnt']
+
 #%%
 # Dumping all the things
 json.dump(use, open('users_edited_time.json','w'))

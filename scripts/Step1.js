@@ -12,6 +12,7 @@ define(['d3'], function(d3){
           userInformation = data;
 
           let tableData = [];
+          tableData.push({"Column": "Name", "Value": userInformation.DisplayName});
           tableData.push({"Column": "Reputation", "Value": userInformation.Reputation});
           tableData.push({"Column": "Questions", "Value": userInformation.data[9]["qcnt"]});
           tableData.push({"Column": "Question Votes", "Value": userInformation.data[9]["qvotes"]});
