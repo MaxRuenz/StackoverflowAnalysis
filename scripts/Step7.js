@@ -9,21 +9,19 @@ define(['d3'], function(d3){
             radius: function(context) {
               let value = context.dataset.data[context.dataIndex];
               let size = context.chart.width;
-              let base = Math.abs(value.v) / 10;
-              return (size / 24) * base;
-            },
-            backgroundColor: function(context) {
-              let value = context.dataset.data[context.dataIndex];
-              return ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'][value.y];
+              let base = Math.log(Math.sqrt(value.v));
+              return (size / 100) * base;
             }
           }
         },
         scales: {
           yAxes: [{
+            type: 'logarithmic',
             ticks: {
               beginAtZero: true,
               padding: 20,
-              fontColor: '#ffffff'
+              fontColor: '#ffffff',
+              min: 1
             },
             gridLines: {
               color: '#d3d3d3'
@@ -33,23 +31,22 @@ define(['d3'], function(d3){
           xAxes: [{
             type: 'logarithmic',
             gridLines: {
-              color: '#ffffff',
-              display: false
+              color: '#d3d3d3',
             },
             ticks: {
-              fontColor: '#ffffff'
+              fontColor: '#ffffff',
+              min: 1
             }
           }]
-        },
-        legend: false
+        }
       };
 
       let ctx4 = document.getElementById("chart-evol");
       let myChart4,
         dataClassEvol,
-        featureClassEvol = "Reputation",
+        featureClassEvol = "Questions",
         yearClassEvol = "2008";
-      d3.json("data/users_classes_evol.json", function(json) {
+      d3.json("data/user_classes_evol.json", function(json) {
         dataClassEvol = json;
 
         d3.json("data/users_classes.json", function(json) {
@@ -66,10 +63,22 @@ define(['d3'], function(d3){
 
         $('#SliderEvol').on("change", function(slideEvt) {
           yearClassEvol = slideEvt.value.newValue;
-          myChart4.data = dataClassEvol[featureClassEvol][yearClassEvol];
+          dataClassEvol[featureClassEvol][yearClassEvol].datasets[0].backgroundColor = '#e41a1c';
+          dataClassEvol[featureClassEvol][yearClassEvol].datasets[1].backgroundColor = '#377eb8';
+          dataClassEvol[featureClassEvol][yearClassEvol].datasets[2].backgroundColor = '#4daf4a';
+          dataClassEvol[featureClassEvol][yearClassEvol].datasets[3].backgroundColor = '#984ea3';
+          dataClassEvol[featureClassEvol][yearClassEvol].datasets[4].backgroundColor = '#ff7f00';
+
+          myChart4.data.datasets[0].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[0].data;
+          myChart4.data.datasets[1].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[1].data;
+          myChart4.data.datasets[2].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[2].data;
+          myChart4.data.datasets[3].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[3].data;
+          myChart4.data.datasets[4].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[4].data;
+
+
           myChart4.update({
-            duration: 0,
-            easing: 'easeOutBounce'
+            duration: 500,
+            easing: 'linear'
           });
         });
 
@@ -97,10 +106,23 @@ define(['d3'], function(d3){
         if (myChart4) {
           myChart4.destroy();
         }
+        let optionsWithMaxLimt = optionsBubble;
+        if (feature === "Questions"){
+          optionsWithMaxLimt.scales.yAxes[0].ticks.max = 50;
+          optionsWithMaxLimt.scales.xAxes[0].ticks.max = 50;
+        } else if (feature === "Answers") {
+          optionsWithMaxLimt.scales.yAxes[0].ticks.max = 5;
+          optionsWithMaxLimt.scales.xAxes[0].ticks.max = 450;
+        }
+        data[feature][yearClassEvol].datasets[0].backgroundColor = '#e41a1c';
+        data[feature][yearClassEvol].datasets[1].backgroundColor = '#377eb8';
+        data[feature][yearClassEvol].datasets[2].backgroundColor = '#4daf4a';
+        data[feature][yearClassEvol].datasets[3].backgroundColor = '#984ea3';
+        data[feature][yearClassEvol].datasets[4].backgroundColor = '#ff7f00';
         myChart4 = new Chart(ctx4, {
           type: 'bubble',
           data: data[feature][yearClassEvol],
-          options: optionsBubble
+          options: optionsWithMaxLimt
         });
       }
     }
