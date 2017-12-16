@@ -12,9 +12,10 @@ define(['d3'], function(d3) {
 
       this.svg = d3.select(this.element)
         .append("svg")
-        .attr('width', this.width)
-        .attr('height', this.height)
-        .append("g");
+        .attr('width', this.width + this.margins.left + this.margins.right + 'px')
+        .attr('height', this.height + this.margins.top + this.margins.bottom + 'px')
+        .append("g")
+        .attr("transform", "translate(" + this.margins.left + "," + this.margins.top + ")");
 
       this.z = d3.interpolateCool;
 
@@ -52,6 +53,12 @@ define(['d3'], function(d3) {
 
   function drawChart() {
 
+
+    let xScale = d3.scaleTime().range([0, this.width]);
+    xScale.domain([new Date(2008, 0, 0), new Date(2017, 0, 0)]);
+    let yScale = d3.scaleLinear().range([this.height, 0]);
+    yScale.domain([-1,1]);
+
     this.x = d3.scaleLinear()
       .domain([d3.min(this.data, xMin), d3.max(this.data, xMax)])
       .range([0, this.width]);
@@ -60,7 +67,10 @@ define(['d3'], function(d3) {
       .domain([d3.min(this.data, stackMin), d3.max(this.data, stackMax)])
       .range([this.height, 0]);
 
-    this.svg.selectAll("path")
+    let that = this;
+    this.svg.append('g')
+      .attr('id', 'area')
+      .selectAll("path")
       .data(this.data)
       .enter().append("path")
       .attr("d", function(d) {
@@ -70,23 +80,96 @@ define(['d3'], function(d3) {
         return this.colorMap[d.label];
       }.bind(this))
       .on("mouseover", function(d) {
-
+        d3.select("#tooltip").classed("hidden", false);
+      })
+      .on("mousemove", function(d){
         let rect = document.getElementById('div-stream').getBoundingClientRect();
         let xPosition = d3.event.pageX - rect.x;
         let yPosition = d3.event.pageY;
 
-        d3.select("#tooltip")
-          .style("left", xPosition + "px")
-          .style("top", yPosition + "px")
-          .select("#value")
-          .text(d.label);
+        let date = xScale.invert(xPosition - that.margins.left);
+        let index = date.getYear()+1900-2008;
+        console.log(that.data[0].data[index][2]);
 
-        d3.select("#tooltip").classed("hidden", false);
+        let tooltip = d3.select("#tooltip")
+          .style("left", xPosition + "px")
+          .style("top", yPosition + "px");
+
+        let lastVal = 0;
+        for (let i =0; i < 5; i++){
+          tooltip.select("#value-q-"+i)
+            .text((100*(that.data[i].data[index][2] - lastVal)).toFixed(2)+"%");
+          lastVal = that.data[i].data[index][2]
+        }
+
+        lastVal = 0;
+        for (let i =0; i < 5; i++){
+          tooltip.select("#value-a-"+i)
+            .text((-100*(that.data[i+5].data[index][2] - lastVal)).toFixed(2)+"%");
+          lastVal = that.data[i+5].data[index][2]
+        }
       })
       .on("mouseout", function() {
         d3.select("#tooltip").classed("hidden", true);
       });
 
+
+      this.svg.append("g")
+          .attr("transform", "translate(0," + this.height/2 + ")")
+          .call(d3.axisBottom(xScale));
+
+      this.svg.append("g")
+          .attr("transform", "translate(0,0)")
+          .call(d3.axisRight(yScale));
+
+      let vertical = d3.select("#div-stream")
+          .append("div")
+          .attr("class", "remove")
+          .style("display", "none")
+          .style("position", "absolute")
+          .style("z-index", "19")
+          .style("width", "1px")
+          .style("height", that.height + "px")
+          .style("top", that.svg.node().getBoundingClientRect().top+"px")
+          .style("bottom", "30px")
+          .style("left", "0px")
+          .style("background", "#000");
+
+    d3.select("#div-stream svg #area")
+        .on("mouseenter", function (){
+          vertical.style("display", "" );
+        })
+        .on("mousemove", function(){
+           mousex = d3.mouse(this);
+           mousex = mousex[0] + 5;
+           vertical.style("left", mousex +that.margins.left + "px" )})
+        .on("mouseover", function(){
+           mousex = d3.mouse(this);
+           mousex = mousex[0] + 5;
+           vertical.style("left", mousex +that.margins.left + "px")})
+         .on("mouseleave", function (){
+           vertical.style("display", "none" );
+         });
+
+         let legend6 = d3.select('#div-stream-legend').selectAll("legend")
+               .data(getLabels(that.data));
+
+           let p = legend6.enter().append("div")
+           .attr("class","legends")
+           .append("p").attr("class","country-name");
+
+           console.log(p);
+            p.append("span").attr("class","key-dot").style("background",function(d) { return that.colorMap[d] } );
+            p.insert("text").text(function(d,i) { return d } );
+  }
+
+  function getLabels(data){
+    console.log(data)
+    let labels = []
+    for (let i = 0; i < data.length; i++){
+      labels.push(data[i].label);
+    }
+    return labels;
   }
 
   function xMax(layer) {

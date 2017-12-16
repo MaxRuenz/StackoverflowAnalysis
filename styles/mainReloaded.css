@@ -88,8 +88,79 @@ svg {
   line-height: 20px;
 }
 
-#value{
+#value-a-0, #value-a-1, #value-a-2, #value-a-3, #value-a-4,
+#value-q-0, #value-q-1, #value-q-2, #value-q-3, #value-q-4, .mytext {
   color: black;
+}
+
+.rect-color {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+}
+
+.color-q-4{
+  background: #fee5d9;
+}
+
+.color-q-3{
+  background: #fcae91;
+}
+
+.color-q-2{
+  background:#fb6a4a;
+
+}
+
+.color-q-1{
+  background:#de2d26;
+
+}
+
+.color-q-0{
+  background:#a50f15;
+
+}
+
+.color-a-0{
+  background:#08519c;
+
+}
+
+.color-a-1{
+  background:#3182bd;
+
+}
+
+.color-a-2{
+  background:#6baed6;
+
+}
+
+.color-a-3{
+  background:#bdd7e7;
+
+}
+
+.color-a-4{
+  background:#eff3ff;
+
+}
+
+.legends{
+    float:left;
+    margin-right:1em;
+}
+
+.country-name {
+    margin: 0 !important;
+}
+.key-dot {
+    display: inline-block;
+    height: 10px;
+    margin-right: .5em;
+    width: 10px;
 }
 
 #div-cordinates{
