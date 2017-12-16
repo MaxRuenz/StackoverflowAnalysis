@@ -7,6 +7,15 @@
   bottom: auto
 }
 
+#table-user-classes{
+  height: 45vh;
+}
+
+#div-chart-contrib{
+  position: relative;
+  height: 25vh
+}
+
 svg {
   font: 10px sans-serif;
 }

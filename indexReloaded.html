@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <div id="myCarousel" class="carousel slide fullscreen  bg-dark">
+  <div id="myCarousel" class="carousel slide fullscreen bg-dark">
     <ol class="carousel-indicators footer fixed-bottom">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -54,13 +54,18 @@
               TODO plot charts for each feature where user is highlited
             </p>
 
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">StackOverflow User Id</span>
-              <input type="text" class="form-control" placeholder="22656" aria-label="User ID" aria-describedby="basic-addon1" id="InputUserID">
-              <button class="btn btn-primary" type="submit" id="SubmitUserID">Submit</button>
-            </div>
+            <form>
+                <div class="form-group col-lg-4">
+                  <label for="InputUserID">StackOverflow User Id</label>
+                  <input type="text" class="form-control" id="InputUserID" placeholder="22656" maxlength="10">
+                  <button class="btn btn-primary" type="submit" id="SubmitUserID">Submit</button>
+                </div>
 
-            <table class="table" id="table-user">
+            </form>
+
+            <br/>
+
+            <table class="table table-responsive table-striped table-hover" id="table-user">
             </table>
 
           </div>
@@ -81,7 +86,7 @@
                 <option value="Answer Votes">Answer Votes</option>
                 <option value="Question Votes">Question Votes</option>
               </select>
-            <canvas id="chart-descre" height="150vh"></canvas>
+            <canvas id="chart-descre" height="100vh"></canvas>
 
           </div>
         </div>
@@ -93,7 +98,7 @@
             <p>To aggregate insight about different user groups we decided to split the users in five different groups.
             Based on their reputation we will create logarithmic classes.</p>
 
-            <canvas id="chart-class"  height="150vh"></canvas>
+            <canvas id="chart-class" height="100vh"></canvas>
 
           </div>
         </div>
@@ -109,7 +114,7 @@
             <div class="container-fluid" id="container-main">
               <div class="row align-items-center">
                 <div class="col col-lg-12" >
-                  <table class="table" id="table-user-classes">
+                  <table class="table table-responsive table-striped table-hover" id="table-user-classes">
 
                   </table>
                 </div>
@@ -124,7 +129,9 @@
                       <option value="Average Answer Votes">Average Answer Votes</option>
                       <option value="Average Question Votes">Average Question Votes</option>
                     </select>
-                  <canvas id="chart-contrib" width="400" height="150"></canvas>
+                  <div id="div-chart-contrib">
+                    <canvas id="chart-contrib"></canvas>
+                  </div>
                 </div>
               </div>
             </div>

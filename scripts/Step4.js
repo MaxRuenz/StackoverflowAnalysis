@@ -16,7 +16,6 @@ define(['d3'], function(d3) {
       dataUserClassesFeature = json;
       // fill table
       let tableData = [];
-      tableData.push({"Column": "Feature/Class", "Values": ["Inactive","One Time","Active","Frequent","Super"]});
       tableData.push({"Column": "Reputation", "Values": dataUserClassesFeature.Reputation});
       tableData.push({"Column": "Votes", "Values": dataUserClassesFeature.Votes});
       tableData.push({"Column": "Questions", "Values": dataUserClassesFeature.Questions});
@@ -102,7 +101,9 @@ define(['d3'], function(d3) {
         options: {
           legend: {
             position: 'bottom'
-          }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
         }
       });
     }
@@ -130,6 +131,16 @@ define(['d3'], function(d3) {
 
   function createTable(data){
     d3.select(tableElement).html('');
+
+    let thead = d3.select(tableElement).append('thead');
+    let head = thead.selectAll('tr')
+                .data([["Feature","Inactive Users", "One Time Users", "Active Users", "Frequent Users", "Super Users"]])
+                .enter()
+                .append('tr')
+    for (let i = 0; i<6; i++){
+      head.append('th')
+        .text(function (d) {return d[i]})
+    }
 
     let tbody = d3.select(tableElement).append('tbody');
     let rows = tbody.selectAll('tr')
