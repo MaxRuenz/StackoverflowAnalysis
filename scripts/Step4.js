@@ -51,7 +51,7 @@ define(['d3'], function(d3) {
   }
 
   function createUserClassesStats(json, feature, userValue) {
-    let userIndex;
+    let userIndex = -1;
     let jsonWithUser = json;
     if (typeof currentUserInfo !== 'undefined'){
       for (let i = 0; i < json[feature].length; i++){
@@ -69,11 +69,13 @@ define(['d3'], function(d3) {
 
     let data = generateDataConfig(jsonWithUser);
 
-    data[feature]["labels"].splice(userIndex, 0, "You");
+    if (userIndex !== -1)
+      data[feature]["labels"].splice(userIndex, 0, "You");
 
     data[feature].datasets[0].backgroundColor = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'];
 
-    data[feature].datasets[0].backgroundColor.splice(userIndex, 0, '#00ff00');
+    if (userIndex !== -1)
+      data[feature].datasets[0].backgroundColor.splice(userIndex, 0, '#00ff00');
 
     if (myChart3){
       myChart3.destroy();

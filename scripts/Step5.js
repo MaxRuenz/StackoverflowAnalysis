@@ -14,14 +14,16 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
   function initializePage(currentUserInfo) {
     console.log("Hi");
 
-    let user = {}
-    user["Reputation"] = currentUserInfo.Reputation;
-    user["qvotes"] = currentUserInfo.data[9]["qvotes"]+"";
-    user["avotes"] = currentUserInfo.data[9]["avotes"]+"";
-    user["votes"] = currentUserInfo.data[9]["votes"]+"";
-    user["qcnt"] = currentUserInfo.data[9]["qcnt"]+"";
-    user["acnt"] = currentUserInfo.data[9]["acnt"]+"";
-    user["Class"] = currentUserInfo.Class+"";
+    let user = {};
+    if (typeof currentUserInfo !== 'undefined'){
+      user["Reputation"] = currentUserInfo.Reputation;
+      user["qvotes"] = currentUserInfo.data[9]["qvotes"]+"";
+      user["avotes"] = currentUserInfo.data[9]["avotes"]+"";
+      user["votes"] = currentUserInfo.data[9]["votes"]+"";
+      user["qcnt"] = currentUserInfo.data[9]["qcnt"]+"";
+      user["acnt"] = currentUserInfo.data[9]["acnt"]+"";
+      user["Class"] = currentUserInfo.Class+"";
+    }
 
     const bounds = d3.select(element).node().getBoundingClientRect(),
 
@@ -33,7 +35,6 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
         pC.update(data);
       } else {
         console.log(data);
-        console.log(user);
         pC = new ParrallelCordinates({
           element: element,
           height: heightPC,

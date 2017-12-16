@@ -8,7 +8,11 @@ define(['d3'], function(d3) {
       this.width = config.width;
       this.margins = config.margins;
       this.data = config.data;
-      this.userdata = [config.user];
+      if (typeof config.user !== 'undefined'){
+        this.userdata = [config.user];
+      } else {
+        this.userdata = [];
+      }
       this.userdata["columns"] = this.data["columns"];
 
       console.log(this.data);
