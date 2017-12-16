@@ -6,7 +6,12 @@ define([], function() {
         ticks: {
           min: 1,
           padding: 20,
-          fontColor: '#ffffff'
+          fontColor: '#ffffff',
+          callback: function (tick) {
+            if( tick.toString().startsWith( '1' ))
+              return tick.toLocaleString();
+            return null;
+          }
         },
         gridLines: {
           color: '#d3d3d3'
