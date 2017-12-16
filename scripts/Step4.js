@@ -2,16 +2,16 @@ define(['d3'], function(d3) {
 
   const tableElement = '#table-user-classes'
   let currentUserInfo;
+  let myChart3;
+
+  let ctx3 = document.getElementById("chart-contrib");
+  let userClassesFeature = "Reputation";
+  let dataUserClassesFeature;
 
   function initializePage(userInfo) {
     console.log("Hi");
 
     currentUserInfo = userInfo;
-
-    let ctx3 = document.getElementById("chart-contrib");
-    let myChart3;
-    let userClassesFeature = "Reputation";
-    let dataUserClassesFeature;
     d3.json("data/users_classes.json", function(json) {
       dataUserClassesFeature = json;
       // fill table
@@ -44,69 +44,51 @@ define(['d3'], function(d3) {
       }
 
       createUserClassesStats(dataUserClassesFeature, userClassesFeature, userVal);
-      d3.select("#SelectUserClasses").on("change", function() {
-        userClassesFeature = this.value;
-        if (typeof currentUserInfo !== 'undefined'){
-          if (userClassesFeature === 'Reputation'){
-            userVal = currentUserInfo["Reputation"];
-          } else if (userClassesFeature === 'Votes'){
-            userVal = currentUserInfo.data[9]["votes"];
-          } else if (userClassesFeature === 'Questions'){
-            userVal = currentUserInfo.data[9]["qcnt"];
-          } else if (userClassesFeature === 'Answers'){
-            userVal = currentUserInfo.data[9]["acnt"];
-          } else if (userClassesFeature === 'Average Answer Votes'){
-            userVal = currentUserInfo.data[9]["avotes"];
-          } else if (userClassesFeature === 'Average Question Votes'){
-            userVal = currentUserInfo.data[9]["qvotes"];
-          }
-        }
-        console.log(userVal);
-        createUserClassesStats(dataUserClassesFeature, userClassesFeature, userVal);
-      });
 
     });
 
-    function createUserClassesStats(json, feature, userValue) {
-      let userIndex;
-      let jsonWithUser = json;
-      if (typeof currentUserInfo !== 'undefined'){
-        for (let i = 0; i < json[feature].length; i++){
-          if (json[feature][i] >= userValue){
-            userIndex = i;
-            break;
-          } else if (i === json[feature].length-1){
-            userIndex = i+1;
-          }
+
+  }
+
+  function createUserClassesStats(json, feature, userValue) {
+    let userIndex;
+    let jsonWithUser = json;
+    if (typeof currentUserInfo !== 'undefined'){
+      for (let i = 0; i < json[feature].length; i++){
+        if (json[feature][i] >= userValue){
+          userIndex = i;
+          break;
+        } else if (i === json[feature].length-1){
+          userIndex = i+1;
         }
-        console.log(userIndex);
-        jsonWithUser[feature].splice(userIndex, 0, userValue);
       }
-
-
-      let data = generateDataConfig(jsonWithUser);
-
-      data[feature]["labels"].splice(userIndex, 0, "You");
-
-      data[feature].datasets[0].backgroundColor = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'];
-
-      data[feature].datasets[0].backgroundColor.splice(userIndex, 0, '#00ff00');
-
-      if (myChart3){
-        myChart3.destroy();
-      }
-      myChart3 = new Chart(ctx3, {
-        type: 'horizontalBar',
-        data: data[feature],
-        options: {
-          legend: {
-            position: 'bottom'
-          },
-          responsive: true,
-          maintainAspectRatio: false,
-        }
-      });
+      console.log(userIndex);
+      jsonWithUser[feature].splice(userIndex, 0, userValue);
     }
+
+
+    let data = generateDataConfig(jsonWithUser);
+
+    data[feature]["labels"].splice(userIndex, 0, "You");
+
+    data[feature].datasets[0].backgroundColor = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'];
+
+    data[feature].datasets[0].backgroundColor.splice(userIndex, 0, '#00ff00');
+
+    if (myChart3){
+      myChart3.destroy();
+    }
+    myChart3 = new Chart(ctx3, {
+      type: 'horizontalBar',
+      data: data[feature],
+      options: {
+        legend: {
+          position: 'bottom'
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+      }
+    });
   }
 
   function generateDataConfig(json) {
@@ -153,6 +135,28 @@ define(['d3'], function(d3) {
       rows.append('td')
         .text(function (d) {return d.Values[i]})
     }
+
+    rows.on('click', function(d){
+      let feature = d.Column;
+      let userVal;
+      if (typeof currentUserInfo !== 'undefined'){
+        if (userClassesFeature === 'Reputation'){
+          userVal = currentUserInfo["Reputation"];
+        } else if (userClassesFeature === 'Votes'){
+          userVal = currentUserInfo.data[9]["votes"];
+        } else if (userClassesFeature === 'Questions'){
+          userVal = currentUserInfo.data[9]["qcnt"];
+        } else if (userClassesFeature === 'Answers'){
+          userVal = currentUserInfo.data[9]["acnt"];
+        } else if (userClassesFeature === 'Average Answer Votes'){
+          userVal = currentUserInfo.data[9]["avotes"];
+        } else if (userClassesFeature === 'Average Question Votes'){
+          userVal = currentUserInfo.data[9]["qvotes"];
+        }
+      }
+      console.log(userVal);
+      createUserClassesStats(dataUserClassesFeature, feature, userVal);
+    })
   }
 
   return {
