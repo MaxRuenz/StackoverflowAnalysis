@@ -25,7 +25,14 @@ define(['d3'], function(d3){
               beginAtZero: true,
               padding: 20,
               fontColor: '#ffffff',
-              min: 0.1
+              min: 0.1,
+              callback: function (tick) {
+                if( tick.toString().startsWith( '1' ) ||
+                    tick.toString().startsWith( '2' ) ||
+                    tick.toString().startsWith( '5' ) )
+                  return tick.toLocaleString();
+                return null;
+              }
             },
             gridLines: {
               color: '#d3d3d3'
@@ -42,7 +49,14 @@ define(['d3'], function(d3){
             },
             ticks: {
               fontColor: '#ffffff',
-              min: 0.1
+              min: 0.1,
+              callback: function (tick) {
+                if( tick.toString().startsWith( '1' ) ||
+                    tick.toString().startsWith( '2' ) ||
+                    tick.toString().startsWith( '5' ) )
+                  return tick.toLocaleString();
+                return null;
+              }
             }
           }]
         },
