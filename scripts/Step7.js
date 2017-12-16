@@ -9,35 +9,53 @@ define(['d3'], function(d3){
             radius: function(context) {
               let value = context.dataset.data[context.dataIndex];
               let size = context.chart.width;
-              let base = Math.log(Math.sqrt(value.v));
-              return (size / 100) * base;
+              let base = Math.sqrt(value.v);
+              return (size / 10000) * base;
             }
           }
         },
         scales: {
           yAxes: [{
+            scaleLabel: {
+              labelString: "Average Votes",
+              display: true
+            },
             type: 'logarithmic',
             ticks: {
               beginAtZero: true,
               padding: 20,
               fontColor: '#ffffff',
-              min: 1
+              min: 0.1
             },
             gridLines: {
               color: '#d3d3d3'
-            },
-            scaleLabel: {}
+            }
           }],
           xAxes: [{
+            scaleLabel: {
+              labelString: "Count",
+              display: true
+            },
             type: 'logarithmic',
             gridLines: {
               color: '#d3d3d3',
             },
             ticks: {
               fontColor: '#ffffff',
-              min: 1
+              min: 0.1
             }
           }]
+        },
+        tooltips: {
+          callbacks: {
+            label: function(t, d) {
+              let radius = d.datasets[t.datasetIndex].data[t.index].v
+              return d.datasets[t.datasetIndex].label + ': ' +
+                "Count: " + t.xLabel.toFixed(2) + ', ' +
+                "Average Votes: " + t.yLabel.toFixed(2) + ', '+
+                "Users: " + radius;
+            }
+         }
         }
       };
 
