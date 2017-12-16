@@ -84,11 +84,15 @@ define(['d3'], function(d3) {
       type: 'horizontalBar',
       data: data[feature],
       options: {
-        legend: {
-          position: 'bottom'
-        },
+        legend: false,
         responsive: true,
         maintainAspectRatio: false,
+        scales: {xAxes:[{
+          scaleLabel: {
+            display: true,
+            labelString: feature
+          }
+        }]}
       }
     });
   }

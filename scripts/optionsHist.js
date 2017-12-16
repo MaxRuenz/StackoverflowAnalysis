@@ -11,7 +11,10 @@ define([], function() {
         gridLines: {
           color: '#d3d3d3'
         },
-        scaleLabel: {}
+        scaleLabel: {
+          display: true,
+          labelString: "Number of Users"
+        }
       }],
       xAxes: [{
         gridLines: {
@@ -20,12 +23,14 @@ define([], function() {
         },
         ticks: {
           fontColor: '#ffffff'
+        },
+        scaleLabel: {
+          display: true,
+          labelString: "Reputation"
         }
       }]
     },
-    legend: {
-      position: 'bottom'
-    }
+    legend: false
   };
 
 
