@@ -11,6 +11,7 @@ dic_base = {"cnt":0, "votes":0, "ucnt": 0}
 # Create 
 stats_questions = [[copy.deepcopy(dic_base) for i in range(CLASSES)] for j in range(NUM_YEARS)]
 stats_answers = [[copy.deepcopy(dic_base) for i in range(CLASSES)] for j in range(NUM_YEARS)]
+stats_q_a = [[copy.deepcopy(dic_base) for i in range(CLASSES)] for j in range(NUM_YEARS)]
 
 #%%
 
@@ -34,6 +35,7 @@ for key, user in users.items():
         # increase user count
         stats_questions[i][class_]["ucnt"] +=  1
         stats_answers[i][class_]["ucnt"] +=  1
+        stats_q_a[i][class_]["ucnt"] +=  1
         
         # Did user do any interactions
         if "data" in user.keys():
@@ -44,6 +46,10 @@ for key, user in users.items():
             # answer stats
             stats_answers[i][class_]["cnt"] += user["data"][i]["acnt"]
             stats_answers[i][class_]["votes"] += user["data"][i]["avotes"]
+            
+            # q - a stats
+            stats_q_a[i][class_]["cnt"] += user["data"][i]["qcnt"]
+            stats_q_a[i][class_]["votes"] += user["data"][i]["acnt"]
 #%%
      
 # Calculate averages per year
@@ -55,6 +61,8 @@ for year in range(NUM_YEARS):
             stats_questions[year][class_]["votes"] /= num_users
             stats_answers[year][class_]["cnt"] /= num_users
             stats_answers[year][class_]["votes"] /= num_users
+            stats_q_a[year][class_]["cnt"] /= num_users
+            stats_q_a[year][class_]["votes"] /= num_users
 
 
 #%%
@@ -78,5 +86,6 @@ def create_feature_data(arr):
 
 response["Questions"] = create_feature_data(stats_questions)
 response["Answers"] = create_feature_data(stats_answers)
+response["Questions - Answers"] = create_feature_data(stats_q_a)
 
 json.dump(response, open('data/user_classes_evol.json', 'w'), indent=2)

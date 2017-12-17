@@ -167,6 +167,9 @@ define(['d3'], function(d3){
         } else if (feature === "Answers") {
           optionsWithMaxLimt.scales.yAxes[0].ticks.max = 5;
           optionsWithMaxLimt.scales.xAxes[0].ticks.max = 450;
+        } else if (feature === "Questions - Answers") {
+          optionsWithMaxLimt.scales.yAxes[0].ticks.max = 450;
+          optionsWithMaxLimt.scales.xAxes[0].ticks.max = 50;
         }
         data[feature][yearClassEvol].datasets[0].backgroundColor = '#e41a1c';
         data[feature][yearClassEvol].datasets[1].backgroundColor = '#377eb8';
@@ -198,7 +201,9 @@ define(['d3'], function(d3){
           dataExtended.Questions[i+""].datasets.push({"data": [{"x":userInfo.data[i-2008]["qcnt"],
                                                   "y":userInfo.data[i-2008]["qvotes"],
                                                   "v":1000}], "label": "You"});
-          
+          dataExtended["Questions - Answers"][i+""].datasets.push({"data": [{"x":userInfo.data[i-2008]["qcnt"],
+                                                  "y":userInfo.data[i-2008]["acnt"],
+                                                  "v":1000}], "label": "You"});
         }
         console.log(dataExtended);
         return dataExtended;
