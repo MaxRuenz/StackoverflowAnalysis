@@ -1,5 +1,5 @@
 require(['Step0', 'Step1', 'Step2', 'Step3', 'Step4', 'Step5', 'Step6', 'Step7', 'Step8',
-  'chart', 'bootstrap', 'bootstrapSlider'
+  'chart', 'bootstrap', 'ionSlider'
 ], function(Step0, Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Chart) {
 
   $(function() {

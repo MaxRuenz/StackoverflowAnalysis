@@ -88,15 +88,8 @@ define(['d3'], function(d3){
 
         dataClassEvol = addUserData(dataClassEvol, userInformation);
 
-        $('#SliderEvol').slider({
-          step: 1,
-          min: parseInt(getMinYear(dataClassEvol[featureClassEvol])),
-          max: parseInt(getMaxYear(dataClassEvol[featureClassEvol])),
-          value: parseInt(getMinYear(dataClassEvol[featureClassEvol]))
-        });
-
-        let updateSlider = function(slideEvt) {
-          yearClassEvol = slideEvt.value.newValue;
+        let updateSlider = function(data) {
+          yearClassEvol = data.from;
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[0].backgroundColor = '#e41a1c';
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[1].backgroundColor = '#377eb8';
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[2].backgroundColor = '#4daf4a';
@@ -121,21 +114,33 @@ define(['d3'], function(d3){
           });
         }
 
-        $('#SliderEvol').on("change", updateSlider);
+        $('#SliderEvol').ionRangeSlider({
+          type: "single",
+          min: 2008,
+          max: 2017,
+          from: 2008,
+          hide_min_max: true,
+          prettify_enabled: false,
+          onChange: updateSlider,
+          onUpdate: updateSlider
+        });
 
         createClassesEvol(dataClassEvol, featureClassEvol);
 
         d3.select("#playBubble").on('click', function(){
-          let currentYear = $('#SliderEvol').slider('getValue');
+          let slider = $('#SliderEvol').data("ionRangeSlider");
+          let currentYear = slider.result.from;
           let maxYear = 2018;
           let slide = function(){
              if (currentYear < maxYear){
-               $('#SliderEvol').slider('setValue',currentYear+1, false, true);
+               slider.update({
+                 from: currentYear+1
+               })
                currentYear++;
-               setTimeout(slide, 1500)
+               setTimeout(slide, 1500);
              }
           }
-          setTimeout(slide, 1500)
+          setTimeout(slide, 1500);
         });
 
       });

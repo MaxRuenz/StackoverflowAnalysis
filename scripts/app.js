@@ -8,7 +8,7 @@ requirejs.config({
     popper: "lib/popper.min",
     bootstrap: "lib/bootstrap.min",
     chart: "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min",
-    bootstrapSlider: "lib/bootstrap-slider.min"
+    ionSlider: "https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.2.0/js/ion.rangeSlider.min"
   },
   shim: {
     "jQuery": {exports: '$'},
