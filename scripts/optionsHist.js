@@ -35,7 +35,17 @@ define([], function() {
         }
       }]
     },
-    legend: false
+    legend: false,
+    tooltips: {
+      callbacks: {
+        label: function(t, d) {
+          return d.datasets[t.datasetIndex].label + ': ' + t.yLabel;
+        },
+        title: function (t,d){
+          return "Reputation: " + t[0].xLabel;
+        }
+     }
+    }
   };
 
 
