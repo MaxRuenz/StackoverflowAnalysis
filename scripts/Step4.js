@@ -14,6 +14,7 @@ define(['d3'], function(d3) {
     currentUserInfo = userInfo;
     d3.json("data/users_classes.json", function(json) {
       dataUserClassesFeature = json;
+
       // fill table
       let tableData = [];
       tableData.push({"Column": "Reputation", "Values": dataUserClassesFeature.Reputation});
@@ -23,6 +24,15 @@ define(['d3'], function(d3) {
       tableData.push({"Column": "Average Answer Votes", "Values": dataUserClassesFeature['Average Answer Votes']});
       tableData.push({"Column": "Average Question Votes", "Values": dataUserClassesFeature['Average Question Votes']});
       tableData.push({"Column": "Users", "Values": dataUserClassesFeature.Users});
+
+      if (typeof currentUserInfo !== 'undefined'){
+        tableData[0].Values.push(currentUserInfo.Reputation);
+        tableData[1].Values.push(currentUserInfo.data[9].votes);
+        tableData[2].Values.push(currentUserInfo.data[9].qcnt);
+        tableData[3].Values.push(currentUserInfo.data[9].acnt);
+        tableData[4].Values.push(currentUserInfo.data[9].avotes);
+        tableData[5].Values.push(currentUserInfo.data[9].qvotes);
+      }
 
       createTable(tableData);
 
@@ -119,13 +129,17 @@ define(['d3'], function(d3) {
 
   function createTable(data){
     d3.select(tableElement).html('');
+    let headings = ["Feature","Inactive Users", "One Time Users", "Active Users", "Frequent Users", "Super Users"];
+    if (data.length > 5){
+      headings.push("You");
+    }
 
     let thead = d3.select(tableElement).append('thead');
     let head = thead.selectAll('tr')
-                .data([["Feature","Inactive Users", "One Time Users", "Active Users", "Frequent Users", "Super Users"]])
+                .data([headings])
                 .enter()
                 .append('tr')
-    for (let i = 0; i<6; i++){
+    for (let i = 0; i<data.length+1; i++){
       head.append('th')
         .text(function (d) {return d[i]})
     }
@@ -137,7 +151,7 @@ define(['d3'], function(d3) {
                 .append('tr')
     rows.append('th')
       .text(function (d) {return d.Column})
-    for (let i = 0; i<5; i++){
+    for (let i = 0; i<data.length; i++){
       rows.append('td')
         .text(function (d) {return d.Values[i]})
     }
