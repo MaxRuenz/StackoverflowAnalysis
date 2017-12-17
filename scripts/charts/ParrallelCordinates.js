@@ -143,7 +143,8 @@ define(['d3'], function(d3) {
             .delay(500)
             .duration(0)
             .attr("visibility", null);
-    }));
+        })
+    );
 
     // Add an axis and title.
     g.append("g")
@@ -168,7 +169,8 @@ define(['d3'], function(d3) {
             [8, that.height]
           ])
           .on("start", brushstart)
-          .on("brush", brush.bind(that)));
+          .on("brush", brush.bind(that))
+          .on("end", brush.bind(that)));
       })
       .selectAll("rect")
       .attr("x", -8)
