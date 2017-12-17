@@ -193,11 +193,12 @@ define(['d3'], function(d3){
         let dataExtended = data;
         for (let i =2008; i<2018; i++){
           dataExtended.Answers[i+""].datasets.push({"data": [{"x":userInfo.data[i-2008]["acnt"],
-                                                  "y":userInfo.data[i-2008]["acnt"],
+                                                  "y":userInfo.data[i-2008]["avotes"],
                                                   "v":1000}], "label": "You"});
           dataExtended.Questions[i+""].datasets.push({"data": [{"x":userInfo.data[i-2008]["qcnt"],
-                                                  "y":userInfo.data[i-2008]["qcnt"],
+                                                  "y":userInfo.data[i-2008]["qvotes"],
                                                   "v":1000}], "label": "You"});
+          
         }
         console.log(dataExtended);
         return dataExtended;
