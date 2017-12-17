@@ -1,6 +1,11 @@
 define(['d3'], function(d3){
 
-    function initializePage(){
+    let userInformation;
+
+    function initializePage(userInfo){
+
+      userInformation = userInfo;
+
       console.log("Hi");
       const optionsBubble = {
         aspectRatio: 1,
@@ -81,16 +86,13 @@ define(['d3'], function(d3){
       d3.json("data/user_classes_evol.json", function(json) {
         dataClassEvol = json;
 
-        d3.json("data/users_classes.json", function(json) {
-          dataUserClassesFeature = json;
-          // TODO fill table
+        dataClassEvol = addUserData(dataClassEvol, userInformation);
 
-          $('#SliderEvol').slider({
-            step: 1,
-            min: parseInt(getMinYear(dataClassEvol[featureClassEvol])),
-            max: parseInt(getMaxYear(dataClassEvol[featureClassEvol])),
-            value: parseInt(getMinYear(dataClassEvol[featureClassEvol]))
-          });
+        $('#SliderEvol').slider({
+          step: 1,
+          min: parseInt(getMinYear(dataClassEvol[featureClassEvol])),
+          max: parseInt(getMaxYear(dataClassEvol[featureClassEvol])),
+          value: parseInt(getMinYear(dataClassEvol[featureClassEvol]))
         });
 
         $('#SliderEvol').on("change", function(slideEvt) {
@@ -100,13 +102,18 @@ define(['d3'], function(d3){
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[2].backgroundColor = '#4daf4a';
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[3].backgroundColor = '#984ea3';
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[4].backgroundColor = '#ff7f00';
-
+          if (typeof userInfo !== 'undefined'){
+            dataClassEvol[featureClassEvol][yearClassEvol].datasets[5].backgroundColor = '#00ff00';
+          }
+          
           myChart4.data.datasets[0].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[0].data;
           myChart4.data.datasets[1].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[1].data;
           myChart4.data.datasets[2].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[2].data;
           myChart4.data.datasets[3].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[3].data;
           myChart4.data.datasets[4].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[4].data;
-
+          if (typeof userInfo !== 'undefined'){
+            myChart4.data.datasets[5].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[5].data;
+          }
 
           myChart4.update({
             duration: 500,
@@ -151,12 +158,36 @@ define(['d3'], function(d3){
         data[feature][yearClassEvol].datasets[2].backgroundColor = '#4daf4a';
         data[feature][yearClassEvol].datasets[3].backgroundColor = '#984ea3';
         data[feature][yearClassEvol].datasets[4].backgroundColor = '#ff7f00';
+        if (typeof userInfo !== 'undefined'){
+          data[feature][yearClassEvol].datasets[5].backgroundColor = '#00ff00';
+        }
         myChart4 = new Chart(ctx4, {
           type: 'bubble',
           data: data[feature][yearClassEvol],
           options: optionsWithMaxLimt
         });
       }
+    }
+
+    function addUserData(data, userInfo){
+      console.log(data);
+      console.log(userInfo);
+      if (typeof userInfo === 'undefined'){
+        return data;
+      } else{
+        let dataExtended = data;
+        for (let i =2008; i<2018; i++){
+          dataExtended.Answers[i+""].datasets.push({"data": [{"x":userInfo.data[i-2008]["acnt"],
+                                                  "y":userInfo.data[i-2008]["acnt"],
+                                                  "v":1000}], "label": "You"});
+          dataExtended.Questions[i+""].datasets.push({"data": [{"x":userInfo.data[i-2008]["qcnt"],
+                                                  "y":userInfo.data[i-2008]["qcnt"],
+                                                  "v":1000}], "label": "You"});
+        }
+        console.log(dataExtended);
+        return dataExtended;
+      }
+
     }
 
     return {
