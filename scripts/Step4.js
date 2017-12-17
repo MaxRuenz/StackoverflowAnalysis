@@ -53,7 +53,7 @@ define(['d3'], function(d3) {
   function createUserClassesStats(json, feature, userValue) {
     let userIndex = -1;
     let jsonWithUser = json;
-    if (typeof currentUserInfo !== 'undefined'){
+    if (typeof userValue !== 'undefined'){
       for (let i = 0; i < json[feature].length; i++){
         if (json[feature][i] >= userValue){
           userIndex = i;
@@ -146,17 +146,17 @@ define(['d3'], function(d3) {
       let feature = d.Column;
       let userVal;
       if (typeof currentUserInfo !== 'undefined'){
-        if (userClassesFeature === 'Reputation'){
+        if (feature === 'Reputation'){
           userVal = currentUserInfo["Reputation"];
-        } else if (userClassesFeature === 'Votes'){
+        } else if (feature === 'Votes'){
           userVal = currentUserInfo.data[9]["votes"];
-        } else if (userClassesFeature === 'Questions'){
+        } else if (feature === 'Questions'){
           userVal = currentUserInfo.data[9]["qcnt"];
-        } else if (userClassesFeature === 'Answers'){
+        } else if (feature === 'Answers'){
           userVal = currentUserInfo.data[9]["acnt"];
-        } else if (userClassesFeature === 'Average Answer Votes'){
+        } else if (feature === 'Average Answer Votes'){
           userVal = currentUserInfo.data[9]["avotes"];
-        } else if (userClassesFeature === 'Average Question Votes'){
+        } else if (feature === 'Average Question Votes'){
           userVal = currentUserInfo.data[9]["qvotes"];
         }
       }
