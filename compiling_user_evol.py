@@ -84,8 +84,6 @@ def create_feature_data(arr):
         feature[str(year)] = { "datasets": create_year_dataset(arr[year-2008])}
     return feature
 
-response["Questions"] = create_feature_data(stats_questions)
-response["Answers"] = create_feature_data(stats_answers)
 response["Questions - Answers"] = create_feature_data(stats_q_a)
 
 json.dump(response, open('data/user_classes_evol.json', 'w'), indent=2)

@@ -22,7 +22,7 @@ define(['d3'], function(d3){
         scales: {
           yAxes: [{
             scaleLabel: {
-              labelString: "Average Votes",
+              labelString: "Answers",
               display: true
             },
             type: 'logarithmic',
@@ -45,7 +45,7 @@ define(['d3'], function(d3){
           }],
           xAxes: [{
             scaleLabel: {
-              labelString: "Count",
+              labelString: "Questions",
               display: true
             },
             type: 'logarithmic',
@@ -81,7 +81,7 @@ define(['d3'], function(d3){
       let ctx4 = document.getElementById("chart-evol");
       let myChart4,
         dataClassEvol,
-        featureClassEvol = "Questions",
+        featureClassEvol = "Questions - Answers",
         yearClassEvol = "2008";
       d3.json("data/user_classes_evol.json", function(json) {
         dataClassEvol = json;
@@ -124,10 +124,6 @@ define(['d3'], function(d3){
         $('#SliderEvol').on("change", updateSlider);
 
         createClassesEvol(dataClassEvol, featureClassEvol);
-        d3.select("#SelectClassesEvol").on("change", function() {
-          featureClassEvol = this.value;
-          createClassesEvol(dataClassEvol, featureClassEvol);
-        });
 
         d3.select("#playBubble").on('click', function(){
           let currentYear = $('#SliderEvol').slider('getValue');
@@ -161,16 +157,8 @@ define(['d3'], function(d3){
           myChart4.destroy();
         }
         let optionsWithMaxLimt = optionsBubble;
-        if (feature === "Questions"){
-          optionsWithMaxLimt.scales.yAxes[0].ticks.max = 50;
-          optionsWithMaxLimt.scales.xAxes[0].ticks.max = 50;
-        } else if (feature === "Answers") {
-          optionsWithMaxLimt.scales.yAxes[0].ticks.max = 5;
-          optionsWithMaxLimt.scales.xAxes[0].ticks.max = 450;
-        } else if (feature === "Questions - Answers") {
-          optionsWithMaxLimt.scales.yAxes[0].ticks.max = 450;
-          optionsWithMaxLimt.scales.xAxes[0].ticks.max = 50;
-        }
+        optionsWithMaxLimt.scales.yAxes[0].ticks.max = 450;
+        optionsWithMaxLimt.scales.xAxes[0].ticks.max = 50;
         data[feature][yearClassEvol].datasets[0].backgroundColor = '#e41a1c';
         data[feature][yearClassEvol].datasets[1].backgroundColor = '#377eb8';
         data[feature][yearClassEvol].datasets[2].backgroundColor = '#4daf4a';
@@ -195,12 +183,6 @@ define(['d3'], function(d3){
       } else{
         let dataExtended = data;
         for (let i =2008; i<2018; i++){
-          dataExtended.Answers[i+""].datasets.push({"data": [{"x":userInfo.data[i-2008]["acnt"],
-                                                  "y":userInfo.data[i-2008]["avotes"],
-                                                  "v":1000}], "label": "You"});
-          dataExtended.Questions[i+""].datasets.push({"data": [{"x":userInfo.data[i-2008]["qcnt"],
-                                                  "y":userInfo.data[i-2008]["qvotes"],
-                                                  "v":1000}], "label": "You"});
           dataExtended["Questions - Answers"][i+""].datasets.push({"data": [{"x":userInfo.data[i-2008]["qcnt"],
                                                   "y":userInfo.data[i-2008]["acnt"],
                                                   "v":1000}], "label": "You"});
