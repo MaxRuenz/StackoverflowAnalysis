@@ -41,6 +41,7 @@ define(['d3'], function(d3) {
 
     destroy() {
       d3.select(this.element).select("svg").select("g").selectAll('*').remove();
+      d3.select('#div-stream-legend').html("");
     }
 
     update(data) {
@@ -89,7 +90,6 @@ define(['d3'], function(d3) {
 
         let date = xScale.invert(xPosition - that.margins.left);
         let index = date.getYear()+1900-2008;
-        console.log(that.data[0].data[index][2]);
 
         let tooltip = d3.select("#tooltip")
           .style("left", xPosition + "px")
@@ -115,12 +115,14 @@ define(['d3'], function(d3) {
 
 
       this.svg.append("g")
+          .attr('class', 'axis')
           .attr("transform", "translate(0," + this.height/2 + ")")
           .call(d3.axisBottom(xScale));
 
       this.svg.append("g")
+          .attr('class', 'axis')
           .attr("transform", "translate(0,0)")
-          .call(d3.axisRight(yScale));
+          .call(d3.axisLeft(yScale));
 
       let vertical = d3.select("#div-stream")
           .append("div")
