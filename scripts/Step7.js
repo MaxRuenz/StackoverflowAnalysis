@@ -95,7 +95,7 @@ define(['d3'], function(d3){
           value: parseInt(getMinYear(dataClassEvol[featureClassEvol]))
         });
 
-        $('#SliderEvol').on("change", function(slideEvt) {
+        let updateSlider = function(slideEvt) {
           yearClassEvol = slideEvt.value.newValue;
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[0].backgroundColor = '#e41a1c';
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[1].backgroundColor = '#377eb8';
@@ -105,7 +105,7 @@ define(['d3'], function(d3){
           if (typeof userInfo !== 'undefined'){
             dataClassEvol[featureClassEvol][yearClassEvol].datasets[5].backgroundColor = '#00ff00';
           }
-          
+
           myChart4.data.datasets[0].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[0].data;
           myChart4.data.datasets[1].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[1].data;
           myChart4.data.datasets[2].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[2].data;
@@ -119,12 +119,27 @@ define(['d3'], function(d3){
             duration: 500,
             easing: 'linear'
           });
-        });
+        }
+
+        $('#SliderEvol').on("change", updateSlider);
 
         createClassesEvol(dataClassEvol, featureClassEvol);
         d3.select("#SelectClassesEvol").on("change", function() {
           featureClassEvol = this.value;
           createClassesEvol(dataClassEvol, featureClassEvol);
+        });
+
+        d3.select("#playBubble").on('click', function(){
+          let currentYear = $('#SliderEvol').slider('getValue');
+          let maxYear = 2018;
+          let slide = function(){
+             if (currentYear < maxYear){
+               $('#SliderEvol').slider('setValue',currentYear+1, false, true);
+               currentYear++;
+               setTimeout(slide, 1500)
+             }
+          }
+          setTimeout(slide, 1500)
         });
 
       });
