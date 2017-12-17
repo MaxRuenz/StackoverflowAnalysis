@@ -95,6 +95,9 @@ define(['d3'], function(d3) {
           .style("left", xPosition + "px")
           .style("top", yPosition + "px");
 
+        tooltip.select("#tooltip-year")
+          .text(date.getYear()+1900);
+
         let lastVal = 0;
         for (let i =0; i < 5; i++){
           tooltip.select("#value-q-"+i)
@@ -123,35 +126,6 @@ define(['d3'], function(d3) {
           .attr('class', 'axis')
           .attr("transform", "translate(0,0)")
           .call(d3.axisLeft(yScale));
-
-      let vertical = d3.select("#div-stream")
-          .append("div")
-          .attr("class", "remove")
-          .style("display", "none")
-          .style("position", "absolute")
-          .style("z-index", "19")
-          .style("width", "1px")
-          .style("height", that.height + "px")
-          .style("top", that.svg.node().getBoundingClientRect().top+"px")
-          .style("bottom", "30px")
-          .style("left", "0px")
-          .style("background", "#000");
-
-    d3.select("#div-stream svg #area")
-        .on("mouseenter", function (){
-          vertical.style("display", "" );
-        })
-        .on("mousemove", function(){
-           mousex = d3.mouse(this);
-           mousex = mousex[0] + 5;
-           vertical.style("left", mousex +that.margins.left + "px" )})
-        .on("mouseover", function(){
-           mousex = d3.mouse(this);
-           mousex = mousex[0] + 5;
-           vertical.style("left", mousex +that.margins.left + "px")})
-         .on("mouseleave", function (){
-           vertical.style("display", "none" );
-         });
 
          let legend6 = d3.select('#div-stream-legend').selectAll("legend")
                .data(getLabels(that.data));
