@@ -17,9 +17,13 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
         if (typeof currentUserInfo !== 'undefined'){
           let userVal = currentUserInfo["Reputation"];
           for (let i = 0; i < data["labels"].length; i++){
-            if (data["labels"][i] >= userVal){
-              userCat = i;
-              break;
+            let border;
+            if (data["labels"][i].includes("-")){
+              border = parseInt(data["labels"][i].split("-")[1].replace(".", ""));
+              if (border >= userVal){
+                userCat = i;
+                break;
+              }
             }
           }
           if (typeof userCat === 'undefined'){
@@ -31,7 +35,7 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
         data.datasets[0].backgroundColor = ['#e41a1c', '#377eb8', '#377eb8', '#4daf4a', '#4daf4a', '#984ea3', '#984ea3', '#ff7f00', '#ff7f00', '#ff7f00'];
         if (typeof userCat !== 'undefined')
           data.datasets[0].backgroundColor[userCat] = '#00ff00';
-        
+
         myChart2 = new Chart(ctx2, {
           type: 'bar',
           data: data,

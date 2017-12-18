@@ -20,9 +20,13 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
         if (typeof currentUserInfo !== 'undefined'){
           let userVal = currentUserInfo[featureHist];
           for (let i = 0; i < dataHist[featureHist]["labels"].length; i++){
-            if (dataHist[featureHist]["labels"][i] >= userVal){
-              userCat = i;
-              break;
+            let border;
+            if (dataHist[featureHist]["labels"][i].includes("-")){
+              border = parseInt(dataHist[featureHist]["labels"][i].split("-")[1].replace(".", ""));
+              if (border >= userVal){
+                userCat = i;
+                break;
+              }
             }
           }
           if (typeof userCat === 'undefined'){
