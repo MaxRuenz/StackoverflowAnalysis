@@ -82,7 +82,7 @@ define(['d3'], function(d3){
       let myChart4,
         dataClassEvol,
         featureClassEvol = "Questions - Answers",
-        yearClassEvol = "2008";
+        yearClassEvol = 2008;
       d3.json("data/user_classes_evol.json", function(json) {
         dataClassEvol = json;
 
@@ -90,6 +90,7 @@ define(['d3'], function(d3){
 
         let updateSlider = function(data) {
           yearClassEvol = data.from;
+          console.log(yearClassEvol);
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[0].backgroundColor = '#e41a1c';
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[1].backgroundColor = '#377eb8';
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[2].backgroundColor = '#4daf4a';
@@ -108,6 +109,7 @@ define(['d3'], function(d3){
             myChart4.data.datasets[5].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[5].data;
           }
 
+          console.log(myChart4.data.datasets[0].data);
           myChart4.update({
             duration: 500,
             easing: 'linear'
@@ -174,7 +176,7 @@ define(['d3'], function(d3){
         }
         myChart4 = new Chart(ctx4, {
           type: 'bubble',
-          data: data[feature][yearClassEvol],
+          data: JSON.parse(JSON.stringify(data[feature][yearClassEvol])),
           options: optionsWithMaxLimt
         });
       }
