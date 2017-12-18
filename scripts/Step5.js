@@ -23,6 +23,9 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
       user["qcnt"] = currentUserInfo.data[9]["qcnt"]+"";
       user["acnt"] = currentUserInfo.data[9]["acnt"]+"";
       user["Class"] = currentUserInfo.Class+"";
+      if (!Object.values(user).every(function(e){return e>0})){
+        user = undefined;
+      }
     }
 
     const bounds = d3.select(element).node().getBoundingClientRect(),
