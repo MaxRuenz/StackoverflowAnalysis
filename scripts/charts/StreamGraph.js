@@ -9,6 +9,7 @@ define(['d3'], function(d3) {
       this.margins = config.margins;
       this.data = config.data;
       this.colorMap = config.colorMap;
+      this.legend = config.legend;
 
       this.svg = d3.select(this.element)
         .append("svg")
@@ -127,16 +128,17 @@ define(['d3'], function(d3) {
           .attr("transform", "translate(0,0)")
           .call(d3.axisLeft(yScale));
 
+      if (this.legend){
          let legend6 = d3.select('#div-stream-legend').selectAll("legend")
                .data(getLabels(that.data));
 
-           let p = legend6.enter().append("div")
-           .attr("class","legends")
-           .append("p").attr("class","country-name");
+         let p = legend6.enter().append("div")
+         .attr("class","legends")
+         .append("p").attr("class","country-name");
 
-           console.log(p);
-            p.append("span").attr("class","key-dot").style("background",function(d) { return that.colorMap[d] } );
-            p.insert("text").text(function(d,i) { return d } );
+          p.append("span").attr("class","key-dot").style("background",function(d) { return that.colorMap[d] } );
+          p.insert("text").text(function(d,i) { return d } );
+      }
   }
 
   function getLabels(data){

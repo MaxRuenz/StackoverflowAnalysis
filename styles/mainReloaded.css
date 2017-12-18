@@ -149,8 +149,7 @@ svg {
 }
 
 .legends{
-    float:left;
-    margin-right:1em;
+  margin-left: 50px
 }
 
 .country-name {

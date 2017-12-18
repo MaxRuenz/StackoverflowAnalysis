@@ -39,7 +39,8 @@ define(['d3', 'charts/StreamGraph'], function(d3, StreamGraph) {
           width: widthSC,
           margins: margins,
           data: data,
-          colorMap: colorMap
+          colorMap: colorMap,
+          legend: true
         });
       }
     });
