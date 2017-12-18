@@ -23,15 +23,19 @@ require(['Step0', 'Step1', 'Step2', 'Step3', 'Step4', 'Step5', 'Step6', 'Step7',
       let pageTo = event.to;
       if (pageFrom === 1) {
         currentUserInfo = Step1.getUserInformation();
-        Step2.initializePage(currentUserInfo);
-        Step3.initializePage(currentUserInfo);
-        Step4.initializePage(currentUserInfo);
-        Step7.initializePage(currentUserInfo);
       }
-      if (pageTo == 5){
+      if (pageTo == 2){
+        Step2.initializePage(currentUserInfo);
+      } else if (pageTo == 3){
+        Step3.initializePage(currentUserInfo);
+      } else if (pageTo == 4){
+        Step4.initializePage(currentUserInfo);
+      } else if (pageTo == 5){
         Step5.initializePage(currentUserInfo);
       } else if (pageTo == 6){
         Step6.initializePage(currentUserInfo);
+      } else if (pageTo == 7){
+        Step7.initializePage(currentUserInfo);
       }
     });
   });

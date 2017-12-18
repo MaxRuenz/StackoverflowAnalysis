@@ -47,6 +47,10 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
         data[feature].datasets[0].backgroundColor = ["#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6"];
         if (typeof userCat !== 'undefined')
           data[feature].datasets[0].backgroundColor[userCat] = '#00ff00';
+
+        if (myChart){
+          myChart.destroy()
+        }
         myChart = new Chart(ctx, {
           type: 'bar',
           data: data[feature],
