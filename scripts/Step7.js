@@ -32,9 +32,7 @@ define(['d3'], function(d3){
               fontColor: '#ffffff',
               min: 0.1,
               callback: function (tick) {
-                if( tick.toString().startsWith( '1' ) ||
-                    tick.toString().startsWith( '2' ) ||
-                    tick.toString().startsWith( '5' ) )
+                if( tick.toString().startsWith( '1' ))
                   return tick.toLocaleString();
                 return null;
               }
@@ -56,9 +54,7 @@ define(['d3'], function(d3){
               fontColor: '#ffffff',
               min: 0.1,
               callback: function (tick) {
-                if( tick.toString().startsWith( '1' ) ||
-                    tick.toString().startsWith( '2' ) ||
-                    tick.toString().startsWith( '5' ) )
+                if( tick.toString().startsWith( '1' ))
                   return tick.toLocaleString();
                 return null;
               }
