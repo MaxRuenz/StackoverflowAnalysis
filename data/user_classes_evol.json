@@ -10,7 +10,7 @@
               "v": 144
             }
           ],
-          "label": 0
+          "label": "Inactive Users"
         },
         {
           "data": [
@@ -20,7 +20,7 @@
               "v": 2690
             }
           ],
-          "label": 1
+          "label": "One Time Users"
         },
         {
           "data": [
@@ -30,7 +30,7 @@
               "v": 8100
             }
           ],
-          "label": 2
+          "label": "Active Users"
         },
         {
           "data": [
@@ -40,7 +40,7 @@
               "v": 9093
             }
           ],
-          "label": 3
+          "label": "Frequent Users"
         },
         {
           "data": [
@@ -50,7 +50,7 @@
               "v": 1680
             }
           ],
-          "label": 4
+          "label": "Super Users"
         }
       ]
     },
@@ -64,7 +64,7 @@
               "v": 7322
             }
           ],
-          "label": 0
+          "label": "Inactive Users"
         },
         {
           "data": [
@@ -74,7 +74,7 @@
               "v": 22810
             }
           ],
-          "label": 1
+          "label": "One Time Users"
         },
         {
           "data": [
@@ -84,7 +84,7 @@
               "v": 38779
             }
           ],
-          "label": 2
+          "label": "Active Users"
         },
         {
           "data": [
@@ -94,7 +94,7 @@
               "v": 27509
             }
           ],
-          "label": 3
+          "label": "Frequent Users"
         },
         {
           "data": [
@@ -104,7 +104,7 @@
               "v": 3537
             }
           ],
-          "label": 4
+          "label": "Super Users"
         }
       ]
     },
@@ -118,7 +118,7 @@
               "v": 46406
             }
           ],
-          "label": 0
+          "label": "Inactive Users"
         },
         {
           "data": [
@@ -128,7 +128,7 @@
               "v": 103758
             }
           ],
-          "label": 1
+          "label": "One Time Users"
         },
         {
           "data": [
@@ -138,7 +138,7 @@
               "v": 96393
             }
           ],
-          "label": 2
+          "label": "Active Users"
         },
         {
           "data": [
@@ -148,7 +148,7 @@
               "v": 48276
             }
           ],
-          "label": 3
+          "label": "Frequent Users"
         },
         {
           "data": [
@@ -158,7 +158,7 @@
               "v": 4856
             }
           ],
-          "label": 4
+          "label": "Super Users"
         }
       ]
     },
@@ -172,7 +172,7 @@
               "v": 129600
             }
           ],
-          "label": 0
+          "label": "Inactive Users"
         },
         {
           "data": [
@@ -182,7 +182,7 @@
               "v": 258497
             }
           ],
-          "label": 1
+          "label": "One Time Users"
         },
         {
           "data": [
@@ -192,7 +192,7 @@
               "v": 193123
             }
           ],
-          "label": 2
+          "label": "Active Users"
         },
         {
           "data": [
@@ -202,7 +202,7 @@
               "v": 72542
             }
           ],
-          "label": 3
+          "label": "Frequent Users"
         },
         {
           "data": [
@@ -212,7 +212,7 @@
               "v": 5935
             }
           ],
-          "label": 4
+          "label": "Super Users"
         }
       ]
     },
@@ -226,7 +226,7 @@
               "v": 446295
             }
           ],
-          "label": 0
+          "label": "Inactive Users"
         },
         {
           "data": [
@@ -236,7 +236,7 @@
               "v": 481803
             }
           ],
-          "label": 1
+          "label": "One Time Users"
         },
         {
           "data": [
@@ -246,7 +246,7 @@
               "v": 314200
             }
           ],
-          "label": 2
+          "label": "Active Users"
         },
         {
           "data": [
@@ -256,7 +256,7 @@
               "v": 92760
             }
           ],
-          "label": 3
+          "label": "Frequent Users"
         },
         {
           "data": [
@@ -266,7 +266,7 @@
               "v": 6624
             }
           ],
-          "label": 4
+          "label": "Super Users"
         }
       ]
     },
@@ -280,7 +280,7 @@
               "v": 1173391
             }
           ],
-          "label": 0
+          "label": "Inactive Users"
         },
         {
           "data": [
@@ -290,7 +290,7 @@
               "v": 756406
             }
           ],
-          "label": 1
+          "label": "One Time Users"
         },
         {
           "data": [
@@ -300,7 +300,7 @@
               "v": 427320
             }
           ],
-          "label": 2
+          "label": "Active Users"
         },
         {
           "data": [
@@ -310,7 +310,7 @@
               "v": 106046
             }
           ],
-          "label": 3
+          "label": "Frequent Users"
         },
         {
           "data": [
@@ -320,7 +320,7 @@
               "v": 6967
             }
           ],
-          "label": 4
+          "label": "Super Users"
         }
       ]
     },
@@ -334,7 +334,7 @@
               "v": 2002816
             }
           ],
-          "label": 0
+          "label": "Inactive Users"
         },
         {
           "data": [
@@ -344,7 +344,7 @@
               "v": 1021790
             }
           ],
-          "label": 1
+          "label": "One Time Users"
         },
         {
           "data": [
@@ -354,7 +354,7 @@
               "v": 508171
             }
           ],
-          "label": 2
+          "label": "Active Users"
         },
         {
           "data": [
@@ -364,7 +364,7 @@
               "v": 112752
             }
           ],
-          "label": 3
+          "label": "Frequent Users"
         },
         {
           "data": [
@@ -374,7 +374,7 @@
               "v": 7142
             }
           ],
-          "label": 4
+          "label": "Super Users"
         }
       ]
     },
@@ -388,7 +388,7 @@
               "v": 2936811
             }
           ],
-          "label": 0
+          "label": "Inactive Users"
         },
         {
           "data": [
@@ -398,7 +398,7 @@
               "v": 1285753
             }
           ],
-          "label": 1
+          "label": "One Time Users"
         },
         {
           "data": [
@@ -408,7 +408,7 @@
               "v": 568975
             }
           ],
-          "label": 2
+          "label": "Active Users"
         },
         {
           "data": [
@@ -418,7 +418,7 @@
               "v": 116531
             }
           ],
-          "label": 3
+          "label": "Frequent Users"
         },
         {
           "data": [
@@ -428,7 +428,7 @@
               "v": 7218
             }
           ],
-          "label": 4
+          "label": "Super Users"
         }
       ]
     },
@@ -442,7 +442,7 @@
               "v": 4230092
             }
           ],
-          "label": 0
+          "label": "Inactive Users"
         },
         {
           "data": [
@@ -452,7 +452,7 @@
               "v": 1520825
             }
           ],
-          "label": 1
+          "label": "One Time Users"
         },
         {
           "data": [
@@ -462,7 +462,7 @@
               "v": 605227
             }
           ],
-          "label": 2
+          "label": "Active Users"
         },
         {
           "data": [
@@ -472,7 +472,7 @@
               "v": 118182
             }
           ],
-          "label": 3
+          "label": "Frequent Users"
         },
         {
           "data": [
@@ -482,7 +482,7 @@
               "v": 7240
             }
           ],
-          "label": 4
+          "label": "Super Users"
         }
       ]
     },
@@ -496,7 +496,7 @@
               "v": 5240899
             }
           ],
-          "label": 0
+          "label": "Inactive Users"
         },
         {
           "data": [
@@ -506,7 +506,7 @@
               "v": 1635527
             }
           ],
-          "label": 1
+          "label": "One Time Users"
         },
         {
           "data": [
@@ -516,7 +516,7 @@
               "v": 615045
             }
           ],
-          "label": 2
+          "label": "Active Users"
         },
         {
           "data": [
@@ -526,7 +526,7 @@
               "v": 118480
             }
           ],
-          "label": 3
+          "label": "Frequent Users"
         },
         {
           "data": [
@@ -536,7 +536,7 @@
               "v": 7240
             }
           ],
-          "label": 4
+          "label": "Super Users"
         }
       ]
     }

@@ -1,6 +1,6 @@
 [
   {
-    "label": "Questions Class 0",
+    "label": "Questions Inactive Users",
     "data": [
       [
         0,
@@ -55,7 +55,7 @@
     ]
   },
   {
-    "label": "Questions Class 1",
+    "label": "Questions One Time Users",
     "data": [
       [
         0,
@@ -110,7 +110,7 @@
     ]
   },
   {
-    "label": "Questions Class 2",
+    "label": "Questions Active Users",
     "data": [
       [
         0,
@@ -165,7 +165,7 @@
     ]
   },
   {
-    "label": "Questions Class 3",
+    "label": "Questions Frequent Users",
     "data": [
       [
         0,
@@ -220,7 +220,7 @@
     ]
   },
   {
-    "label": "Questions Class 4",
+    "label": "Questions Super Users",
     "data": [
       [
         0,
@@ -275,7 +275,7 @@
     ]
   },
   {
-    "label": "Answers Class 0",
+    "label": "Answers Inactive Users",
     "data": [
       [
         0,
@@ -330,7 +330,7 @@
     ]
   },
   {
-    "label": "Answers Class 1",
+    "label": "Answers One Time User",
     "data": [
       [
         0,
@@ -385,7 +385,7 @@
     ]
   },
   {
-    "label": "Answers Class 2",
+    "label": "Answers Active Users",
     "data": [
       [
         0,
@@ -440,7 +440,7 @@
     ]
   },
   {
-    "label": "Answers Class 3",
+    "label": "Answers Frequent Users",
     "data": [
       [
         0,
@@ -495,7 +495,7 @@
     ]
   },
   {
-    "label": "Answers Class 4",
+    "label": "Answers Super Users",
     "data": [
       [
         0,

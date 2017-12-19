@@ -50,6 +50,7 @@ svg {
 }
 
 .axis text {
+  font-size: 125%;
   cursor: move;
   fill: #ffffff;
 }

@@ -150,10 +150,11 @@ define(['d3'], function(d3) {
     g.append("g")
       .attr("class", "axis")
       .each(function(d) {
-        d3.select(this).call(that.axis.scale(that.y[d]));
+        d3.select(this).call(that.axis.scale(that.y[d]).ticks(10, ",.1s"));
       })
       .append("text")
       .style("text-anchor", "middle")
+      .style("font-size", "200%")
       .attr("y", -9)
       .text(function(d) {
         return d;

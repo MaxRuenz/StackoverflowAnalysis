@@ -3,9 +3,9 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
   const element = "#div-cordinates",
     margins = {
       top: 30,
-      right: 10,
+      right: 60,
       bottom: 10,
-      left: 50
+      left: 70
     };
 
   let pC;
