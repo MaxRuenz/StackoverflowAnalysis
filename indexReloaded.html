@@ -30,11 +30,31 @@
       <div class="carousel-item active">
         <div class="container fullscreen">
           <div class="carousel-caption text-left">
-            <h1>Intro.</h1>
-            <p>We were interested in the Stack Overflow Community. Who does contribute? In which amount?
-            Therefore, in this DataViz we want to analyse the different users of Stack Overflow, since we use it each day.</p>
+            <h1>Analysing StackOverflow Users</h1>
             <p>
-              TODO insert image of users graph
+              StackOverflow has grown to one of the most popular websites not only for computer scienists, but also for the genreal public of coders.
+              Since it became a very important tool for developers we want to analyse the community as such an their evolution.
+            <p>
+
+            <p>
+              In this visualisation we aim to identify which kind of users contribute to the community, what and how much they contribute.
+              Who keeps the platform running? How does user behavoir change over time? These are few of the questions which will be dealt with in this visualisation.
+            </p>
+
+            <p>
+              The dataset used for this post was provided on archive.org by StackExchange themselves and contains information up to September 2017.
+              It contains almost every information of the StackExchange websites. The following details of the dataset were used for this post:
+              <ul>
+                <li>
+                  User Information: Name, creation date, reputation
+                  Questions: User, votes, accepted answer
+                  Answer: User, votes, question
+                </li>
+              </ul>
+            </p>
+
+            <p>
+              Each of the different steps of this post will do a deeper analysis of StackOverflow
             </p>
 
           <p>
@@ -46,13 +66,17 @@
       <div class="carousel-item">
         <div class="container fullscreen">
           <div class="carousel-caption text-left">
-            <h1>What about you?.</h1>
-            <p>Now, that we have described the users of Stack Overflow and have shown the evolution of a super user, there is only one question remaining.
-            What about you? Enter your StackOverflow user ID to get your statistics and class</p>
-
+            <h1>Have you been active on StackOverflow?</h1>
+            <p>
+              In order to give you a relation and better understanding of the community you will be able to see you in most of the following visualisations.
+            </p>
 
             <p>
-              TODO plot charts for each feature where user is highlited
+              If you do own a StackOverflow account, try to find you in our dataset!
+              <br/>
+              Do you know what you contributed to StackOverflow?
+              This post will give you an overview about your contribution to StackOverflow.
+              And allows you to indentify your spot in the community!
             </p>
 
             <div class="form-group col-lg-4">
@@ -61,11 +85,14 @@
               <button class="btn btn-primary" type="submit" id="SubmitUserID">Submit</button>
             </div>
 
-
             <br/>
 
             <table class="table table-responsive table-striped table-hover" id="table-user">
             </table>
+
+            <p>
+              How did other users contribute?
+            </p>
 
           </div>
         </div>
@@ -73,10 +100,15 @@
       <div class="carousel-item">
         <div class="container fullscreen">
           <div class="carousel-caption text-left">
-            <h1>Descrepancies.</h1>
-            <p>During the analysis we found out, that there are large descrepancies between users. Many ask one question and stop contributing, some contribute a lot.
-            We have extracted the Number of Questions and Answers posted, the Votes and the Reputation of users. One can see that these features are distributed by a power law.
-            Create your own opinion using the charts for the different features.</p>
+            <h1>Different users</h1>
+            <p>
+              In the first step we want to have a look at the users who form the community of StackOverflow.
+              How many users are asking questions? How many inactive users are they?
+            </p>
+            <p>
+              The dataset has shown that there exist large descrepancies between users.
+              Some users have never posted anything, some posted several hundreds of answers.
+            </p>
 
             <select class="custom-select float-right" id="SelectHist">
                 <option value="Reputation" selected>Reputation</option>
@@ -87,17 +119,37 @@
               </select>
             <canvas id="chart-descre" height="100vh"></canvas>
 
+            <p class="font-italic">
+               Explore the distributions of features across users on your own by selecting a feature!
+               Hover over the chart to gain more insights.
+            </p>
+
+            <p>
+              We will now use the information extracted from the dataset to apply a classification of users into different user groups.
+            </p>
+
           </div>
         </div>
       </div>
       <div class="carousel-item">
         <div class="container fullscreen">
           <div class="carousel-caption text-left">
-            <h1>Classify Users.</h1>
-            <p>To aggregate insight about different user groups we decided to split the users in five different groups.
-            Based on their reputation we will create logarithmic classes.</p>
+            <h1>User Classifiation</h1>
+            <p>
+              We have built a classifier based on reputation[link].
+              Reputation contains our calculated features and more and is therefore well suited to measure activity on the platform.
+            </p>
+
+            <p>
+              One can notice that there exist a class with several million users with a reputation which has not changed at all.
+              On the other side there is a group of users who are contributing a lot.
+            </p>
 
             <canvas id="chart-class" height="100vh"></canvas>
+
+            <p>
+              Now that we have classified our users with Reputation, let's have a look at the other features of them.
+            </p>
 
           </div>
         </div>
@@ -105,10 +157,18 @@
       <div class="carousel-item">
         <div class="container fullscreen">
           <div class="carousel-caption text-left fullscreen">
-            <h1>Users per class.</h1>
-            <p>Let's have a look at the created classes. Below you can find average features with their Distribution based on the user's class.
-            One can notice ....</p>
+            <h1>Classified Users</h1>
+            <p>
+              Using the classification we can now calcuate the average features per class, in order to identify what our classes actually describe.
+            </p>
 
+            <p>
+              One can notice that the users in the fist class are people how created an account but never used it.
+              Most users out of the second category used their account to ask a question, and even some answered a question.
+              Users of the third class are definetly more active. They receive more votes, ask several questions and post several answers.
+              The fourth group is even more active. They asked more questions, but they are answering twice as much questions as they ask.
+              Finally the users in the last class are answering many questions, but if they ask questions, they ask imporant ones.
+            </p>
 
             <div class="container-fluid" id="container-main">
               <div class="row align-items-center">
@@ -133,18 +193,27 @@
       <div class="carousel-item">
         <div class="container fullscreen">
           <div class="carousel-caption text-left fullscreeen">
-            <h1>More details.</h1>
-            <p>Now that we looked into average features for the different user classes, let's have a look at the dependencies between the different classes.
-            One can notice ....</p>
+            <h1>Individual Users</h1>
+            <p>
+              Now that we got a basic understanding which kind of users our classes define, let's have a look at individual users.
+              In this chart a subselection of users is displayed.
+            </p>
 
             <p>
-              TODO fix chart for d3v4, try with new data, subsample or edge bundeling if viz is unclear
+              One can observe that the classificaion heavily depends on the answers posted by users.
+              Users who post more answers gain a higher average vote per answer and gain more reputation.
+              On the other hand the classifiation does not work well for questions.
+              Users are asking a different number of questions with different votes.
             </p>
 
 
             <div id="div-cordinates">
 
             </div>
+
+            <p class"font-italic">
+              Highlight users by selecting ranges of different features. Remove your selection by clicking a point which is not in your selection.
+            </p>
 
           </div>
         </div>
