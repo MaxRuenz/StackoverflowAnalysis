@@ -101,7 +101,10 @@ define(['d3'], function(d3) {
           scaleLabel: {
             display: true,
             labelString: feature
-          }
+          },
+          ticks: {min: 0}
+        }],
+        yAxes:[{
         }]}
       }
     });
@@ -149,6 +152,9 @@ define(['d3'], function(d3) {
                 .data(data)
                 .enter()
                 .append('tr')
+                .attr('id', function(d) {return 'row'+d.Column;})
+                .style('display', function(d) { let c = (d.Column !== "Reputation"? "none" : ""); return c;});
+
     rows.append('th')
       .text(function (d) {return d.Column})
     for (let i = 0; i<data.length; i++){
@@ -156,8 +162,8 @@ define(['d3'], function(d3) {
         .text(function (d) {return d.Values[i]})
     }
 
-    rows.on('click', function(d){
-      let feature = d.Column;
+    d3.select("#SelectClasses").on('change', function(){
+      let feature = this.value;
       let userVal;
       if (typeof currentUserInfo !== 'undefined'){
         if (feature === 'Reputation'){
@@ -174,6 +180,10 @@ define(['d3'], function(d3) {
           userVal = currentUserInfo.data[9]["qvotes"];
         }
       }
+
+      let rows = d3.selectAll(tableElement+' tbody tr')
+                  .style('display', function(d) { let c = (d.Column !== feature? "none" : ""); return c;});
+
       console.log(userVal);
       createUserClassesStats(dataUserClassesFeature, feature, userVal);
     })
