@@ -36,6 +36,13 @@ define(['d3'], function(d3){
       let userID = d3.select('#InputUserID').node().value
       d3.json('data/users/' + userID +'.json', function(data) {
         console.log(data);
+        if (data === null){
+          console.log("User not found!")
+          console.log(d3.select('#userFetchError'));
+          d3.select('#userFetchError').style("display", 'inline');
+        } else {
+          d3.select('#userFetchError').style("display", 'none');
+        }
         userInformation = data;
 
         let tableData = [];

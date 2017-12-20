@@ -189,3 +189,7 @@ svg {
 #div-stream{
   height: 50vh
 }
+
+#userFetchError{
+  display: none;
+}
