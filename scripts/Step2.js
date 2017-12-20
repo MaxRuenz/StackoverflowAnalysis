@@ -77,7 +77,7 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
       function createHistogram(data, userCat, feature) {
         data[feature].datasets[0].backgroundColor = ["#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6", "#4292c6"];
         if (typeof userCat !== 'undefined')
-          data[feature].datasets[0].backgroundColor[userCat] = '#00ff00';
+          data[feature].datasets[0].backgroundColor[userCat] = '#ffff33';
 
         let myOpt = optionsHist;
         myOpt.scales.xAxes[0].scaleLabel.labelString = feature;

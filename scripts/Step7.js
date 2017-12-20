@@ -99,7 +99,7 @@ define(['d3'], function(d3){
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[3].backgroundColor = '#984ea3';
           dataClassEvol[featureClassEvol][yearClassEvol].datasets[4].backgroundColor = '#ff7f00';
           if (typeof userInfo !== 'undefined'){
-            dataClassEvol[featureClassEvol][yearClassEvol].datasets[5].backgroundColor = '#00ff00';
+            dataClassEvol[featureClassEvol][yearClassEvol].datasets[5].backgroundColor = '#ffff33';
           }
 
           myChart4.data.datasets[0].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[0].data;
@@ -174,7 +174,7 @@ define(['d3'], function(d3){
         data[feature][yearClassEvol].datasets[3].backgroundColor = '#984ea3';
         data[feature][yearClassEvol].datasets[4].backgroundColor = '#ff7f00';
         if (typeof userInfo !== 'undefined'){
-          data[feature][yearClassEvol].datasets[5].backgroundColor = '#00ff00';
+          data[feature][yearClassEvol].datasets[5].backgroundColor = '#ffff33';
         }
         myChart4 = new Chart(ctx4, {
           type: 'bubble',
