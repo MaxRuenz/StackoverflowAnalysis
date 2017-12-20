@@ -70,8 +70,8 @@ define(['d3'], function(d3){
             label: function(t, d) {
               let radius = d.datasets[t.datasetIndex].data[t.index].v
               return d.datasets[t.datasetIndex].label + ': ' +
-                "Count: " + t.xLabel.toFixed(2) + ', ' +
-                "Average Votes: " + t.yLabel.toFixed(2) + ', '+
+                "Questions: " + t.xLabel.toFixed(2) + ', ' +
+                "Answers: " + t.yLabel.toFixed(2) + ', '+
                 "Users: " + radius;
             }
          }
