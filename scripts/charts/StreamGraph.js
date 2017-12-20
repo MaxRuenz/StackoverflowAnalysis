@@ -144,7 +144,10 @@ define(['d3'], function(d3) {
   function getLabels(data){
     console.log(data)
     let labels = []
-    for (let i = 0; i < data.length; i++){
+    for (let i = data.length/2-1; i > 0; i--){
+      labels.push(data[i].label);
+    }
+    for (let i = data.length/2; i < data.length; i++){
       labels.push(data[i].label);
     }
     return labels;

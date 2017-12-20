@@ -82,7 +82,7 @@ define(['d3'], function(d3) {
     if (userIndex !== -1)
       data[feature]["labels"].splice(userIndex, 0, "You");
 
-    data[feature].datasets[0].backgroundColor = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c'];
+    data[feature].datasets[0].backgroundColor = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00'];
 
     if (userIndex !== -1)
       data[feature].datasets[0].backgroundColor.splice(userIndex, 0, '#00ff00');
@@ -97,15 +97,24 @@ define(['d3'], function(d3) {
         legend: false,
         responsive: true,
         maintainAspectRatio: false,
-        scales: {xAxes:[{
-          scaleLabel: {
-            display: true,
-            labelString: feature
-          },
-          ticks: {min: 0}
-        }],
-        yAxes:[{
-        }]}
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: feature,
+              fontColor: 'white'
+            },
+            ticks: {
+              min: 0,
+              fontColor: '#ffffff'
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              fontColor: '#ffffff'
+            }
+          }]
+        }
       }
     });
   }
@@ -114,7 +123,7 @@ define(['d3'], function(d3) {
     let config = Object.assign(...Object.entries(json).map(([k, v]) => ({
       [k]: {
         "labels": ["One time users",
-          "Occasinal users",
+          "One Time users",
           "Common users",
           "Frequent users",
           "Super users"

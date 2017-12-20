@@ -23,7 +23,8 @@ define(['d3'], function(d3){
           yAxes: [{
             scaleLabel: {
               labelString: "Answers",
-              display: true
+              display: true,
+              fontColor: 'white'
             },
             type: 'logarithmic',
             ticks: {
@@ -44,7 +45,8 @@ define(['d3'], function(d3){
           xAxes: [{
             scaleLabel: {
               labelString: "Questions",
-              display: true
+              display: true,
+              fontColor: 'white'
             },
             type: 'logarithmic',
             gridLines: {
@@ -73,7 +75,9 @@ define(['d3'], function(d3){
                 "Users: " + radius;
             }
          }
-        }
+       },
+       maintainAspectRatio: false
+
       };
 
       let ctx4 = document.getElementById("chart-evol");

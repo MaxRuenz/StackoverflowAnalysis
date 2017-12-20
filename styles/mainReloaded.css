@@ -15,6 +15,11 @@
   height: 30vh
 }
 
+#div-chart-contrib{
+  position: relative;
+  height: 40vh
+}
+
 svg {
   font: 10px sans-serif;
 }
@@ -146,6 +151,10 @@ svg {
 .color-a-4{
   background:#eff3ff;
 
+}
+
+#div-stream{
+  width: calc(70vw - 300px)
 }
 
 .legends{

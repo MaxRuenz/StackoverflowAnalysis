@@ -274,12 +274,23 @@
               <p> <table><tr><td><div class="rect-color color-a-3"></div></td><td><text id="value-a-3">100</text></td></tr></table></p>
               <p> <table><tr><td><div class="rect-color color-a-4"></div></td><td><text id="value-a-4">100</text></td></tr></table></p>
             </div>
-          <div id="div-stream">
 
-          </div>
-          <div id="div-stream-legend">
+          <table>
+            <row>
+              <td>
+                <div id="div-stream">
 
-          </div>
+                </div>
+              </td>
+              <td>
+                <div id="div-stream-legend">
+
+                </div>
+              </td>
+            </row>
+          </table>
+
+
 
           <p>
             <i>Hover over the chart to display the exact portion of questions and answers,</i>
@@ -309,9 +320,9 @@
             But the more active the class the steeper the increase of answers posted is.
             After ten years Super Users asked seven times as much questions, but answered 60 times as much answers!
           </p>
-
-          <canvas id="chart-evol" height="150vh"></canvas>
-
+          <div id="div-chart-evol">
+            <canvas id="chart-evol"></canvas>
+          </div>
           <div id="div-slider">
             <input id="SliderEvol" type="text" />
             <button class="btn btn-primary" type="submit" id="playBubble">Play</button>
