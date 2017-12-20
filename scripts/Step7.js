@@ -93,20 +93,18 @@ define(['d3'], function(d3){
         let updateSlider = function(data) {
           yearClassEvol = data.from;
           console.log(yearClassEvol);
-          dataClassEvol[featureClassEvol][yearClassEvol].datasets[0].backgroundColor = '#e41a1c';
-          dataClassEvol[featureClassEvol][yearClassEvol].datasets[1].backgroundColor = '#377eb8';
-          dataClassEvol[featureClassEvol][yearClassEvol].datasets[2].backgroundColor = '#4daf4a';
-          dataClassEvol[featureClassEvol][yearClassEvol].datasets[3].backgroundColor = '#984ea3';
-          dataClassEvol[featureClassEvol][yearClassEvol].datasets[4].backgroundColor = '#ff7f00';
+          dataClassEvol[featureClassEvol][yearClassEvol].datasets[0].backgroundColor = '#377eb8';
+          dataClassEvol[featureClassEvol][yearClassEvol].datasets[1].backgroundColor = '#4daf4a';
+          dataClassEvol[featureClassEvol][yearClassEvol].datasets[2].backgroundColor = '#984ea3';
+          dataClassEvol[featureClassEvol][yearClassEvol].datasets[3].backgroundColor = '#ff7f00';
           if (typeof userInfo !== 'undefined'){
-            dataClassEvol[featureClassEvol][yearClassEvol].datasets[5].backgroundColor = '#ffff33';
+            dataClassEvol[featureClassEvol][yearClassEvol].datasets[4].backgroundColor = '#ffff33';
           }
 
           myChart4.data.datasets[0].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[0].data;
           myChart4.data.datasets[1].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[1].data;
           myChart4.data.datasets[2].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[2].data;
           myChart4.data.datasets[3].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[3].data;
-          myChart4.data.datasets[4].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[4].data;
           if (typeof userInfo !== 'undefined'){
             myChart4.data.datasets[5].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[5].data;
           }
@@ -168,13 +166,12 @@ define(['d3'], function(d3){
         let optionsWithMaxLimt = optionsBubble;
         optionsWithMaxLimt.scales.yAxes[0].ticks.max = 500;
         optionsWithMaxLimt.scales.xAxes[0].ticks.max = 500;
-        data[feature][yearClassEvol].datasets[0].backgroundColor = '#e41a1c';
-        data[feature][yearClassEvol].datasets[1].backgroundColor = '#377eb8';
-        data[feature][yearClassEvol].datasets[2].backgroundColor = '#4daf4a';
-        data[feature][yearClassEvol].datasets[3].backgroundColor = '#984ea3';
-        data[feature][yearClassEvol].datasets[4].backgroundColor = '#ff7f00';
+        data[feature][yearClassEvol].datasets[0].backgroundColor = '#377eb8';
+        data[feature][yearClassEvol].datasets[1].backgroundColor = '#4daf4a';
+        data[feature][yearClassEvol].datasets[2].backgroundColor = '#984ea3';
+        data[feature][yearClassEvol].datasets[3].backgroundColor = '#ff7f00';
         if (typeof userInfo !== 'undefined'){
-          data[feature][yearClassEvol].datasets[5].backgroundColor = '#ffff33';
+          data[feature][yearClassEvol].datasets[4].backgroundColor = '#ffff33';
         }
         myChart4 = new Chart(ctx4, {
           type: 'bubble',
