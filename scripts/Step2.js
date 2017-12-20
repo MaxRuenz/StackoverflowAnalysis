@@ -12,6 +12,9 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
 
       let ctx = document.getElementById("chart-descre");
       let featureHist = "Reputation";
+
+      d3.select("#SelectHist").property('value', featureHist);
+
       let dataHist;
 
       d3.json("data/Hists.json", function(json) {
@@ -19,6 +22,7 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
         let userCat;
         if (typeof currentUserInfo !== 'undefined'){
           let userVal = currentUserInfo[featureHist];
+          console.log(userVal);
           for (let i = 0; i < dataHist[featureHist]["labels"].length; i++){
             let border;
             if (dataHist[featureHist]["labels"][i].includes("-")){
@@ -38,6 +42,33 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
         createHistogram(dataHist, userCat, featureHist);
         d3.select("#SelectHist").on("change", function() {
           featureHist = this.value;
+
+          if (typeof currentUserInfo !== 'undefined'){
+            let userVal;
+            if (featureHist === "Reputation"){
+              userVal = currentUserInfo[featureHist];
+            } else if (featureHist === "Answers"){
+              userVal = currentUserInfo.data[9]["acnt"];
+            } else if (featureHist === "Questions"){
+              userVal = currentUserInfo.data[9]["qcnt"];
+            }
+            console.log(userVal);
+            for (let i = 0; i < dataHist[featureHist]["labels"].length; i++){
+              let border;
+              if (dataHist[featureHist]["labels"][i].includes("-")){
+                border = parseInt(dataHist[featureHist]["labels"][i].split("-")[1].replace(".", ""));
+                if (border >= userVal){
+                  userCat = i;
+                  break;
+                }
+              }
+            }
+            if (typeof userCat === 'undefined'){
+              userCat = dataHist[featureHist]["labels"].length-1;
+            }
+            console.log(userCat);
+          }
+
           createHistogram(dataHist, userCat, featureHist);
         })
 
