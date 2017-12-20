@@ -36,13 +36,16 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
         if (typeof userCat !== 'undefined')
           data.datasets[0].backgroundColor[userCat] = '#00ff00';
 
+        let myOpt = optionsHist;
+        myOpt.scales.xAxes[0].scaleLabel.labelString = "Reputation";
+
         if (myChart2){
           myChart2.destroy()
         }
         myChart2 = new Chart(ctx2, {
           type: 'bar',
           data: data,
-          options: optionsHist
+          options: myOpt
         });
 
       });

@@ -18,7 +18,8 @@ define([], function() {
         },
         scaleLabel: {
           display: true,
-          labelString: "Number of Users"
+          labelString: "Number of Users",
+          fontColor: 'white'
         }
       }],
       xAxes: [{
@@ -31,7 +32,8 @@ define([], function() {
         },
         scaleLabel: {
           display: true,
-          labelString: "Reputation"
+          labelString: "Reputation",
+          fontColor: 'white'
         }
       }]
     },

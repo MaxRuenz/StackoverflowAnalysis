@@ -1,6 +1,7 @@
 define(['d3', 'optionsHist'], function(d3, optionsHist){
 
     let currentUserInfo;
+    let myChart;
 
     function initializePage(userInfo){
       console.log("Hi");
@@ -10,7 +11,6 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
       currentUserInfo = userInfo;
 
       let ctx = document.getElementById("chart-descre");
-      let myChart;
       let featureHist = "Reputation";
       let dataHist;
 
@@ -48,13 +48,16 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
         if (typeof userCat !== 'undefined')
           data[feature].datasets[0].backgroundColor[userCat] = '#00ff00';
 
+        let myOpt = optionsHist;
+        myOpt.scales.xAxes[0].scaleLabel.labelString = feature;
+
         if (myChart){
-          myChart.destroy()
+          myChart.destroy();
         }
         myChart = new Chart(ctx, {
           type: 'bar',
           data: data[feature],
-          options: optionsHist
+          options: myOpt
         });
       }
     }
