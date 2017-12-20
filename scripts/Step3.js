@@ -34,7 +34,7 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
 
         data.datasets[0].backgroundColor = ['#e41a1c', '#377eb8', '#377eb8', '#4daf4a', '#4daf4a', '#984ea3', '#984ea3', '#ff7f00', '#ff7f00', '#ff7f00'];
         if (typeof userCat !== 'undefined')
-          data.datasets[0].backgroundColor[userCat] = '#00ff00';
+          data.datasets[0].backgroundColor[userCat] = '#ffff33';
 
         let myOpt = optionsHist;
         myOpt.scales.xAxes[0].scaleLabel.labelString = "Reputation";

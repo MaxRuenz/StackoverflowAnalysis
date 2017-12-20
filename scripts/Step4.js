@@ -85,7 +85,7 @@ define(['d3'], function(d3) {
     data[feature].datasets[0].backgroundColor = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00'];
 
     if (userIndex !== -1)
-      data[feature].datasets[0].backgroundColor.splice(userIndex, 0, '#00ff00');
+      data[feature].datasets[0].backgroundColor.splice(userIndex, 0, '#ffff33');
 
     if (myChart3){
       myChart3.destroy();
