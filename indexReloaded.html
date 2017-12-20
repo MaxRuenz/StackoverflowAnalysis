@@ -25,6 +25,8 @@
       <li data-target="#myCarousel" data-slide-to="5"></li>
       <li data-target="#myCarousel" data-slide-to="6"></li>
       <li data-target="#myCarousel" data-slide-to="7"></li>
+      <li data-target="#myCarousel" data-slide-to="8"></li>
+      <li data-target="#myCarousel" data-slide-to="9"></li>
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -243,12 +245,19 @@
         <div class="container fullscreen">
           <div class="carousel-caption text-left">
             <h1>Contribution and Time</h1>
-            <p>To dig a little bit deeper, let's have a look who creates and answers posts on Spotify
-              One can notice .... (Super users ask less, one time users ask a lot).</p>
+            <p>
+              In this step we will focus on the content created by the different user groups.
+              Therefore we calculated the portion of questions and answers posted by each user class per year.
+            </p>
 
-              <p>
-                TODO adapt colors and insert real data: timeseries of questions and answers distributed over user classes
-              </p>
+            <p>
+              One can notice that Super Users and Frequent Users were asking a high portion of questions.
+              These portions decreased heavily in the following years from more that 80% to less than 40% nowadays.
+              Super Users today are only asking 5% of the questions. Most questions are asked by less active users. <br/>
+              Like the questions Super Users and Frequent Users answered a high portion of questions.
+              But the evolution of answers behaves differently.
+              Nowadays they are still answering 65% of the questions of the whole community, while beeing less than 2% of users!
+            </p>
 
               <div id="tooltip" class="hidden">
                 <h4 id="tooltip-year" class="mytext"></h4>
@@ -272,6 +281,15 @@
 
             </div>
 
+            <p>
+              <i>Hover over the chart in order to display the exact portion of questions and answers,</i>
+            </p>
+
+            <p>
+              StackOverflow heavily relies on answers. Noone would visit StackOverflow if he could not find asnwers.
+              Since we observed that these answers are posted by Super Users and Frequent Users we were interested on their evolution.
+            </p>
+
           </div>
         </div>
       </div>
@@ -279,11 +297,17 @@
         <div class="container fullscreen">
           <div class="carousel-caption text-left">
             <h1>Evolution of users.</h1>
-            <p>As Stack Overflow is one of the most frequently used websites for university, we want to find out how one can contribute as best as one can.
-            Therefore we analyse the growth of a super user and compare it to the groth of other user classes.</p>
+            <p>
+              How did it come to the point where Super Users are answering so many questions?
+              And how did the users evolve to Super Users? <br/>
+              To answer these questions we focused on the evolution of users over time.
+              Therefore, the number of questions asked was plotted linked to the number of answers posted.
+            </p>
 
             <p>
-              TODO use slider to scroll in time, see users evolve
+              One can notice that for all users the number of questions asked increases.
+              But the more active the class the steeper the increase of answers posted is.
+              After ten years Super Users asked seven times as much questions, but answered 60 times as much answers!
             </p>
 
             <canvas id="chart-evol" height="150vh"></canvas>
@@ -292,10 +316,36 @@
               <input id="SliderEvol" type="text" />
               <button class="btn btn-primary" type="submit" id="playBubble">Play</button>
             </div>
+
+            <p>
+              <i>
+                Press the play button or scroll with the slider throughout the years.
+                Hover over the bubbles to display questions, answers and the number of users per class to the given point in time.
+              </i>
+            </p>
           </div>
         </div>
       </div>
+      <div class="carousel-item">
+        <div class="container fullscreen">
+          <div class="carousel-caption text-left">
+            <h1>Conclusion</h1>
+            <p>
+
+            <p>
+          </div>
+        </div>
     </div>
+    <div class="carousel-item">
+      <div class="container fullscreen">
+        <div class="carousel-caption text-left">
+          <h1>About</h1>
+          <p>
+
+          <p>
+        </div>
+      </div>
+  </div>
     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
