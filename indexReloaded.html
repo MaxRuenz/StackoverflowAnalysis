@@ -47,19 +47,20 @@
               <ul>
                 <li>
                   User Information: Name, creation date, reputation
+                </li>
+                <li>
                   Questions: User, votes, accepted answer
-                  Answer: User, votes, question
+                </li>
+                <li>
+                  Answers: User, votes, question
                 </li>
               </ul>
             </p>
 
             <p>
-              Each of the different steps of this post will do a deeper analysis of StackOverflow
+              In each step of this post different facts about the community and their evolution will be presented and analysed.
             </p>
 
-          <p>
-            Prototype status: Identified visualisation to show. Preprocessing data to show real data in charts, make charts interactive.
-          </p>
           </div>
         </div>
       </div>
@@ -68,15 +69,15 @@
           <div class="carousel-caption text-left">
             <h1>Have you been active on StackOverflow?</h1>
             <p>
-              In order to give you a relation and better understanding of the community you will be able to see you in most of the following visualisations.
+              In order to give you a relation and better understanding of the community you will be able to observe yourself in most of the following visualisations.
+              The your information will be highlighted in green.
             </p>
 
             <p>
-              If you do own a StackOverflow account, try to find you in our dataset!
+              If you do own a StackOverflow account, try to find yourself in our dataset!
               <br/>
               Do you know what you contributed to StackOverflow?
-              This post will give you an overview about your contribution to StackOverflow.
-              And allows you to indentify your spot in the community!
+              This post will show you contribution and you spot in the StackOverflow community.
             </p>
 
             <div class="form-group col-lg-4">
@@ -119,10 +120,10 @@
               </select>
             <canvas id="chart-descre" height="100vh"></canvas>
 
-            <p class="font-italic">
+            <p><i>
                Explore the distributions of features across users on your own by selecting a feature!
                Hover over the chart to gain more insights.
-            </p>
+            </i></p>
 
             <p>
               We will now use the information extracted from the dataset to apply a classification of users into different user groups.
@@ -136,13 +137,13 @@
           <div class="carousel-caption text-left">
             <h1>User Classifiation</h1>
             <p>
-              We have built a classifier based on reputation[link].
-              Reputation contains our calculated features and more and is therefore well suited to measure activity on the platform.
+              We have built a classifier based on <a href="https://stackoverflow.com/help/whats-reputation">reputation</a>.
+              Reputation contains not only our calculated features and is therefore well suited to measure activity on the platform.
             </p>
 
             <p>
-              One can notice that there exist a class with several million users with a reputation which has not changed at all.
-              On the other side there is a group of users who are contributing a lot.
+              One can notice that there exist a class with several million users. Their reputation has not changed at all since their registration.
+              On the other side there is a group of users who are outperforming with a reputation of hunderd thousands.
             </p>
 
             <canvas id="chart-class" height="100vh"></canvas>
@@ -167,7 +168,7 @@
               Most users out of the second category used their account to ask a question, and even some answered a question.
               Users of the third class are definetly more active. They receive more votes, ask several questions and post several answers.
               The fourth group is even more active. They asked more questions, but they are answering twice as much questions as they ask.
-              Finally the users in the last class are answering many questions, but if they ask questions, they ask imporant ones.
+              Finally the users in the last class answer a lot of questions. If they ask questions, they ask imporant ones.
             </p>
 
             <div class="container-fluid" id="container-main">
@@ -193,6 +194,9 @@
                     <canvas id="chart-contrib"></canvas>
                   </div>
                 </div>
+                <p>
+                  Since we can notice that users of the lower two classes are not active on StackOverflow, we will now focus on the active classes.
+                </p>
               </div>
             </div>
 
@@ -204,14 +208,15 @@
           <div class="carousel-caption text-left fullscreeen">
             <h1>Individual Users</h1>
             <p>
-              Now that we got a basic understanding which kind of users our classes define, let's have a look at individual users.
-              In this chart a subselection of users is displayed.
+              Now that we got a basic understanding which kind of users our classes define, let's have a look at how the collected feature are correlated.
+              This chart focuses on invidial users (a subselection) instead of averages.
             </p>
 
             <p>
-              One can observe that the classificaion heavily depends on the answers posted by users.
+              On one hand one can observe that the classificaion heavily depends on the answers posted by users.
               Users who post more answers gain a higher average vote per answer and gain more reputation.
               On the other hand the classifiation does not work well for questions.
+              No explict trend between reputation and questions can be observed.
               Users are asking a different number of questions with different votes.
             </p>
 
@@ -220,8 +225,15 @@
 
             </div>
 
-            <p class"font-italic">
-              Highlight users by selecting ranges of different features. Remove your selection by clicking a point which is not in your selection.
+            <p>
+              <i>
+                Highlight users by selecting ranges of different features. Remove your selection by clicking a point which is not in your selection.
+              </i>
+            </p>
+
+            <p>
+              We found out that there definetly exist different types of users and their contribution.
+              But on which users does the community rely and how did StackOverflow to this state?
             </p>
 
           </div>
@@ -230,7 +242,7 @@
       <div class="carousel-item">
         <div class="container fullscreen">
           <div class="carousel-caption text-left">
-            <h1>Distribution details.</h1>
+            <h1>Contribution and Time</h1>
             <p>To dig a little bit deeper, let's have a look who creates and answers posts on Spotify
               One can notice .... (Super users ask less, one time users ask a lot).</p>
 
