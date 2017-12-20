@@ -17,15 +17,16 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
     let user = {};
     if (typeof currentUserInfo !== 'undefined'){
       user["Reputation"] = currentUserInfo.Reputation;
-      user["qvotes"] = currentUserInfo.data[9]["qvotes"]+"";
-      user["avotes"] = currentUserInfo.data[9]["avotes"]+"";
-      user["votes"] = currentUserInfo.data[9]["votes"]+"";
-      user["qcnt"] = currentUserInfo.data[9]["qcnt"]+"";
-      user["acnt"] = currentUserInfo.data[9]["acnt"]+"";
+      user["Question Votes"] = currentUserInfo.data[9]["qvotes"]+"";
+      user["Answer Votes"] = currentUserInfo.data[9]["avotes"]+"";
+      user["Votes"] = currentUserInfo.data[9]["votes"]+"";
+      user["Question Count"] = currentUserInfo.data[9]["qcnt"]+"";
+      user["Answer Count"] = currentUserInfo.data[9]["acnt"]+"";
       user["Class"] = currentUserInfo.Class+"";
       if (!Object.values(user).every(function(e){return e>0})){
         user = undefined;
       }
+      console.log(user);
     }
 
     const bounds = d3.select(element).node().getBoundingClientRect(),
