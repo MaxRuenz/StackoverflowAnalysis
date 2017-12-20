@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Stack Overflow User Analysis</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.2.0/css/ion.rangeSlider.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.2.0/css/ion.rangeSlider.skinHTML5.min.css" />
+  <link rel="stylesheet" href="styles/mainReloaded.css" />
+</head>
+
+<body>
+  <div id="myCarousel" class="carousel slide fullscreen bg-dark">
+    <ol class="carousel-indicators footer fixed-bottom">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
+      <li data-target="#myCarousel" data-slide-to="5"></li>
+      <li data-target="#myCarousel" data-slide-to="6"></li>
+      <li data-target="#myCarousel" data-slide-to="7"></li>
+      <li data-target="#myCarousel" data-slide-to="8"></li>
+      <li data-target="#myCarousel" data-slide-to="9"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container fullscreen">
+          <div class="carousel-caption text-left">
+            <h1>Analyzing Stack Overflow Users</h1>
+          <p>
+            Stack Overflow has grown to one of the most popular websites not only for computer scientists, but also for the public of coders.
+            Since it has become a very important tool for developers we want to analyze the community as such and their evolution.
+          </p>
+
+          <p>
+            In this visualization we aim to identify which kind of users contribute to the community, how and how much they contribute.
+            Who keeps the platform running? How does user behavior change over time? These are few of the questions which we will try to answer with this visualization.
+          </p>
+
+          <p>
+            The dataset used for this post was provided on archive.org by Stack Exchange themselves and contains information from the beginning of 2007 up to September 2017.
+            It contains almost all information of the Stack Exchange websites. The following details of the dataset were used for this post:
+            <ul>
+              <li>
+                User Information: Name, creation date, reputation
+              </li>
+              <li>
+                Questions: User, votes, accepted answer
+              </li>
+              <li>
+                Answers: User, votes, question
+              </li>
+            </ul>
+          </p>
+
+          <p>
+            In each step of this post different facts about the community and their evolution will be presented and analyzed.
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container fullscreen">
+        <div class="carousel-caption text-left">
+          <h1>Have you been active on Stack Overflow?</h1>
+          <p>
+            To give you a relation and better understanding of the community you will be able to observe yourself in most of the following visualizations.
+            Your information will be highlighted in green.
+          </p>
+
+          <p>
+            If you do own a Stack Overflow account, try to find yourself in our dataset!
+            <br/>
+            Do you know what you contributed to Stack Overflow?
+            This post will show your contribution and spot you in the Stack Overflow community.
+          </p>
+
+          <div class="form-group col-lg-4">
+            <label for="InputUserID">Stack Overflow User Id</label>
+            <input type="text" class="form-control" id="InputUserID" placeholder="22656" maxlength="10">
+            <button class="btn btn-primary" type="submit" id="SubmitUserID">Submit</button>
+          </div>
+
+          <p id="userFetchError">
+              The selected user could not be fetched!
+          </p>
+          <br/>
+
+          <table class="table table-responsive table-striped table-hover" id="table-user">
+            <tr>
+              <th>Name</th>
+              <td>?</td>
+            </tr>
+            <tr>
+              <th>Reputation</th>
+              <td>?</td>
+            </tr>
+            <tr>
+              <th>Questions</th>
+              <td>?</td>
+            </tr>
+            <tr>
+              <th>Average Question Votes</th>
+              <td>?</td>
+            </tr>
+            <tr>
+              <th>Answers</th>
+              <td>?</td>
+            </tr>
+            <tr>
+              <th>Average Answer Votes</th>
+              <td>?</td>
+            </tr>
+            <tr>
+              <th>Votes</th>
+              <td>?</td>
+            </tr>
+        </table>
+
+          <p>
+            How did other users contribute?
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container fullscreen">
+        <div class="carousel-caption text-left">
+          <h1>User Contribution</h1>
+          <p>
+            In the first step we want to have a look at the users who form the community of Stack Overflow.
+            How many users are asking questions? How many inactive users are there?
+          </p>
+          <p>
+            The dataset has shown that there exists large discrepancies between users.
+            Some users have never posted anything, some posted several hundreds of answers.
+          </p>
+
+          <select class="custom-select float-right" id="SelectHist">
+              <option value="Reputation" selected>Reputation</option>
+              <option value="Answers">Answers</option>
+              <option value="Questions">Questions</option>
+            </select>
+          <canvas id="chart-descre" height="100vh"></canvas>
+
+          <p><i>
+             Explore the distributions of features across users on your own by selecting a feature!
+             Hover over the chart to get more detailed information.
+          </i></p>
+
+          <p>
+            We will now use the information extracted from the dataset to apply a classification of users into different user groups.
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container fullscreen">
+        <div class="carousel-caption text-left">
+          <h1>User Classification</h1>
+          <p>
+            We have built a classifier based on <a href="https://stackoverflow.com/help/whats-reputation">reputation</a>.
+            Reputation contains not only our calculated features and is therefore well suited to measure activity on the platform.
+          </p>
+
+          <p>
+            One can notice that there exists a class with several million users. Their reputation has not changed at all since their registration.
+            On the other side there is a group of users who are outperforming with a reputation of hundred thousand.
+          </p>
+
+          <canvas id="chart-class" height="100vh"></canvas>
+
+          <p>
+            Now that we have classified our users  based on Reputation, let's have a look at the other features of them.
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container fullscreen">
+        <div class="carousel-caption text-left fullscreen">
+          <h1>Classified Users</h1>
+          <p>
+            Using the classification, we can now calculate the average features per class, to identify what our classes describe.
+          </p>
+
+          <p>
+            One can notice that the users in the first class are people how created an account but never used it.
+            Most users out of the second category used their account to ask a question, and even some answered a question.
+            Users of the third class are more active. They receive more votes, ask several questions and post several answers.
+            The fourth group is even more active. They asked more questions, but they are answering twice as much questions as they ask.
+            Finally, the users in the last class answer a lot of questions. If they ask questions, they ask important ones.
+          </p>
+
+          <div class="container-fluid" id="container-main">
+            <div class="row align-items-center">
+              <div class="col col-lg-12" >
+                  <select class="custom-select float-right" id="SelectClasses">
+                      <option value="Reputation" selected>Reputation</option>
+                      <option value="Answers">Answers</option>
+                      <option value="Questions">Questions</option>
+                      <option value="Average Answer Votes">Average Answer Votes</option>
+                      <option value="Average Question Votes">Average Question Votes</option>
+                    </select>
+                    <br/>
+                <table class="table table-responsive table-striped table-hover" id="table-user-classes">
+
+                </table>
+                <br/>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col col-lg-12">
+                <div id="div-chart-contrib">
+                  <canvas id="chart-contrib"></canvas>
+                </div>
+              </div>
+              <p>
+                Since we can notice that users of the lower two classes are not active on Stack Overflow, we will now focus on the active classes.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container fullscreen">
+        <div class="carousel-caption text-left fullscreeen">
+          <h1>Individual Users</h1>
+          <p>
+            Now that we got a basic understanding which kind of users our classes define, let's have a look at how the collected features are correlated.
+            This chart focuses on individual users (a sub selection) instead of averages.
+          </p>
+
+          <p>
+            On one hand one can observe that the classification heavily depends on the answers posted by users.
+            Users who post more answers gain a higher average vote per answer and gain more reputation.
+            On the other hand, the classification does not work well for questions.
+            No explicit trend between reputation and questions can be observed.
+            Users are asking a different number of questions with different votes.
+          </p>
+
+
+          <div id="div-cordinates">
+
+          </div>
+
+          <p>
+            <i>
+              Highlight users by selecting ranges of different features. Remove your selection by clicking a point which is not in your selection.
+            </i>
+          </p>
+
+          <p>
+            We found out that there exist different types of users and their contribution.
+            But on which users does the community rely and how did Stack Overflow to this state?
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container fullscreen">
+        <div class="carousel-caption text-left">
+          <h1>Class Contribution and Time</h1>
+          <p>
+            In this step we will focus on the content created by the different user groups.
+            Therefore, we calculated the portion of questions to answers posted by each user class each year.
+          </p>
+
+          <p>
+            One can notice that Super Users and Frequent Users were asking a high portion of questions.
+            These portions decreased heavily in the following years from more than 80% to less than 40% nowadays.
+            Super Users today are only asking 5% of the questions. Most questions are asked by less active users. <br/>
+            Like the questions Super Users and Frequent Users answered a high portion of questions.
+            But the evolution of answers behaves differently.
+            Nowadays they are still answering 65% of the questions of the whole community, while being less than 2% of users!
+          </p>
+
+            <div id="tooltip" class="hidden">
+              <h4 id="tooltip-year" class="mytext"></h4>
+              <span class="mytext">Questions</span>
+              <p> <table><tr><td><div class="rect-color color-q-4"></div></td><td><text id="value-q-4">100</text></td></tr></table></p>
+              <p> <table><tr><td><div class="rect-color color-q-3"></div></td><td><text id="value-q-3">100</text></td></tr></table></p>
+              <p> <table><tr><td><div class="rect-color color-q-2"></div></td><td><text id="value-q-2">100</text></td></tr></table></p>
+              <p> <table><tr><td><div class="rect-color color-q-1"></div></td><td><text id="value-q-1">100</text></td></tr></table></p>
+              <p> <table><tr><td><div class="rect-color color-q-0"></div></td><td><text id="value-q-0">100</text></td></tr></table></p>
+              <span class="mytext">Answers</span>
+              <p> <table><tr><td><div class="rect-color color-a-0"></div></td><td><text id="value-a-0">100</text></td></tr></table></p>
+              <p> <table><tr><td><div class="rect-color color-a-1"></div></td><td><text id="value-a-1">100</text></td></tr></table></p>
+              <p> <table><tr><td><div class="rect-color color-a-2"></div></td><td><text id="value-a-2">100</text></td></tr></table></p>
+              <p> <table><tr><td><div class="rect-color color-a-3"></div></td><td><text id="value-a-3">100</text></td></tr></table></p>
+              <p> <table><tr><td><div class="rect-color color-a-4"></div></td><td><text id="value-a-4">100</text></td></tr></table></p>
+            </div>
+
+          <table>
+            <row>
+              <td>
+                <div id="div-stream">
+
+                </div>
+              </td>
+              <td>
+                <div id="div-stream-legend">
+
+                </div>
+              </td>
+            </row>
+          </table>
+
+
+
+          <p>
+            <i>Hover over the chart to display the exact portion of questions and answers,</i>
+          </p>
+
+          <p>
+            Stack Overflow heavily relies on answers. No one would visit Stack Overflow if he could not find answers.
+            Since we observed that these answers are posted by Super Users and Frequent Users we were interested on their evolution.
+          </p>
+
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container fullscreen">
+        <div class="carousel-caption text-left">
+          <h1>Evolution of Users</h1>
+          <p>
+            How did it come to the point where Super Users are answering so many questions?
+            And how did the users evolve to Super Users? <br/>
+            To answer these questions, we focused on the evolution of users over time.
+            Therefore, the number of questions asked was plotted linked to the number of answers posted.
+          </p>
+
+          <p>
+            One can notice that for all users the number of questions asked increases.
+            But the more active the class the steeper the increase of answers posted is.
+            After ten years Super Users asked seven times as much questions, but answered 60 times as much answers!
+          </p>
+          <div id="div-chart-evol">
+            <canvas id="chart-evol"></canvas>
+          </div>
+          <div id="div-slider">
+            <input id="SliderEvol" type="text" />
+            <button class="btn btn-primary" type="submit" id="playBubble">Play</button>
+          </div>
+
+          <p>
+            <i>
+              Press the play button or scroll with the slider throughout the years.
+              Hover over the bubbles to display questions, answers and the number of users per class to the given point in time.
+            </i>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container fullscreen">
+        <div class="carousel-caption text-left">
+          <h1>Conclusion</h1>
+          <p>
+              Throughout the visualizations we have shown that there exist different types of users: inactive, active and very active users.
+              Questions on Stack Overflow are nowadays asked by every active user.
+              Answers, on the other side, are posted by very active users.
+              They contribute 65% of the answers, while being a minority of 2%!
+          </p>
+
+          <p>
+              Furthermore, the visualizations showed that Stack Overflow content shifted over time.
+              Super Users were asking many more questions than today.
+              Nowadays they spend their time answering questions asked by less frequent users.
+          </p>
+
+          <p>
+            Last but not least we were able to observe the growth of super users: <br/>
+            Super Users shifted from asking questions to answering hundreds.
+          </p>
+
+          <p>
+            Remembering that we did not spend a single word on non-registered users, makes the contribution of active users even more impressive.
+            According to <a href="https://www.quantcast.com/stackoverflow.com#trafficCard">Quantcast</a>, Stack Overflow has almost 50 Million unique visitors per month!
+          </p>
+        </div>
+      </div>
+  </div>
+  <div class="carousel-item">
+    <div class="container fullscreen">
+      <div class="carousel-caption text-left">
+        <h1>About</h1>
+        <p>
+          This post was created by <a href="https://github.com/claasifier">Claas Brüß</a> and <a href="https://github.com/MaxRuenzEPFL">Maximilan Rünz</a> for a course on data visualization taught at <a href="http://epfl.ch/">EPFL</a> by <a href="http://www.kirellbenzi.com/">Kirell Benzi</a>.
+        <p>
+      </div>
+    </div>
+  </div>
+    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+  </div>
+
+  <script data-main="scripts/app.js" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"></script>
+</body>
+
+</html>
