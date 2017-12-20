@@ -106,7 +106,7 @@ define(['d3'], function(d3){
           myChart4.data.datasets[2].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[2].data;
           myChart4.data.datasets[3].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[3].data;
           if (typeof userInfo !== 'undefined'){
-            myChart4.data.datasets[5].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[5].data;
+            myChart4.data.datasets[4].data = dataClassEvol[featureClassEvol][yearClassEvol].datasets[5].data;
           }
 
           console.log(myChart4.data.datasets[0].data);
