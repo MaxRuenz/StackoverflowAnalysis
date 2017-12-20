@@ -91,6 +91,7 @@ define(['d3'], function(d3) {
       .selectAll("path")
       .data(this.data)
       .enter().append("path")
+      .attr("class", getClassClass)
       .attr("d", path.bind(this));
 
     this.userground = this.svg.append("g")
@@ -176,6 +177,16 @@ define(['d3'], function(d3) {
       .selectAll("rect")
       .attr("x", -8)
       .attr("width", 16);
+  }
+
+  function getClassClass(d){
+    if (d.Class === '4'){
+      return "super-users";
+    } else if (d.Class === '3'){
+      return "freq-users";
+    } else if (d.Class === '2'){
+      return "active-users";
+    }
   }
 
   function position(d) {

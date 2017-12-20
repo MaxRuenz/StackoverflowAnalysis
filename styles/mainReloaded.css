@@ -32,7 +32,18 @@ svg {
 
 .foreground path {
   fill: none;
-  stroke: steelblue;
+}
+
+.super-users{
+  stroke: rgb(255, 127, 0);
+}
+
+.freq-users{
+  stroke: rgb(152, 78, 163);
+}
+
+.active-users{
+  stroke: rgb(77, 175, 74);
 }
 
 .userground path {
