@@ -53,9 +53,11 @@ define(['d3'], function(d3){
             ticks: {
               fontColor: '#ffffff',
               min: 0.1,
+              autoSkip: false,
               callback: function (tick) {
-                if( tick.toString().startsWith( '1' ))
+                if( (tick+"").startsWith( '1' )){
                   return tick.toLocaleString();
+                }
                 return null;
               }
             }
@@ -160,8 +162,8 @@ define(['d3'], function(d3){
           myChart4.destroy();
         }
         let optionsWithMaxLimt = optionsBubble;
-        optionsWithMaxLimt.scales.yAxes[0].ticks.max = 450;
-        optionsWithMaxLimt.scales.xAxes[0].ticks.max = 50;
+        optionsWithMaxLimt.scales.yAxes[0].ticks.max = 500;
+        optionsWithMaxLimt.scales.xAxes[0].ticks.max = 500;
         data[feature][yearClassEvol].datasets[0].backgroundColor = '#e41a1c';
         data[feature][yearClassEvol].datasets[1].backgroundColor = '#377eb8';
         data[feature][yearClassEvol].datasets[2].backgroundColor = '#4daf4a';
