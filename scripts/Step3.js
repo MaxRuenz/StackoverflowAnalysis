@@ -1,5 +1,9 @@
 define(['d3', 'optionsHist'], function(d3, optionsHist){
 
+    /**
+     * JS Code for classification page
+     */
+
     let currentUserInfo;
 
     function initializePage(userInfo){
@@ -10,9 +14,11 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
       let ctx2 = document.getElementById("chart-class");
       let myChart2;
 
+      // load data
       d3.json("data/classes.json", function(json) {
         let data = json;
 
+        // find user
         let userCat;
         if (typeof currentUserInfo !== 'undefined'){
           let userVal = currentUserInfo["Reputation"];

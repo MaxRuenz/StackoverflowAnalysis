@@ -1,4 +1,9 @@
 define([], function() {
+
+  /**
+   * Default configuration for histogram charts
+   */
+
   const optionsHist = {
     scales: {
       yAxes: [{

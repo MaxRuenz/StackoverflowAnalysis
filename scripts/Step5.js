@@ -1,5 +1,10 @@
 define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
 
+
+  /**
+   * JS Code for Step with ParrallelCordinates
+   */
+
   const element = "#div-cordinates",
     margins = {
       top: 30,
@@ -14,6 +19,7 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
   function initializePage(currentUserInfo) {
     console.log("Hi");
 
+    // fetch user information
     let user = {};
     if (typeof currentUserInfo !== 'undefined'){
       user["Reputation"] = currentUserInfo.Reputation;
@@ -34,6 +40,7 @@ define(['d3', 'charts/ParrallelCordinates'], function(d3, ParrallelCordinates) {
       widthPC = bounds.width - margins.left - margins.right,
       heightPC = bounds.height - margins.top - margins.bottom;
 
+    // create chart
     d3.csv('data/users_edited_sample.csv', function(error, data) {
       if (pC) {
         pC.update(data);

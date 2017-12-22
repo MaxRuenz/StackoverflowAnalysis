@@ -1,5 +1,9 @@
 define(['d3'], function(d3) {
 
+  /**
+   * JS Code for average feature per class
+   */
+
   const tableElement = '#table-user-classes'
   let currentUserInfo;
   let myChart3;
@@ -12,6 +16,8 @@ define(['d3'], function(d3) {
     console.log("Hi");
 
     currentUserInfo = userInfo;
+
+    // get values from user to be shown in the table
     d3.json("data/users_classes.json", function(json) {
       dataUserClassesFeature = json;
 
@@ -60,6 +66,9 @@ define(['d3'], function(d3) {
 
   }
 
+  /**
+   * Creates the Table and the cahrt based on input data
+   */
   function createUserClassesStats(json, feature, userValue) {
     let userIndex = -1;
     let jsonWithUser = json;
@@ -119,6 +128,9 @@ define(['d3'], function(d3) {
     });
   }
 
+  /**
+   * Reformat data to match chart data format
+   */
   function generateDataConfig(json) {
     let config = Object.assign(...Object.entries(json).map(([k, v]) => ({
       [k]: {
@@ -139,6 +151,10 @@ define(['d3'], function(d3) {
     return config;
   }
 
+
+  /**
+   * Creates the table based on inut data
+   */
   function createTable(data){
     d3.select(tableElement).html('');
     let headings = ["Feature","Inactive Users", "One Time Users", "Active Users", "Frequent Users", "Super Users"];

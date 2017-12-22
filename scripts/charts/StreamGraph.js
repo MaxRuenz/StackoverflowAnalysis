@@ -1,6 +1,13 @@
 define(['d3'], function(d3) {
 
+  /**
+   * Object representing a stream graph
+   */
   class StreamGraph {
+
+    /**
+     * Constructor
+     */
     constructor(config) {
 
       this.element = config.element;
@@ -11,6 +18,7 @@ define(['d3'], function(d3) {
       this.colorMap = config.colorMap;
       this.legend = config.legend;
 
+      // create group for svg elements
       this.svg = d3.select(this.element)
         .append("svg")
         .attr('width', this.width + this.margins.left + this.margins.right + 'px')
@@ -20,6 +28,7 @@ define(['d3'], function(d3) {
 
       this.z = d3.interpolateCool;
 
+      // function to create area
       this.area = d3.area()
         .x(function(d) {
           return this.x(d[0]);
@@ -34,17 +43,26 @@ define(['d3'], function(d3) {
       drawChart.call(this);
     }
 
+    /**
+     * Resizes the chart to passed width, height
+     */
     resize(width, height) {
       d3.select(this.element).select("g").attr("transform", "scale(" + width / this.width + "," + height / this.height + ")");
       this.width = width;
       this.height = height;
     }
 
+    /**
+     * Removes the chart
+     */
     destroy() {
       d3.select(this.element).select("svg").select("g").selectAll('*').remove();
       d3.select('#div-stream-legend').html("");
     }
 
+    /**
+     * Updates the data in the chart
+     */
     update(data) {
         this.data = data;
         this.destroy();
@@ -53,9 +71,12 @@ define(['d3'], function(d3) {
 
   }
 
+  /**
+   * Draws the acutal chart
+   */
   function drawChart() {
 
-
+    // create scales for axes
     let xScale = d3.scaleTime().range([0, this.width]);
     xScale.domain([new Date(2008, 0, 0), new Date(2017, 0, 0)]);
     let yScale = d3.scaleLinear().range([this.height, 0]);
@@ -69,6 +90,7 @@ define(['d3'], function(d3) {
       .domain([d3.min(this.data, stackMin), d3.max(this.data, stackMax)])
       .range([this.height, 0]);
 
+    // create areas with mouse events: tooltip
     let that = this;
     this.svg.append('g')
       .attr('id', 'area')
@@ -117,7 +139,7 @@ define(['d3'], function(d3) {
         d3.select("#tooltip").classed("hidden", true);
       });
 
-
+      // add axes
       this.svg.append("g")
           .attr('class', 'axis')
           .attr("transform", "translate(0," + this.height/2 + ")")
@@ -128,6 +150,7 @@ define(['d3'], function(d3) {
           .attr("transform", "translate(0,0)")
           .call(d3.axisLeft(yScale));
 
+      // add legend
       if (this.legend){
          let legend6 = d3.select('#div-stream-legend').selectAll("legend")
                .data(getLabels(that.data));
@@ -141,6 +164,9 @@ define(['d3'], function(d3) {
       }
   }
 
+  /**
+   * Extracts labels based on json input format
+   */
   function getLabels(data){
     console.log(data)
     let labels = []
@@ -153,6 +179,9 @@ define(['d3'], function(d3) {
     return labels;
   }
 
+  /**
+   * Calculates the maximum on a layer
+   */
   function xMax(layer) {
     let data = layer.data;
     return d3.max(data, function(d) {
@@ -160,6 +189,9 @@ define(['d3'], function(d3) {
     });
   }
 
+  /**
+   * Calculates the minimum on a layer
+   */
   function xMin(layer) {
     let data = layer.data;
     return d3.min(data, function(d) {
@@ -167,6 +199,9 @@ define(['d3'], function(d3) {
     });
   }
 
+  /**
+   * Calculates the maximum of several layers
+   */
   function stackMax(layer) {
     let data = layer.data;
     return d3.max(data, function(d) {
@@ -174,6 +209,9 @@ define(['d3'], function(d3) {
     });
   }
 
+  /**
+   * Calculates the minimum of several layers
+   */
   function stackMin(layer) {
     let data = layer.data;
     return d3.min(data, function(d) {

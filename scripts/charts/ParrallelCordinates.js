@@ -1,6 +1,13 @@
 define(['d3'], function(d3) {
 
+  /**
+   * Class representing a ParrallelCordinates visualization
+   */
   class ParrallelCordinates {
+
+    /**
+     * Constructor
+     */
     constructor(config) {
 
       this.element = config.element;
@@ -24,11 +31,19 @@ define(['d3'], function(d3) {
 
       this.line = d3.line();
       this.axis = d3.axisLeft();
+
+      /**
+       * Lines for users
+       */
       this.background;
       this.foreground;
       this.userground;
+
       this.dimensions;
 
+      /**
+       * Group element for all svg elements
+       */
       this.svg = d3.select(this.element).append("svg")
         .attr("width", this.width + this.margins.left + this.margins.right + 'px')
         .attr("height", this.height + this.margins.top + this.margins.bottom + 'px')
@@ -38,16 +53,25 @@ define(['d3'], function(d3) {
       drawChart.call(this);
     }
 
+    /**
+     * Changes the size of the chart
+     */
     resize(width, height) {
       d3.select(this.element).select("g").attr("transform", "scale(" + width / this.width + "," + height / this.height + ")");
       this.width = width;
       this.height = height;
     }
 
+    /**
+     * Removes the chart
+     */
     destroy() {
       d3.select(this.element).select("svg").select("g").selectAll('*').remove();
     }
 
+    /**
+     * Updates the chart with new data
+     */
     update(data) {
       this.destroy();
       this.data = data;
@@ -56,6 +80,9 @@ define(['d3'], function(d3) {
 
   }
 
+  /**
+   * Draws the actual chart
+   */
   function drawChart() {
     // Extract the list of dimensions and create a scale for each.
     this.x.domain(this.dimensions = d3.keys(this.data[0]).filter(function(d) {

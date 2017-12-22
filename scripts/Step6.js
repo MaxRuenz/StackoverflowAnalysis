@@ -1,5 +1,9 @@
 define(['d3', 'charts/StreamGraph'], function(d3, StreamGraph) {
 
+  /**
+   * Code for Stream Graph page
+   */
+
   const margins = {
       top: 30,
       right: 10,
@@ -29,6 +33,7 @@ define(['d3', 'charts/StreamGraph'], function(d3, StreamGraph) {
       widthSC = bounds.width - margins.left - margins.right,
       heightSC = bounds.height - margins.top - margins.bottom;
 
+    // load data
     d3.json("data/aq_time.json", function(data) {
       if (sG) {
         sG.update(data);

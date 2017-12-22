@@ -1,5 +1,9 @@
 define(['d3'], function(d3){
 
+    /**
+     * Code for bubble chart
+     */
+
     let userInformation;
 
     function initializePage(userInfo){

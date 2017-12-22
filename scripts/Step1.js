@@ -1,8 +1,15 @@
 define(['d3'], function(d3){
 
+    /**
+     * JS Code for Step You
+     */
+
     let userInformation;
     const tableElement = '#table-user'
 
+    /**
+     *
+     */
     function initializePage(){
       console.log("Hi");
       d3.select("#SubmitUserID").on('click', fetchUser);
@@ -13,6 +20,9 @@ define(['d3'], function(d3){
       })
     }
 
+    /**
+     * Creates a table containing the user information
+     */
     function createTable(data){
       d3.select(tableElement).html('');
 
@@ -27,6 +37,9 @@ define(['d3'], function(d3){
         .text(function (d) {return d.Value})
     }
 
+    /**
+     * Returns the user information in order to be accessed by other pages
+     */
     function getUserInformation(){
       console.log(userInformation);
       return userInformation;
