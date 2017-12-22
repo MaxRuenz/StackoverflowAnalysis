@@ -1,11 +1,21 @@
 import json
 import copy
+import numpy as np
 
 user_ids = [22656, 5210584, 699854]
+
 data_dict = {'votes':0, 'avotes': 0, 'qvotes':0, 'acnt':0, 'qcnt':0}
 
 with open('user_classes_time.json', 'r') as f:
     users = json.load(f)
+    
+    random_user_ids = []
+    for key in users.keys():
+        if np.random.random_sample()  > 0.99999:
+            random_user_ids.append(key)
+    
+    
+    user_ids += random_user_ids
     
     for user in user_ids:
         with open('data/users/{}.json'.format(user), 'w') as u:
