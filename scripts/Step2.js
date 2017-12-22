@@ -81,6 +81,9 @@ define(['d3', 'optionsHist'], function(d3, optionsHist){
 
         let myOpt = optionsHist;
         myOpt.scales.xAxes[0].scaleLabel.labelString = feature;
+        myOpt.tooltips.callbacks.title = function (t,d){
+          return feature +" "+ t[0].xLabel;
+        }
 
         if (myChart){
           myChart.destroy();
