@@ -1,3 +1,6 @@
+"""Samples users from the user csv in order to reduce chart complexity
+"""
+
 import csv
 import numpy as np
 

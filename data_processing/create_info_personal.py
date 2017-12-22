@@ -1,3 +1,4 @@
+"""Creates a file for selected users to that they are able to view their data"""
 import json
 import copy
 import numpy as np

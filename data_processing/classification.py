@@ -1,3 +1,4 @@
+"""Creates a new json for users over time which includes their class"""
 import json
 import matplotlib
 import matplotlib.pyplot as plt

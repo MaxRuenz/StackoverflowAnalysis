@@ -1,4 +1,4 @@
-# Packages
+"""Creates based on the question and answers jsons and the user XML the JSON for user details over time"""
 
 import pandas as pd
 import os

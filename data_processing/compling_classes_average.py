@@ -1,4 +1,4 @@
-# Packages
+"""Calculates the average values per class and stores them in a json"""
 
 import pandas as pd
 import os

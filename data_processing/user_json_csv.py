@@ -1,3 +1,6 @@
+"""Script that coverts the json of users over time into a csv needed for the PA chart"""
+
+
 import json
 import csv
 

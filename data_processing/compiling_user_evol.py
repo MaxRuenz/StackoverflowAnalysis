@@ -1,3 +1,5 @@
+"""Creates the inpit for the bubble evolution chart"""
+
 import json
 import copy
 from dateutil import parser

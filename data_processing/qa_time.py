@@ -1,3 +1,4 @@
+"""Creates the input json for the stream graph from the users over time json"""
 import json
 import numpy as np
 
